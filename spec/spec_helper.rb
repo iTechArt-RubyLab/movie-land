@@ -13,6 +13,7 @@
 # it.
 #
 require 'support/factory_bot'
+require 'database_cleaner/active_record'
 
 require 'simplecov'
 SimpleCov.start
@@ -30,6 +31,17 @@ RSpec.configure do |config|
     # ...rather than:
     #     # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+  end
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with :truncation
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
 
   # rspec-mocks config goes here. You can use an alternate test double
