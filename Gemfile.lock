@@ -60,10 +60,17 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    addressable (2.8.0)
+      public_suffix (>= 2.0.2, < 5.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     ast (2.4.2)
     bootsnap (1.10.3)
       msgpack (~> 1.2)
     builder (3.2.4)
+    byebug (11.1.3)
+    choice (0.2.0)
     coderay (1.1.3)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
@@ -86,6 +93,8 @@ GEM
       activesupport (>= 5.0)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
+    json-schema (2.8.1)
+      addressable (>= 2.4)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -115,6 +124,7 @@ GEM
       pry (>= 0.9.10, < 0.15)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
+    public_suffix (4.0.6)
     puma (5.6.2)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -139,6 +149,11 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
+    rails-erd (1.6.1)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
     railties (6.1.4.6)
@@ -152,6 +167,8 @@ GEM
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    regexp_parser (2.2.1)
+    rexml (3.2.5)
     rspec-core (3.11.0)
       rspec-support (~> 3.11.0)
     rspec-expectations (3.11.0)
@@ -169,14 +186,19 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.11.0)
-    simplecov (0.21.2)
-      docile (~> 1.1)
-      simplecov-html (~> 0.11)
-      simplecov_json_formatter (~> 0.1)
-    simplecov-html (0.12.3)
-    simplecov_json_formatter (0.1.3)
-    regexp_parser (2.2.1)
-    rexml (3.2.5)
+    rswag (2.5.1)
+      rswag-api (= 2.5.1)
+      rswag-specs (= 2.5.1)
+      rswag-ui (= 2.5.1)
+    rswag-api (2.5.1)
+      railties (>= 3.1, < 7.1)
+    rswag-specs (2.5.1)
+      activesupport (>= 3.1, < 7.1)
+      json-schema (~> 2.2)
+      railties (>= 3.1, < 7.1)
+    rswag-ui (2.5.1)
+      actionpack (>= 3.1, < 7.1)
+      railties (>= 3.1, < 7.1)
     rubocop (1.25.1)
       parallel (~> 1.10)
       parser (>= 3.1.0.0)
@@ -188,16 +210,21 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.15.2)
       parser (>= 3.0.1.1)
-    rubocop-performance (1.13.2)
-      rubocop (>= 1.7.0, < 2.0)
-      rubocop-ast (>= 0.4.0)
     rubocop-rails (2.13.2)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
     rubocop-rspec (2.8.0)
       rubocop (~> 1.19)
+    ruby-graphviz (1.2.5)
+      rexml
     ruby-progressbar (1.11.0)
+    simplecov (0.21.2)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.3)
     spring (4.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -220,6 +247,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  annotate
   bootsnap (>= 1.4.4)
   byebug
   database_cleaner-active_record
@@ -231,12 +259,13 @@ DEPENDENCIES
   pry-rails
   puma (~> 5.0)
   rails (~> 6.1.4, >= 6.1.4.4)
+  rails-erd
   rspec-rails (~> 5.0.0)
-  simplecov
+  rswag
   rubocop
-  rubocop-performance
   rubocop-rails
   rubocop-rspec
+  simplecov
   spring
   tzinfo-data
 
