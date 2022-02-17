@@ -1,0 +1,41 @@
+require: rubocop-rails
+require: rubocop-rspec
+require: rubocop-performance
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'config/**/**'
+    - 'config.ru'
+    - 'lib/**/**'
+    - 'Gemfile.lock'
+    - 'tmp/**/*'
+    - 'bin/**'
+    - 'db/schema.rb'
+    - 'db/migrate/**'
+    - 'app/helpers/**'
+    - 'app/channels/**/**'
+    - 'spec/helpers/**'
+    - 'spec/rails_helper.rb'
+    - 'spec/spec_helper.rb'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+  
+Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
