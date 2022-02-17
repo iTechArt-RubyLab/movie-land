@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :awards
   resources :categories
   resources :tags
   resources :genres
