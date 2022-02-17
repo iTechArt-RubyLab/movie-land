@@ -8,9 +8,9 @@ RSpec.describe Image, type: :model do
   end
 
   describe '#link' do
-    context 'when link is not correct' do
-      subject(:invalid_link) { build :image, :invalid_link }
-      it { expect(invalid_link).not_to be_valid }
+    context 'when link format is not correct' do
+      subject(:invalid_format_link) { build :image, :invalid_format_link }
+      it { expect(invalid_format_link).not_to be_valid }
     end
   end
 end
