@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :seasons
   resources :series
   resources :images
   resources :languages
