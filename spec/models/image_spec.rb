@@ -1,0 +1,16 @@
+require 'rails_helper'
+
+RSpec.describe Image, type: :model do
+  subject(:image) { create :image }
+
+  context 'with valid attributes' do
+    it { expect(image).to be_valid }
+  end
+
+  describe '#link' do
+    context 'when link is not correct' do
+      subject(:invalid_link) { build :image, :invalid_link }
+      it { expect(invalid_link).not_to be_valid }
+    end
+  end
+end
