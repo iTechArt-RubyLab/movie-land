@@ -1,6 +1,6 @@
 class CountriesController < ApplicationController
   def index
-    @countries = Country.all
+    @countries = Country.paginate(page: params[:page], per_page: 10)
 
     render json: @countries
   end
@@ -38,6 +38,6 @@ class CountriesController < ApplicationController
   end
 
   def country_params
-    params.require(:country).permit(:title)
+    params.require(:country).permit(:title, :page)
   end
 end
