@@ -9,9 +9,6 @@ class CreateMovies < ActiveRecord::Migration[6.1]
       t.integer :age_limit
       t.bigint :budget
       t.integer :duration
-      t.references :poster, null: false, foreign_key: { to_table: :images }
-      t.references :image, null: false, foreign_key: true
-      t.references :category, null: false, foreign_key: true
 
       t.timestamps
     end

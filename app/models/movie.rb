@@ -1,8 +1,4 @@
 class Movie < ApplicationRecord
-  belongs_to :poster, class_name: 'Image'
-  belongs_to :image
-  belongs_to :category
-
   validates :title, length: { in: 2..300 }
   validates :description, length: { in: 2..500 }
   validates :tagline, length: { in: 2..300 }
