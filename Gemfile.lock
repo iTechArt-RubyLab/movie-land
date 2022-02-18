@@ -243,6 +243,7 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    will_paginate (3.3.1)
     zeitwerk (2.5.4)
 
 PLATFORMS
@@ -272,6 +273,7 @@ DEPENDENCIES
   spring
   tzinfo-data
   validate_url
+  will_paginate
 
 RUBY VERSION
    ruby 3.0.2p107
