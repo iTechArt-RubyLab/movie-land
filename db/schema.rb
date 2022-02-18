@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_17_154516) do
+ActiveRecord::Schema.define(version: 2022_02_18_075219) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "countries", force: :cascade do |t|
+  create_table "awards", force: :cascade do |t|
     t.string "title"
+    t.string "nomination"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -28,6 +30,25 @@ ActiveRecord::Schema.define(version: 2022_02_17_154516) do
   
   create_table "genres", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "tagline"
+    t.string "trailer"
+    t.date "release_date"
+    t.integer "age_limit"
+    t.bigint "budget"
+    t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

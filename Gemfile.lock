@@ -237,6 +237,9 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
+    validate_url (1.0.13)
+      activemodel (>= 3.0.0)
+      public_suffix
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -268,6 +271,7 @@ DEPENDENCIES
   simplecov
   spring
   tzinfo-data
+  validate_url
 
 RUBY VERSION
    ruby 3.0.2p107
