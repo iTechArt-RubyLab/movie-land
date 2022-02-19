@@ -10,14 +10,14 @@ module Api
       end
 
       def show
-        render json: @country
+        render json: @country, serializer: DictionarySerializer
       end
 
       def create
         @country = Country.new(country_params)
 
         if @country.save
-          render json: @country, status: :created
+          render json: @country, status: :created, serializer: DictionarySerializer
         else
           render json: @country.errors, status: :unprocessable_entity
         end
@@ -25,7 +25,7 @@ module Api
 
       def update
         if @country.update(country_params)
-          render json: @country
+          render json: @country, serializer: DictionarySerializer
         else
           render json: @country.errors, status: :unprocessable_entity
         end
