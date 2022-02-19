@@ -4,9 +4,9 @@ module Api
       before_action :set_country, only: %i[show update destroy]
 
       def index
-        @countries = Country.paginate(page: params[:page], per_page: 10)
+        @countries = Dictionary::FindService.new(Country, params).call
 
-        render json: @countries, each_serializer: CountrySerializer
+        render json: @countries, each_serializer: DictionarySerializer
       end
 
       def show
@@ -42,7 +42,7 @@ module Api
       end
 
       def country_params
-        params.require(:country).permit(%i[title])
+        params.require(:country).permit(%i[name])
       end
     end
   end
