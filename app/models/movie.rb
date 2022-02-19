@@ -1,5 +1,5 @@
 class Movie < ApplicationRecord
-  validates :title, length: { in: 2..300 }
+  validates :name, length: { in: 2..300 }
   validates :description, length: { in: 2..500 }
   validates :tagline, length: { in: 2..300 }
   validates :trailer, url: true

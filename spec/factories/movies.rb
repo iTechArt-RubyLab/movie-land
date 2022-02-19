@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :movie do
-    title { Faker::Movie.title }
+    name { Faker::Movie.name }
     description { Faker::Lorem.sentence(word_count: 5) }
     tagline { Faker::Movie.quote }
     trailer { Faker::Internet.url }
@@ -9,12 +9,12 @@ FactoryBot.define do
     budget { Faker::Number.number(digits: 5) }
     duration { Faker::Number.number(digits: 3) }
 
-    trait :invalid_long_title do
-      title { Faker::Lorem.characters(number: 301) }
+    trait :invalid_long_name do
+      name { Faker::Lorem.characters(number: 301) }
     end
 
-    trait :invalid_short_title do
-      title { Faker::Lorem.characters(number: 1) }
+    trait :invalid_short_name do
+      name { Faker::Lorem.characters(number: 1) }
     end
 
     trait :invalid_long_description do

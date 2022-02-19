@@ -1,13 +1,13 @@
 FactoryBot.define do
   factory :company do
-    title { Faker::Company.name }
+    name { Faker::Company.name }
 
-    trait :invalid_long_title do
-      title { Faker::Lorem.characters(number: 201) }
+    trait :invalid_long_name do
+      name { Faker::Lorem.characters(number: 201) }
     end
 
-    trait :invalid_short_title do
-      title { Faker::Lorem.characters(number: 1) }
+    trait :invalid_short_name do
+      name { Faker::Lorem.characters(number: 1) }
     end
   end
 end
