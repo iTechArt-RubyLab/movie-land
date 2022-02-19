@@ -7,7 +7,7 @@ module Dictionary
 
     def call
       if params[:filter].present?
-        class_name.where('name LIKE ?', "%#{params[:filter]}%")
+        class_name.where('name ILIKE ?', "%#{params[:filter]}%").paginate(page: params[:page]).order("name #{order}")
       else
         class_name.paginate(page: params[:page]).order("name #{order}")
       end
