@@ -1,3 +1,3 @@
 class Company < ApplicationRecord
-  validates :title, length: { in: 2..200 }
+  validates :name, length: { in: 2..200 }
 end

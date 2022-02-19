@@ -8,14 +8,14 @@ RSpec.describe Movie, type: :model do
   end
 
   context 'with invalid attributes' do
-    context 'when title too long' do
-      subject(:invalid_long_title) { build :movie, :invalid_long_title }
+    context 'when name too long' do
+      subject(:invalid_long_name) { build :movie, :invalid_long_name }
 
       include_examples 'invalid model'
     end
 
-    context 'when title too short' do
-      subject(:invalid_short_title) { build :movie, :invalid_short_title }
+    context 'when name too short' do
+      subject(:invalid_short_name) { build :movie, :invalid_short_name }
 
       include_examples 'invalid model'
     end
