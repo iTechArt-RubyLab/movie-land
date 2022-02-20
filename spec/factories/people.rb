@@ -6,18 +6,17 @@ FactoryBot.define do
     deathday { Faker::Date.between(from: '2014-09-25', to: '2022-09-25') }
     association :country
     married { Faker::Boolean.boolean }
-    association :image
   end
   trait :invalid_short_name do
-    title { Faker::Lorem.characters(number: 1, min_alpha: 1) }
+    name { Faker::Lorem.characters(number: 1, min_alpha: 1) }
   end
   trait :invalid_long_name do
-    title { Faker::Lorem.characters(number: 130, min_alpha: 130) }
+    name { Faker::Lorem.characters(number: 130, min_alpha: 130) }
   end
   trait :invalid_short_surname do
-    title { Faker::Lorem.characters(number: 1, min_alpha: 1) }
+    surname { Faker::Lorem.characters(number: 1, min_alpha: 1) }
   end
   trait :invalid_long_surname do
-    title { Faker::Lorem.characters(number: 130, min_alpha: 130) }
+    surname { Faker::Lorem.characters(number: 130, min_alpha: 130) }
   end
 end
