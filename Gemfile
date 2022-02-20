@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.2'
+ruby '3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.4'
@@ -39,12 +39,15 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
 
   gem 'annotate'
+  gem 'brakeman'
+  gem 'bundler-audit'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-nav'
   gem 'pry-rails'
   gem 'rails-erd'
   gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 end
