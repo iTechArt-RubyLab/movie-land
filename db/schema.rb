@@ -15,6 +15,13 @@ ActiveRecord::Schema.define(version: 2022_02_20_145356) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "awards", force: :cascade do |t|
+    t.string "name"
+    t.string "nomination"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -28,9 +35,8 @@ ActiveRecord::Schema.define(version: 2022_02_20_145356) do
     t.index ["movie_id", "company_id"], name: "index_companies_movies_on_movie_id_and_company_id"
   end
 
-  create_table "awards", force: :cascade do |t|
+  create_table "countries", force: :cascade do |t|
     t.string "name"
-    t.string "nomination"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -94,11 +100,4 @@ ActiveRecord::Schema.define(version: 2022_02_20_145356) do
   end
 
   add_foreign_key "people", "countries"
-  
-  create_table "countries", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
 end
