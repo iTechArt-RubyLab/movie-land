@@ -80,4 +80,17 @@ ActiveRecord::Schema.define(version: 2022_02_20_145356) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "people", force: :cascade do |t|
+    t.string "name"
+    t.string "surname"
+    t.date "birthday"
+    t.date "deathday"
+    t.bigint "country_id", null: false
+    t.boolean "married"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["country_id"], name: "index_people_on_country_id"
+  end
+
+  add_foreign_key "people", "countries"
 end
