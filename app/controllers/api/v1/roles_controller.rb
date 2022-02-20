@@ -49,7 +49,7 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def role_params
-        params.require(:role).permit(:name, :permission_id)
+        params.require(:role).permit(:name, permission_attributes: %i[can_lock_user can_edit_role can_set_role can_read can_edit])
       end
     end
   end
