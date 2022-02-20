@@ -33,6 +33,12 @@ ActiveRecord::Schema.define(version: 2022_02_19_201606) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "languages", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string "name"
     t.text "description"
