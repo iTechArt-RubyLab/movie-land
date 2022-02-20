@@ -80,6 +80,13 @@ ActiveRecord::Schema.define(version: 2022_02_21_234643) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "movies_tags", id: false, force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "tag_id", null: false
+    t.index ["movie_id", "tag_id"], name: "index_movies_tags_on_movie_id_and_tag_id"
+    t.index ["tag_id", "movie_id"], name: "index_movies_tags_on_tag_id_and_movie_id"
+  end
+
   create_table "people", force: :cascade do |t|
     t.string "name"
     t.string "surname"
@@ -109,6 +116,12 @@ ActiveRecord::Schema.define(version: 2022_02_21_234643) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_roles_on_name", unique: true
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
