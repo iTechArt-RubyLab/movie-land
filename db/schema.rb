@@ -93,7 +93,6 @@ ActiveRecord::Schema.define(version: 2022_02_20_214715) do
   end
 
   create_table "permissions", force: :cascade do |t|
-    t.string "name"
     t.boolean "can_lock_user"
     t.boolean "can_edit_role"
     t.boolean "can_set_role"

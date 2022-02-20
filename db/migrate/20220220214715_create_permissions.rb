@@ -1,7 +1,6 @@
 class CreatePermissions < ActiveRecord::Migration[6.1]
   def change
     create_table :permissions do |t|
-      t.string :name
       t.boolean :can_lock_user
       t.boolean :can_edit_role
       t.boolean :can_set_role
