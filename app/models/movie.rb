@@ -5,7 +5,8 @@ class Movie < ApplicationRecord
   has_many :countries, through: :countries_movies, dependent: :destroy
   has_many :genres_movies
   has_many :genres, through: :genres_movies, dependent: :destroy
-  has_and_belongs_to_many :languages
+  has_many :languages_movies
+  has_many :languages, through: :languages_movies, dependent: :destroy
 
   validates :name, length: { in: 2..300 }
   validates :description, length: { in: 2..500 }
