@@ -48,7 +48,7 @@ jobs:
           bundle exec rubocop -p
       - name: Eager load app
         run: |
-          bundle exec rails zeitwerk:load
+          bundle exec rails zeitwerk:check
       - name: Run tests
         run: |
           bundle exec rails db:setup
