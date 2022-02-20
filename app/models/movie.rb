@@ -1,5 +1,6 @@
 class Movie < ApplicationRecord
-  has_and_belongs_to_many :companies
+  has_many :companies_movies
+  has_many :companies, through: :companies_movies, dependent: :destroy
   has_many :countries_movies
   has_many :countries, through: :countries_movies, dependent: :destroy
   has_many :genres_movies
