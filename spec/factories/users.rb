@@ -17,6 +17,10 @@ FactoryBot.define do
     username { Faker::Internet.username(specifier: 8) }
     birthday { '1990-01-28' }
 
+    factory :confirmed_user do
+      confirmed_at { Time.now.utc }
+    end
+
     trait :invalid_short_name do
       name { Faker::Lorem.characters(number: 1) }
     end
