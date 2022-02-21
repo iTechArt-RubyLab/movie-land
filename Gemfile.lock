@@ -307,8 +307,8 @@ DEPENDENCIES
   pry-nav
   pry-rails
   puma (~> 5.0)
-  rack-cors
   pundit
+  rack-cors
   rails (~> 6.1.4, >= 6.1.4.4)
   rails-erd
   rspec-rails (~> 5.0.0)

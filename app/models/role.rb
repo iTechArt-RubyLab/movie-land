@@ -1,8 +1,9 @@
 class Role < ApplicationRecord
   has_one :permission, dependent: :destroy
   has_many :users, dependent: :nullify
-  validates :name, uniqueness: { scope: :name, message: 'This role already exists' }
-
+  # rubocop:disable Rails/UniqueValidationWithoutIndex
+  validates :name, uniqueness: { message: 'This role already exists' }
+  # rubocop:enable Rails/UniqueValidationWithoutIndex
   accepts_nested_attributes_for :permission, reject_if: proc { |attributes| attributes.blank? }
 
   def can_read?
