@@ -17,6 +17,6 @@ class PersonService
   attr_accessor :class_name, :params
 
   def order
-    params[:order].present? ? params[:order] : 'asc'
+    params[:order].presence || 'asc'
   end
 end
