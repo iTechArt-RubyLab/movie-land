@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   extend Devise::Models
   include DeviseTokenAuth::Concerns::User
   # Include default devise modules. Others available are:
