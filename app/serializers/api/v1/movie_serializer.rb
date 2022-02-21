@@ -7,6 +7,7 @@ module Api
       has_many :countries, serializer: DictionarySerializer
       has_many :genres, serializer: DictionarySerializer
       has_many :languages, serializer: DictionarySerializer
+      has_many :tags, serializer: DictionarySerializer
     end
   end
 end
