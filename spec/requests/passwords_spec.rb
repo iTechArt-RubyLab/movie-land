@@ -2,6 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'Passwords', type: :request do
   let(:user) { create :user }
+  let(:password_params) do
+    {
+      current_password: user.password,
+      password: 'newpassword',
+      password_confirmation: 'newpassword'
+    }
+  end
 
   describe 'POST /create' do
     it 'resets password' do
@@ -15,11 +22,8 @@ RSpec.describe 'Passwords', type: :request do
 
   describe 'PUT /update' do
     it 'updates password' do
-      put '/auth/password', params: {
-        current_password: user.password,
-        password: 'newpassword',
-        password_confirmation: 'newpassword'
-      }, headers: user.create_new_auth_token, as: :json
+      put '/auth/password', params: password_params,
+                            headers: user.create_new_auth_token, as: :json
       user.reload
       expect(user).to be_valid_password('newpassword')
     end

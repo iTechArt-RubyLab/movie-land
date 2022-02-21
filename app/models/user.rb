@@ -60,6 +60,6 @@ class User < ApplicationRecord
   delegate :can_read?, :can_lock_user?, :can_edit_role?, :can_set_role?, :can_edit?, :admin?, :redactor?, :reviewer?, to: :role
   validates :name, length: { in: 2..25 }
   validates :surname, length: { in: 2..25 }
-  validates :username, presence: true, length: { in: 4..20 }, uniqueness: true
+  validates :username, length: { in: 4..20 }, uniqueness: { message: 'User with this username already exists' }
   validates :birthday, presence: true
 end

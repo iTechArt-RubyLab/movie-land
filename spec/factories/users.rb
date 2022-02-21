@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    email { Faker::Internet.email }
+    email { Faker::Internet.unique.email }
     password { 'testadmin' }
     password_confirmation { 'testadmin' }
     reset_password_token { nil }
@@ -14,7 +14,7 @@ FactoryBot.define do
     confirmed_at { Time.now.utc }
     name { Faker::Name.first_name }
     surname { Faker::Name.last_name }
-    username { Faker::Internet.username(specifier: 8) }
+    username { Faker::Internet.unique.username(specifier: 8) }
     birthday { '1990-01-28' }
 
     factory :confirmed_user do
