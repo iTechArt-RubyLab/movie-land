@@ -22,6 +22,8 @@
 #
 class Person < ApplicationRecord
   belongs_to :country
+  has_many :actor_roles, dependent: :delete_all
+  has_many :movies, through: :actor_roles, dependent: :destroy
   validates :name, length: { in: 2..103 }
   validates :surname, length: { in: 2..103 }
 end
