@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: movies
+#
+#  id           :bigint           not null, primary key
+#  age_limit    :integer
+#  budget       :bigint
+#  description  :text
+#  duration     :integer
+#  name         :string
+#  release_date :date
+#  tagline      :string
+#  trailer      :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+# Indexes
+#
+#  index_movies_on_name  (name) UNIQUE
+#
 class Movie < ApplicationRecord
   has_many :companies_movies, dependent: :delete_all
   has_many :companies, through: :companies_movies, dependent: :destroy

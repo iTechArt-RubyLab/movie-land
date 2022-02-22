@@ -42,7 +42,6 @@ group :development, :test do
 
   gem 'rspec-rails', '~> 5.0.0'
 
-  gem 'annotate'
   gem 'brakeman'
   gem 'bundler-audit'
   gem 'factory_bot_rails'
@@ -63,6 +62,8 @@ group :test do
 end
 
 group :development do
+  gem 'annotate'
+
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
