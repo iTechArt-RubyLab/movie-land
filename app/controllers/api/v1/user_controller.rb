@@ -1,7 +1,7 @@
 module Api
   module V1
     class UserController < ApplicationController
-      before_action :set_user, only: %i[show update lock_user unlock_user]
+      before_action :set_user, only: %i[show update]
 
       def index
         @users = User.all
@@ -19,14 +19,6 @@ module Api
         else
           render json: @user.errors, status: :unprocessable_entity
         end
-      end
-
-      def lock_user
-        @user.lock_access!
-      end
-
-      def unlock_user
-        @user.unlock_access!
       end
 
       private

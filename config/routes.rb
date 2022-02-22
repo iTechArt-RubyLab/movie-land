@@ -11,9 +11,9 @@ Rails.application.routes.draw do
       resources :roles
       resources :permissions
       resources :tags
-      resources :user
-      put 'lock_user', to: 'user#lock_user'
-      put 'unlock_user', to: 'user#unlock_user'
+      resources :user do
+        put 'access', to: 'access_user#update'
+      end
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
