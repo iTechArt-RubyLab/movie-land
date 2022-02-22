@@ -8,7 +8,7 @@ class Movie < ApplicationRecord
   has_many :genres, through: :genres_movies, dependent: :destroy
   has_many :languages_movies
   has_many :languages, through: :languages_movies, dependent: :destroy
-  has_many :movies_tags
+  has_many :movies_tags, dependent: :delete_all
   has_many :tags, through: :movies_tags, dependent: :destroy
   # rubocop:enable Rails/HasManyOrHasOneDependent
 
