@@ -1,31 +1,29 @@
-# frozen_string_literal: true
-
-class ApplicationPolicy
+class PermissionPolicy < ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
-    @user = user
-    @record = record
+    super(user)
+    super(record)
   end
 
   def index?
-    false
+    user.can_read?
   end
 
   def show?
-    false
+    user.can_read?
   end
 
   def create?
-    false
+    user.can_edit_role?
   end
 
   def update?
-    false
+    user.can_edit_role?
   end
 
   def destroy?
-    false
+    user.can_edit_role?
   end
 
   class Scope

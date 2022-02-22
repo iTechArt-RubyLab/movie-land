@@ -1,31 +1,29 @@
-# frozen_string_literal: true
-
-class ApplicationPolicy
+class UserPolicy < ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
-    @user = user
-    @record = record
+    super(user)
+    super(record)
   end
 
   def index?
-    false
+    user.can_read?
   end
 
   def show?
-    false
-  end
-
-  def create?
-    false
+    user.can_read?
   end
 
   def update?
-    false
+    user.can_set_role?
   end
 
-  def destroy?
-    false
+  def lock_user?
+    user.can_lock_user?
+  end
+
+  def unlock_user?
+    user.can_lock_user?
   end
 
   class Scope
@@ -35,7 +33,7 @@ class ApplicationPolicy
     end
 
     def resolve
-      scope.all
+      user.admin? ? scope.all : scope.where(locked_at: nil)
     end
 
     private
