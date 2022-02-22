@@ -41,3 +41,6 @@ Metrics/PerceivedComplexity:
 
 Metrics/MethodLength:
   Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
