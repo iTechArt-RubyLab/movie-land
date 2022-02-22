@@ -37,12 +37,6 @@ class Role < ApplicationRecord
     editor? ? true : permision? && permission.can_set_role
   end
 
-  private
-
-  def permision?
-    !permission.nil?
-  end
-
   def admin?
     name == 'admin'
   end
@@ -53,6 +47,12 @@ class Role < ApplicationRecord
 
   def reviewer?
     name == 'reviewer'
+  end
+
+  private
+
+  def permision?
+    !permission.nil?
   end
 
   def predefined_user?

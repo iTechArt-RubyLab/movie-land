@@ -7,23 +7,23 @@ class UserPolicy < ApplicationPolicy
   end
 
   def index?
-    user.role.can_read?
+    user.can_read?
   end
 
   def show?
-    user.role.can_read?
+    user.can_read?
   end
 
   def update?
-    user.role.can_set_role?
+    user.can_set_role?
   end
 
   def lock_user?
-    user.role.can_lock_user?
+    user.can_lock_user?
   end
 
   def unlock_user?
-    user.role.can_lock_user?
+    user.can_lock_user?
   end
 
   class Scope

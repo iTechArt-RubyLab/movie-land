@@ -7,23 +7,23 @@ class BasePolicy < ApplicationPolicy
   end
 
   def index?
-    user.role.can_read?
+    user.can_read?
   end
 
   def show?
-    user.role.can_read?
+    user.can_read?
   end
 
   def create?
-    user.role.can_edit?
+    user.can_edit?
   end
 
   def update?
-    user.role.can_edit?
+    user.can_edit?
   end
 
   def destroy?
-    user.role.can_edit?
+    user.can_edit?
   end
 
   class Scope

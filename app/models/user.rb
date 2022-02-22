@@ -57,4 +57,5 @@ class User < ApplicationRecord
          :lockable, :confirmable, :trackable
 
   belongs_to :role, optional: true
+  delegate :can_read?, :can_lock_user?, :can_edit_role?, :can_set_role?, :can_edit?, :admin?, :redactor?, :reviewer?, to: :role
 end
