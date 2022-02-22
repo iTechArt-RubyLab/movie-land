@@ -33,7 +33,7 @@ class UserPolicy < ApplicationPolicy
     end
 
     def resolve
-      scope.all
+      user.admin? ? scope.all : scope.where(locked_at: nil)
     end
 
     private
