@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :user do
         put 'access', to: 'access_user#update'
       end
+      resources :ratings
     end
   end
 end
