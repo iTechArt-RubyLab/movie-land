@@ -20,4 +20,8 @@ RSpec.describe Tag, type: :model do
       it { expect(invalid_long_name).not_to be_valid }
     end
   end
+
+  describe 'validations' do
+    it { is_expected.to validate_uniqueness_of(:name).with_message('This tag already exists') }
+  end
 end
