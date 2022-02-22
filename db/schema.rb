@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_28_211548) do
+ActiveRecord::Schema.define(version: 2022_02_22_183144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actor_roles", force: :cascade do |t|
+    t.string "role_name"
+    t.bigint "person_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_actor_roles_on_movie_id"
+    t.index ["person_id"], name: "index_actor_roles_on_person_id"
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -141,6 +151,13 @@ ActiveRecord::Schema.define(version: 2022_02_28_211548) do
     t.index ["name"], name: "index_roles_on_name", unique: true
   end
 
+  create_table "staff_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_staff_types_on_name", unique: true
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -186,6 +203,8 @@ ActiveRecord::Schema.define(version: 2022_02_28_211548) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "actor_roles", "movies"
+  add_foreign_key "actor_roles", "people"
   add_foreign_key "people", "countries"
   add_foreign_key "permissions", "roles"
   add_foreign_key "ratings", "movies"
