@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  default_url_options :host => 'localhost:3000' # this code-line is for request tests
   mount_devise_token_auth_for 'User', at: 'auth'
   namespace :api do
     namespace :v1 do
