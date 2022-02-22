@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: people
+#
+#  id         :bigint           not null, primary key
+#  birthday   :date
+#  deathday   :date
+#  married    :boolean
+#  name       :string
+#  surname    :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  country_id :bigint           not null
+#
+# Indexes
+#
+#  index_people_on_country_id  (country_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (country_id => countries.id)
+#
 require 'rails_helper'
 
 RSpec.describe Person, type: :model do
