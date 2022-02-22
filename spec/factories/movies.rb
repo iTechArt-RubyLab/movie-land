@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :movie do
-    name { Faker::Movie.title }
+    name { Faker::Movie.unique.title }
     description { Faker::Lorem.sentence(word_count: 5) }
     tagline { Faker::Movie.quote }
     trailer { Faker::Internet.url }

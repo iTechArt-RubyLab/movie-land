@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :genre do
-    name { Faker::Book.genre }
+    name { Faker::Book.unique.genre }
 
     trait :invalid_long_name do
       name { Faker::Lorem.characters(number: 51) }
