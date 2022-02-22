@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_22_134656) do
+ActiveRecord::Schema.define(version: 2022_02_22_135646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,52 +19,56 @@ ActiveRecord::Schema.define(version: 2022_02_22_134656) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_companies_on_name", unique: true
   end
 
   create_table "companies_movies", id: false, force: :cascade do |t|
     t.bigint "company_id", null: false
     t.bigint "movie_id", null: false
-    t.index ["company_id", "movie_id"], name: "index_companies_movies_on_company_id_and_movie_id"
-    t.index ["movie_id", "company_id"], name: "index_companies_movies_on_movie_id_and_company_id"
+    t.index ["company_id", "movie_id"], name: "index_companies_movies_on_company_id_and_movie_id", unique: true
+    t.index ["movie_id", "company_id"], name: "index_companies_movies_on_movie_id_and_company_id", unique: true
   end
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_countries_on_name", unique: true
   end
 
   create_table "countries_movies", id: false, force: :cascade do |t|
     t.bigint "country_id", null: false
     t.bigint "movie_id", null: false
-    t.index ["country_id", "movie_id"], name: "index_countries_movies_on_country_id_and_movie_id"
-    t.index ["movie_id", "country_id"], name: "index_countries_movies_on_movie_id_and_country_id"
+    t.index ["country_id", "movie_id"], name: "index_countries_movies_on_country_id_and_movie_id", unique: true
+    t.index ["movie_id", "country_id"], name: "index_countries_movies_on_movie_id_and_country_id", unique: true
   end
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_genres_on_name", unique: true
   end
 
   create_table "genres_movies", id: false, force: :cascade do |t|
     t.bigint "genre_id", null: false
     t.bigint "movie_id", null: false
-    t.index ["genre_id", "movie_id"], name: "index_genres_movies_on_genre_id_and_movie_id"
-    t.index ["movie_id", "genre_id"], name: "index_genres_movies_on_movie_id_and_genre_id"
+    t.index ["genre_id", "movie_id"], name: "index_genres_movies_on_genre_id_and_movie_id", unique: true
+    t.index ["movie_id", "genre_id"], name: "index_genres_movies_on_movie_id_and_genre_id", unique: true
   end
 
   create_table "languages", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_languages_on_name", unique: true
   end
 
   create_table "languages_movies", id: false, force: :cascade do |t|
     t.bigint "language_id", null: false
     t.bigint "movie_id", null: false
-    t.index ["language_id", "movie_id"], name: "index_languages_movies_on_language_id_and_movie_id"
-    t.index ["movie_id", "language_id"], name: "index_languages_movies_on_movie_id_and_language_id"
+    t.index ["language_id", "movie_id"], name: "index_languages_movies_on_language_id_and_movie_id", unique: true
+    t.index ["movie_id", "language_id"], name: "index_languages_movies_on_movie_id_and_language_id", unique: true
   end
 
   create_table "movies", force: :cascade do |t|
@@ -78,6 +82,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_134656) do
     t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_movies_on_name", unique: true
   end
 
   create_table "movies_tags", id: false, force: :cascade do |t|

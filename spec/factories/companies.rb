@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :company do
-    name { Faker::Company.name }
+    name { Faker::Company.unique.name }
 
     trait :invalid_long_name do
       name { Faker::Lorem.characters(number: 201) }
