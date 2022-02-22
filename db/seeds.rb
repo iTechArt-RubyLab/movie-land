@@ -29,3 +29,5 @@ User.create(email: 'reviewer@example.com', password: '123456', password_confirma
             name: Faker::Name.first_name, surname: Faker::Name.last_name,
             username: Faker::Internet.unique.username(specifier: 8), birthday: Faker::Date.birthday(min_age: 18, max_age: 65),
             role_id: reviewer_role.id)
+FactoryBot.create_list(:user, 5)
+FactoryBot.create_list(:rating, 20)
