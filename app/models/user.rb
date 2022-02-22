@@ -42,6 +42,7 @@
 #  index_users_on_role_id               (role_id)
 #  index_users_on_uid_and_provider      (uid,provider) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
+#  index_users_on_username              (username) UNIQUE
 #
 # Foreign Keys
 #
