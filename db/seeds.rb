@@ -10,3 +10,4 @@ Role.create(name: 'admin', permission_attributes: { can_lock_user: true, can_edi
 Role.create(name: 'redactor', permission_attributes: { can_lock_user: false, can_edit_role: false, can_set_role: false, can_read: true, can_edit: true })
 Role.create(name: 'reviewer', permission_attributes: { can_lock_user: false, can_edit_role: false, can_set_role: false, can_read: true, can_edit: false })
 FactoryBot.create_list(:tag, 20)
+FactoryBot.create_list(:user, 5)
