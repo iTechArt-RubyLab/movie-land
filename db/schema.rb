@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_134656) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_companies_on_name", unique: true
   end
 
   create_table "companies_movies", id: false, force: :cascade do |t|
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_134656) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_countries_on_name", unique: true
   end
 
   create_table "countries_movies", id: false, force: :cascade do |t|
@@ -45,6 +47,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_134656) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_genres_on_name", unique: true
   end
 
   create_table "genres_movies", id: false, force: :cascade do |t|
@@ -58,6 +61,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_134656) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_languages_on_name", unique: true
   end
 
   create_table "languages_movies", id: false, force: :cascade do |t|
@@ -78,6 +82,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_134656) do
     t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_movies_on_name", unique: true
   end
 
   create_table "movies_tags", id: false, force: :cascade do |t|

@@ -10,7 +10,7 @@ class Movie < ApplicationRecord
   has_many :movies_tags, dependent: :delete_all
   has_many :tags, through: :movies_tags, dependent: :destroy
 
-  validates :name, length: { in: 2..300 }
+  validates :name, length: { in: 2..300 }, uniqueness: { message: 'This movie already exists' }
   validates :description, length: { in: 2..500 }
   validates :tagline, length: { in: 2..300 }
   validates :trailer, url: true
