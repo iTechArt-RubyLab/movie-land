@@ -2,6 +2,6 @@ class Rating < ApplicationRecord
   belongs_to :user
   belongs_to :movie
 
-  validates :body, presense: true, length: { in: 5..255 }
-  validates :rating, presense: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
+  validates :body, length: { in: 5..255 }
+  validates :rating, numericality: { only_integer: true }, inclusion: { in: 1..5 }
 end
