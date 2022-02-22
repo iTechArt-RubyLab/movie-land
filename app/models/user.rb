@@ -58,6 +58,8 @@ class User < ApplicationRecord
          :lockable, :confirmable, :trackable
 
   belongs_to :role, optional: true
+  has_many :ratings, dependent: :destroy
+
   delegate :can_read?, :can_lock_user?, :can_edit_role?, :can_set_role?, :can_edit?, :admin?, :redactor?, :reviewer?, to: :role
   validates :name, length: { in: 2..25 }
   validates :surname, length: { in: 2..25 }
