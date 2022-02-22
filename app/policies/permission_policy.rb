@@ -1,0 +1,2 @@
+class PermissionPolicy < RolePolicy
+end
