@@ -3,19 +3,16 @@ module Api
     class RolesController < ApplicationController
       before_action :set_role, only: %i[show update destroy]
 
-      # GET /roles
       def index
-        @roles = Role.all
+        @roles = Dictionary::FindService.new(Role, params).call
 
         render json: @roles, each_serializer: RoleSerializer
       end
 
-      # GET /roles/1
       def show
         render json: @role, serializer: RoleSerializer
       end
 
-      # POST /roles
       def create
         @role = Role.new(role_params)
 
@@ -26,7 +23,6 @@ module Api
         end
       end
 
-      # PATCH/PUT /roles/1
       def update
         if @role.update(role_params)
           render json: @role, serializer: RoleSerializer
@@ -35,19 +31,16 @@ module Api
         end
       end
 
-      # DELETE /roles/1
       def destroy
         @role.destroy
       end
 
       private
 
-      # Use callbacks to share common setup or constraints between actions.
       def set_role
         @role = Role.find(params[:id])
       end
 
-      # Only allow a list of trusted parameters through.
       def role_params
         params.require(:role).permit(:name, permission_attributes: %i[can_lock_user can_edit_role can_set_role can_read can_edit])
       end
