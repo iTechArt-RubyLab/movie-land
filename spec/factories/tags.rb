@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tag do
-    name { Faker::Lorem.word }
+    name { Faker::Emotion.unique.noun }
 
     trait :invalid_short_name do
       name { Faker::Lorem.characters(number: 1, min_alpha: 1) }
