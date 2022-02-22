@@ -92,4 +92,8 @@ RSpec.describe Movie, type: :model do
       include_examples 'invalid model'
     end
   end
+
+  describe 'validations' do
+    it { is_expected.to validate_uniqueness_of(:name).with_message('This movie already exists') }
+  end
 end
