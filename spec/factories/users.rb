@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: users
@@ -48,19 +46,51 @@
 #
 #  fk_rails_...  (role_id => roles.id)
 #
-class User < ApplicationRecord
-  extend Devise::Models
-  include DeviseTokenAuth::Concerns::User
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :lockable, :confirmable, :trackable
+FactoryBot.define do
+  factory :user do
+    email { Faker::Internet.unique.email }
+    password { 'testadmin' }
+    password_confirmation { 'testadmin' }
+    reset_password_token { nil }
+    reset_password_sent_at { nil }
+    remember_created_at { nil }
+    sign_in_count { 1 }
+    current_sign_in_at { '2015-02-06 14:02:10' }
+    last_sign_in_at { '2015-02-06 14:02:10' }
+    current_sign_in_ip { Faker::Internet.ip_v4_address }
+    last_sign_in_ip { Faker::Internet.ip_v4_address }
+    confirmed_at { Time.now.utc }
+    name { Faker::Name.first_name }
+    surname { Faker::Name.last_name }
+    username { Faker::Internet.unique.username(specifier: 8) }
+    birthday { '1990-01-28' }
 
-  belongs_to :role, optional: true
-  delegate :can_read?, :can_lock_user?, :can_edit_role?, :can_set_role?, :can_edit?, :admin?, :redactor?, :reviewer?, to: :role
-  validates :name, length: { in: 2..25 }
-  validates :surname, length: { in: 2..25 }
-  validates :username, length: { in: 4..20 }, uniqueness: { message: 'User with this username already exists' }
-  validates :birthday, presence: true
+    factory :confirmed_user do
+      confirmed_at { Time.now.utc }
+    end
+
+    trait :invalid_short_name do
+      name { Faker::Lorem.characters(number: 1) }
+    end
+
+    trait :invalid_long_name do
+      name { Faker::Lorem.characters(number: 30) }
+    end
+
+    trait :invalid_short_surname do
+      surname { Faker::Lorem.characters(number: 1) }
+    end
+
+    trait :invalid_long_surname do
+      surname { Faker::Lorem.characters(number: 30) }
+    end
+
+    trait :invalid_short_username do
+      username { Faker::Lorem.characters(number: 3) }
+    end
+
+    trait :invalid_long_username do
+      username { Faker::Lorem.characters(number: 30) }
+    end
+  end
 end
