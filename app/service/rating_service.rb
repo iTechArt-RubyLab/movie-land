@@ -5,11 +5,7 @@ class RatingService
   end
 
   def call
-    if params[:filter].present?
-      class_name.where('rating ILIKE ?', "%#{params[:filter]}%").paginate(page: params[:page]).order("rating #{order}")
-    else
-      class_name.paginate(page: params[:page]).order("rating #{order}")
-    end
+    class_name.paginate(page: params[:page]).order("rating #{order}")
   end
 
   private
