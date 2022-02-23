@@ -56,6 +56,7 @@ end
 
 group :test do
   gem 'database_cleaner-active_record'
+  gem 'pundit-matchers'
   gem 'rspec-rails'
   gem 'rswag-specs'
   gem 'shoulda-matchers'
