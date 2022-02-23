@@ -17,6 +17,7 @@ gem 'puma', '~> 5.0'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'devise_token_auth', '~> 1.2'
+gem 'omniauth-github'
 gem 'rswag'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
