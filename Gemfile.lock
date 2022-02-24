@@ -304,7 +304,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 6.1.4, >= 6.1.4.4)
   rails-erd
-  rspec-rails (~> 5.0.0)
+  rspec-rails
   rswag-api
   rswag-specs
   rswag-ui
@@ -322,3 +322,6 @@ DEPENDENCIES
 
 RUBY VERSION
    ruby 3.0.2p107
+
+BUNDLED WITH
+   2.3.8
