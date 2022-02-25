@@ -42,7 +42,7 @@ module Api
       end
 
       def rating_params
-        params.require(:rating).permit(%i[body rating user_id movie_id])
+        params.require(:rating).permit(%i[rating user_id movie_id])
       end
     end
   end

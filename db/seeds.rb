@@ -24,10 +24,9 @@ User.create(email: 'admin@example.com', password: '123456', password_confirmatio
 User.create(email: 'redactor@example.com', password: '123456', password_confirmation: '123456',
             name: Faker::Name.first_name, surname: Faker::Name.last_name,
             username: Faker::Internet.unique.username(specifier: 8), birthday: Faker::Date.birthday(min_age: 18, max_age: 65),
-            role_id: redactor_role.id)
+            role_id: redactor_role.id, confirmed_at: Time.zone.now)
 User.create(email: 'reviewer@example.com', password: '123456', password_confirmation: '123456',
             name: Faker::Name.first_name, surname: Faker::Name.last_name,
             username: Faker::Internet.unique.username(specifier: 8), birthday: Faker::Date.birthday(min_age: 18, max_age: 65),
-            role_id: reviewer_role.id)
-FactoryBot.create_list(:user, 5)
+            role_id: reviewer_role.id, confirmed_at: Time.zone.now)
 FactoryBot.create_list(:rating, 20)

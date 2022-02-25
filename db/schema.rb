@@ -116,6 +116,16 @@ ActiveRecord::Schema.define(version: 2022_02_22_210108) do
     t.index ["role_id"], name: "index_permissions_on_role_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rating"
+    t.bigint "user_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_ratings_on_movie_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -128,17 +138,6 @@ ActiveRecord::Schema.define(version: 2022_02_22_210108) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_tags_on_name", unique: true
-  end
-  
-  create_table "ratings", force: :cascade do |t|
-    t.text "body"
-    t.integer "rating"
-    t.bigint "user_id", null: false
-    t.bigint "movie_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["movie_id"], name: "index_ratings_on_movie_id"
-    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -181,7 +180,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_210108) do
 
   add_foreign_key "people", "countries"
   add_foreign_key "permissions", "roles"
-  add_foreign_key "users", "roles"
   add_foreign_key "ratings", "movies"
   add_foreign_key "ratings", "users"
+  add_foreign_key "users", "roles"
 end
