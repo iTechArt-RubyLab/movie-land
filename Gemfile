@@ -21,7 +21,7 @@ gem 'omniauth-github'
 gem 'rswag'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
+gem 'activerecord-session_store'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
