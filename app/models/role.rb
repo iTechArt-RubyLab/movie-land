@@ -17,10 +17,6 @@ class Role < ApplicationRecord
   validates :name, uniqueness: { message: 'This role already exists' }
   accepts_nested_attributes_for :permission
 
-  def can_read?
-    predefined_user? ? true : permision? && permission.can_read
-  end
-
   def can_lock_user?
     admin? ? true : permision? && permission.can_lock_user
   end
@@ -33,8 +29,20 @@ class Role < ApplicationRecord
     admin? ? true : permision? && permission.can_set_role
   end
 
-  def can_edit?
-    editor? ? true : permision? && permission.can_set_role
+  def can_read_entities?
+    editor? ? true : permision? && permission.can_read_entities
+  end
+
+  def can_edit_entities?
+    editor? ? true : permision? && permission.can_edit_entities
+  end
+
+  def can_read_movie_and_person?
+    predefined_user? ? true : permision? && permission.can_read_movie_and_person
+  end
+
+  def can_edit_movie_and_person?
+    editor? ? true : permision? && permission.can_edit_movie_and_person
   end
 
   def admin?
@@ -49,17 +57,17 @@ class Role < ApplicationRecord
     name == 'reviewer'
   end
 
-  private
-
-  def permision?
-    !permission.nil?
-  end
-
   def predefined_user?
     [admin?, redactor?, reviewer?].include?(name)
   end
 
   def editor?
     [admin?, redactor?].include?(name)
+  end
+
+  private
+
+  def permision?
+    !permission.nil?
   end
 end
