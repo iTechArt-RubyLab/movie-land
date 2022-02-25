@@ -4,7 +4,7 @@ module Api
       before_action :set_rating, only: %i[show update destroy]
 
       def index
-        @ratings = RatingService.new(Rating, params).call
+        @ratings = RatingService.new(Rating, params, current_user).call
 
         render json: @ratings, each_serializer: RatingSerializer
       end
@@ -14,7 +14,7 @@ module Api
       end
 
       def create
-        @rating = Rating.new(rating_params)
+        @rating = current_user.ratings.new(rating_params)
 
         if @rating.save
           render json: @rating, status: :created, serializer: RatingSerializer
@@ -42,7 +42,7 @@ module Api
       end
 
       def rating_params
-        params.require(:rating).permit(%i[rating user_id movie_id])
+        params.require(:rating).permit(%i[rating movie_id])
       end
     end
   end
