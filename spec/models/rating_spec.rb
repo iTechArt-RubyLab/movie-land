@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: ratings
+#
+#  id         :bigint           not null, primary key
+#  rating     :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  movie_id   :bigint           not null
+#  user_id    :bigint           not null
+#
+# Indexes
+#
+#  index_ratings_on_movie_id  (movie_id)
+#  index_ratings_on_user_id   (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (movie_id => movies.id)
+#  fk_rails_...  (user_id => users.id)
+#
 require 'rails_helper'
 
 RSpec.describe Rating, type: :model do
@@ -5,20 +26,6 @@ RSpec.describe Rating, type: :model do
 
   context 'with valid attributes' do
     it { expect(rating).to be_valid }
-  end
-
-  describe '#body' do
-    context 'when body is short' do
-      subject(:invalid_short_body) { build :rating, :invalid_short_body }
-
-      it { expect(invalid_short_body).not_to be_valid }
-    end
-
-    context 'when body is long' do
-      subject(:invalid_long_body) { build :rating, :invalid_long_body }
-
-      it { expect(invalid_long_body).not_to be_valid }
-    end
   end
 
   describe '#rating' do

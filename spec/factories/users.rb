@@ -62,7 +62,7 @@ FactoryBot.define do
     confirmed_at { Time.now.utc }
     name { Faker::Name.first_name }
     surname { Faker::Name.last_name }
-    username { Faker::Internet.unique.username(specifier: 8) }
+    username { Faker::Lorem.unique.characters(number: 10) }
     birthday { '1990-01-28' }
 
     factory :confirmed_user do

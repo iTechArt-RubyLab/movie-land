@@ -5,13 +5,12 @@ module Api
     RSpec.describe '/ratings', type: :request do
       let!(:user) { create :user }
       let!(:movie) { create :movie }
-
       let(:valid_attributes) do
         attributes_for :rating, user_id: user.id, movie_id: movie.id
       end
 
       let(:invalid_attributes) do
-        attributes_for :rating, :invalid_short_body
+        attributes_for :rating, :invalid_short_rating
       end
 
       let(:valid_headers) do
