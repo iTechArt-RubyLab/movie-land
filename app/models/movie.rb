@@ -29,6 +29,7 @@ class Movie < ApplicationRecord
   has_many :languages, through: :languages_movies, dependent: :destroy
   has_many :movies_tags, dependent: :delete_all
   has_many :tags, through: :movies_tags, dependent: :destroy
+  has_many :ratings, dependent: :destroy
 
   validates :name, length: { in: 2..300 }, uniqueness: { message: 'This movie already exists' }
   validates :description, length: { in: 2..500 }
