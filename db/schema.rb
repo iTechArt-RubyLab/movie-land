@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_25_100956) do
+ActiveRecord::Schema.define(version: 2022_02_26_070918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,8 +108,6 @@ ActiveRecord::Schema.define(version: 2022_02_25_100956) do
     t.boolean "can_lock_user"
     t.boolean "can_edit_role"
     t.boolean "can_set_role"
-    t.boolean "can_read"
-    t.boolean "can_edit"
     t.bigint "role_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
