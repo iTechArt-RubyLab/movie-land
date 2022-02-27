@@ -10,7 +10,9 @@ Rails.application.routes.draw do
       resources :languages
       resources :movies
       resources :people
-      resources :roles
+      resources :roles do
+        resource :permissions
+      end
       resources :permissions
       resources :tags
       resources :user do
