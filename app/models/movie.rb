@@ -32,7 +32,7 @@ class Movie < ApplicationRecord
   has_many :ratings, dependent: :destroy
   accepts_nested_attributes_for :movies_tags
   has_many :actor_roles, dependent: :delete_all
-  has_many :people, through: :actor_roles, dependent: :destroy
+  has_many :actors, through: :actor_roles, dependent: :destroy, class_name: 'Person'
   has_many :movie_staffs, dependent: :delete_all
   has_many :people, through: :movie_staffs, dependent: :destroy
 
