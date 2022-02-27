@@ -13,7 +13,6 @@ Rails.application.routes.draw do
       resources :roles do
         resource :permissions
       end
-      resources :permissions
       resources :tags
       resources :user do
         put 'access', to: 'access_user#update'
