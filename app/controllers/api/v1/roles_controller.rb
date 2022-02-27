@@ -1,16 +1,12 @@
 module Api
   module V1
     class RolesController < ApplicationController
-      before_action :set_role, only: %i[show update destroy]
+      before_action :set_role, only: %i[update destroy]
 
       def index
         @roles = Dictionary::FindService.new(Role, params).call
 
         render json: @roles, each_serializer: RoleSerializer
-      end
-
-      def show
-        render json: @role, serializer: RoleSerializer
       end
 
       def create

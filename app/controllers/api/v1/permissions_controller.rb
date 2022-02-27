@@ -3,12 +3,6 @@ module Api
     class PermissionsController < ApplicationController
       before_action :set_permission, only: %i[show update destroy]
 
-      def index
-        @permissions = Permission.all
-
-        render json: @permissions, each_serializer: PermissionSerializer
-      end
-
       def show
         render json: @permission, serializer: PermissionSerializer
       end
@@ -38,7 +32,7 @@ module Api
       private
 
       def set_permission
-        @permission = Permission.find(params[:id])
+        @permission = Permission.find(params[:role_id])
       end
 
       def permission_params

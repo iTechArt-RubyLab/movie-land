@@ -1,16 +1,12 @@
 module Api
   module V1
     class LanguagesController < ApplicationController
-      before_action :set_language, only: %i[show update destroy]
+      before_action :set_language, only: %i[update destroy]
 
       def index
         @languages = Dictionary::FindService.new(Language, params).call
 
         render json: @languages, each_serializer: DictionarySerializer
-      end
-
-      def show
-        render json: @language, serializer: DictionarySerializer
       end
 
       def create

@@ -1,16 +1,12 @@
 module Api
   module V1
     class TagsController < ApplicationController
-      before_action :set_tag, only: %i[show update destroy]
+      before_action :set_tag, only: %i[update destroy]
 
       def index
         @tags = Dictionary::FindService.new(Tag, params).call
 
         render json: @tags, each_serializer: DictionarySerializer
-      end
-
-      def show
-        render json: @tag, serializer: DictionarySerializer
       end
 
       def create

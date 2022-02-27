@@ -23,14 +23,6 @@ module Api
         end
       end
 
-      describe 'GET /show' do
-        it 'renders a successful response' do
-          genre = Genre.create! valid_attributes
-          get api_v1_genre_url(genre), as: :json
-          expect(response).to be_successful
-        end
-      end
-
       describe 'POST /create' do
         context 'with valid parameters' do
           it 'creates a new Genre' do
