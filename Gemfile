@@ -17,7 +17,8 @@ gem 'puma', '~> 5.0'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'devise_token_auth', '~> 1.2'
-gem 'rswag'
+gem 'rswag-api'
+gem 'rswag-ui'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -40,8 +41,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
-  gem 'rspec-rails', '~> 5.0.0'
-
   gem 'brakeman'
   gem 'bundler-audit'
   gem 'factory_bot_rails'
@@ -57,6 +56,8 @@ end
 
 group :test do
   gem 'database_cleaner-active_record'
+  gem 'rspec-rails'
+  gem 'rswag-specs'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end

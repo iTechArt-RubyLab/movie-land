@@ -29,3 +29,4 @@
 # Ignore coverage folder
 coverage
 .idea/
+.env
