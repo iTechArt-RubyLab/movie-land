@@ -1,8 +1,8 @@
-class TagPolicy < ApplicationPolicy
+class AccessUserPolicy < ApplicationPolicy
   attr_reader :user, :record
 
-  def index?
-    user.can_read_entities?
+  def update?
+    user.can_lock_user?
   end
 
   class Scope

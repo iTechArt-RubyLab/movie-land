@@ -1,17 +1,8 @@
 class PermissionPolicy < ApplicationPolicy
   attr_reader :user, :record
 
-  def initialize(user, record)
-    super(user)
-    super(record)
-  end
-
-  def index?
-    user.can_read?
-  end
-
   def show?
-    user.can_read?
+    user.can_edit_role?
   end
 
   def create?
