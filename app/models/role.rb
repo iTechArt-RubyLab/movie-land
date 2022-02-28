@@ -82,11 +82,11 @@ class Role < ApplicationRecord
   end
 
   def predefined_user?
-    [admin?, redactor?, reviewer?].include?(name)
+    admin? || redactor? || reviewer?
   end
 
   def editor?
-    [admin?, redactor?].include?(name)
+    admin? || redactor?
   end
 
   private
