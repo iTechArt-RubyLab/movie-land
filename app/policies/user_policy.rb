@@ -2,11 +2,11 @@ class UserPolicy < ApplicationPolicy
   attr_reader :user, :record
 
   def index?
-    user.predefined_user?
+    user.can_read_user?
   end
 
   def show?
-    user.predefined_user?
+    user.can_read_user?
   end
 
   def update?
