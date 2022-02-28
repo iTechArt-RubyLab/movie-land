@@ -6,10 +6,18 @@ class ViewListService
   end
 
   def call
-    class_name.where(user_id: current_user.id).paginate(page: params[:page]).order(created_at: :desc)
+    if params[:filter].present?
+      class_name.where(watching_status: params[:filter]).where(user_id: current_user.id).paginate(page: params[:page]).order("watching_status #{order}")
+    else
+      class_name.where(user_id: current_user.id).paginate(page: params[:page]).order("watching_status #{order}")
+    end
   end
 
   private
 
   attr_accessor :class_name, :params, :current_user
+
+  def order
+    params[:order].presence || 'asc'
+  end
 end
