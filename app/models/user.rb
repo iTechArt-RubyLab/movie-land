@@ -60,7 +60,10 @@ class User < ApplicationRecord
   belongs_to :role, optional: true
   has_many :ratings, dependent: :destroy
 
-  delegate :can_read_entities?, :can_edit_entities?, :can_lock_user?, :can_read_user?, :can_edit_role?, :can_edit_permission?, :can_set_role?, :can_read_movie_and_person?, :can_edit_movie_and_person?, :admin?, :redactor?, :reviewer?, to: :role
+  delegate :can_read_entities?, :can_edit_entities?, :can_lock_user?, :can_read_rating?, :can_give_rating?,
+           :can_read_user?, :can_edit_role?, :can_edit_permission?, :can_set_role?,
+           :can_read_movie_and_person?, :can_edit_movie_and_person?, :admin?, :redactor?, :reviewer?, to: :role
+
   validates :name, length: { in: 2..25 }
   validates :surname, length: { in: 2..25 }
   validates :username, length: { in: 4..20 }, uniqueness: { message: 'User with this username already exists' }

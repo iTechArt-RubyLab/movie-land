@@ -25,6 +25,14 @@ class Role < ApplicationRecord
     predefined_user? ? true : permision? && permission.can_lock_user
   end
 
+  def can_read_rating?
+    predefined_user? ? true : permision? && permission.can_read_rating
+  end
+
+  def can_give_rating?
+    predefined_user? ? true : permision? && permission.can_edit_rating
+  end
+
   def can_edit_role?
     admin? ? true : permision? && permission.can_edit_role
   end
