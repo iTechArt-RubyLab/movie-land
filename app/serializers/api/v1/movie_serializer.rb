@@ -8,6 +8,8 @@ module Api
       has_many :genres, serializer: DictionarySerializer
       has_many :languages, serializer: DictionarySerializer
       has_many :tags, serializer: DictionarySerializer
+      has_many :ratings, serializer: RatingSerializer
+      has_many :view_lists, serializer: ViewListSerializer
     end
   end
 end

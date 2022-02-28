@@ -59,6 +59,7 @@ class User < ApplicationRecord
 
   belongs_to :role, optional: true
   has_many :ratings, dependent: :destroy
+  has_many :view_lists, dependent: :destroy
 
   delegate :can_read_entities?, :can_edit_entities?, :can_lock_user?, :can_read_rating?, :can_give_rating?,
            :can_read_user?, :can_edit_role?, :can_edit_permission?, :can_set_role?, :can_edit_person?,
