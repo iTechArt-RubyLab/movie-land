@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_28_222131) do
+ActiveRecord::Schema.define(version: 2022_02_28_225040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,14 +83,15 @@ ActiveRecord::Schema.define(version: 2022_02_28_222131) do
   end
 
   create_table "movie_staffs", force: :cascade do |t|
+    t.integer "staff_type", default: 0, null: false
     t.bigint "movie_id", null: false
     t.bigint "staff_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "staff_type", default: 0
-    t.index ["movie_id", "staff_id"], name: "index_movie_staffs_on_movie_id_and_staff_id", unique: true
+    t.index ["movie_id", "staff_id", "staff_type"], name: "index_movie_staffs_on_movie_id_and_staff_id_and_staff_type", unique: true
     t.index ["movie_id"], name: "index_movie_staffs_on_movie_id"
     t.index ["staff_id"], name: "index_movie_staffs_on_staff_id"
+    t.index ["staff_type"], name: "index_movie_staffs_on_staff_type", unique: true
   end
 
   create_table "movies", force: :cascade do |t|
