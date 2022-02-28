@@ -11,7 +11,7 @@ class RatingService
 
   private
 
-  attr_accessor :class_name, :params, :current_user
+  attr_reader :class_name, :params, :current_user
 
   def order
     params[:order].presence || 'asc'

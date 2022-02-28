@@ -15,7 +15,7 @@ module Dictionary
 
     private
 
-    attr_accessor :class_name, :params
+    attr_reader :class_name, :params
 
     def order
       params[:order].presence || 'asc'
