@@ -83,12 +83,12 @@ ActiveRecord::Schema.define(version: 2022_02_22_213807) do
 
   create_table "movie_staffs", force: :cascade do |t|
     t.bigint "movie_id", null: false
-    t.bigint "person_id", null: false
+    t.bigint "staff_id", null: false
     t.bigint "staff_type_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["movie_id"], name: "index_movie_staffs_on_movie_id"
-    t.index ["person_id"], name: "index_movie_staffs_on_person_id"
+    t.index ["staff_id"], name: "index_movie_staffs_on_staff_id"
     t.index ["staff_type_id"], name: "index_movie_staffs_on_staff_type_id"
   end
 
@@ -217,7 +217,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_213807) do
   add_foreign_key "actor_roles", "movies"
   add_foreign_key "actor_roles", "people", column: "actor_id"
   add_foreign_key "movie_staffs", "movies"
-  add_foreign_key "movie_staffs", "people"
+  add_foreign_key "movie_staffs", "people", column: "staff_id"
   add_foreign_key "movie_staffs", "staff_types"
   add_foreign_key "people", "countries"
   add_foreign_key "permissions", "roles"

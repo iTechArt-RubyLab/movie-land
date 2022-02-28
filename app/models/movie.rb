@@ -34,7 +34,7 @@ class Movie < ApplicationRecord
   has_many :actor_roles, dependent: :delete_all
   has_many :actors, through: :actor_roles, dependent: :destroy, class_name: 'Person'
   has_many :movie_staffs, dependent: :delete_all
-  has_many :people, through: :movie_staffs, dependent: :destroy
+  has_many :staffs, through: :movie_staffs, dependent: :destroy, class_name: 'Person'
 
   validates :name, length: { in: 2..300 }, uniqueness: { message: 'This movie already exists' }
   validates :description, length: { in: 2..500 }
