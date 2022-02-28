@@ -23,4 +23,5 @@
 class ActorRole < ApplicationRecord
   belongs_to :actor, class_name: 'Person'
   belongs_to :movie
+  validates :role_name, uniqueness: { scope: %i[movie_id actor_id], message: 'This actor role already appointed' }
 end
