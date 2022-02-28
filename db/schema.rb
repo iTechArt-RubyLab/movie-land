@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(version: 2022_02_28_225040) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["movie_id"], name: "index_ratings_on_movie_id"
+    t.index ["rating", "movie_id"], name: "index_ratings_on_rating_and_movie_id", unique: true
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
@@ -214,8 +215,10 @@ ActiveRecord::Schema.define(version: 2022_02_28_225040) do
     t.bigint "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "watching_status"
     t.index ["movie_id"], name: "index_view_lists_on_movie_id"
     t.index ["user_id"], name: "index_view_lists_on_user_id"
+    t.index ["watching_status", "movie_id"], name: "index_view_lists_on_watching_status_and_movie_id", unique: true
   end
 
   add_foreign_key "people", "countries"
