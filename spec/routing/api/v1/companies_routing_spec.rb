@@ -7,10 +7,6 @@ module Api
           expect(get: 'api/v1/companies').to route_to('api/v1/companies#index')
         end
 
-        it 'routes to #show' do
-          expect(get: 'api/v1/companies/1').to route_to('api/v1/companies#show', id: '1')
-        end
-
         it 'routes to #create' do
           expect(post: 'api/v1/companies').to route_to('api/v1/companies#create')
         end

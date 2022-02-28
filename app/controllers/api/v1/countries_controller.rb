@@ -1,16 +1,12 @@
 module Api
   module V1
     class CountriesController < ApplicationController
-      before_action :set_country, only: %i[show update destroy]
+      before_action :set_country, only: %i[update destroy]
 
       def index
         @countries = Dictionary::FindService.new(Country, params).call
 
         render json: @countries, each_serializer: DictionarySerializer
-      end
-
-      def show
-        render json: @country, serializer: DictionarySerializer
       end
 
       def create

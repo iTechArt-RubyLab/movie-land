@@ -23,14 +23,6 @@ module Api
         end
       end
 
-      describe 'GET /show' do
-        it 'renders a successful response' do
-          language = Language.create! valid_attributes
-          get api_v1_language_url(language), as: :json
-          expect(response).to be_successful
-        end
-      end
-
       describe 'POST /create' do
         context 'with valid parameters' do
           it 'creates a new Language' do

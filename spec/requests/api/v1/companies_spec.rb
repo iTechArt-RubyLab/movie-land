@@ -23,14 +23,6 @@ module Api
         end
       end
 
-      describe 'GET /show' do
-        it 'renders a successful response' do
-          company = Company.create! valid_attributes
-          get api_v1_company_url(company), as: :json
-          expect(response).to be_successful
-        end
-      end
-
       describe 'POST /create' do
         context 'with valid parameters' do
           it 'creates a new Company' do

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'home#index'
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   mount_devise_token_auth_for 'User', at: 'auth'
@@ -10,8 +11,9 @@ Rails.application.routes.draw do
       resources :languages
       resources :movies
       resources :people
-      resources :roles
-      resources :permissions
+      resources :roles do
+        resource :permissions
+      end
       resources :tags
       resources :user do
         put 'access', to: 'access_user#update'

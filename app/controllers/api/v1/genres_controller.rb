@@ -1,16 +1,12 @@
 module Api
   module V1
     class GenresController < ApplicationController
-      before_action :set_genre, only: %i[show update destroy]
+      before_action :set_genre, only: %i[update destroy]
 
       def index
         @genres = Dictionary::FindService.new(Genre, params).call
 
         render json: @genres, each_serializer: DictionarySerializer
-      end
-
-      def show
-        render json: @genre, serializer: DictionarySerializer
       end
 
       def create

@@ -30,6 +30,7 @@ class Movie < ApplicationRecord
   has_many :movies_tags, dependent: :delete_all
   has_many :tags, through: :movies_tags, dependent: :destroy
   has_many :ratings, dependent: :destroy
+  accepts_nested_attributes_for :movies_tags
 
   validates :name, length: { in: 2..300 }, uniqueness: { message: 'This movie already exists' }
   validates :description, length: { in: 2..500 }

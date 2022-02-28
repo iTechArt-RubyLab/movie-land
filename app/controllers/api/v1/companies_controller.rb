@@ -1,16 +1,12 @@
 module Api
   module V1
     class CompaniesController < ApplicationController
-      before_action :set_company, only: %i[show update destroy]
+      before_action :set_company, only: %i[update destroy]
 
       def index
         @companies = Dictionary::FindService.new(Company, params).call
 
         render json: @companies, each_serializer: DictionarySerializer
-      end
-
-      def show
-        render json: @company, serializer: DictionarySerializer
       end
 
       def create
