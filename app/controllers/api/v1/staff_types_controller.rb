@@ -1,16 +1,12 @@
 module Api
   module V1
     class StaffTypesController < ApplicationController
-      before_action :set_staff_type, only: %i[show update destroy]
+      before_action :set_staff_type, only: %i[update destroy]
 
       def index
         @staff_types = Dictionary::FindService.new(StaffType, params).call
 
         render json: @staff_types, each_serializer: DictionarySerializer
-      end
-
-      def show
-        render json: @staff_type, serializer: DictionarySerializer
       end
 
       def create

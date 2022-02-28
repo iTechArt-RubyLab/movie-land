@@ -23,14 +23,6 @@ module Api
         end
       end
 
-      describe 'GET /show' do
-        it 'renders a successful response' do
-          staff_type = StaffType.create! valid_attributes
-          get api_v1_staff_type_url(staff_type), as: :json
-          expect(response).to be_successful
-        end
-      end
-
       describe 'POST /create' do
         context 'with valid parameters' do
           it 'creates a new StaffType' do
