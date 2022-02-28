@@ -15,8 +15,9 @@
 require 'support/factory_bot'
 require 'database_cleaner/active_record'
 require 'pundit/matchers'
-
+require 'aasm/rspec'
 require 'simplecov'
+
 SimpleCov.start
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
