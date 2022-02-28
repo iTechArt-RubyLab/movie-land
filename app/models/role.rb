@@ -25,6 +25,10 @@ class Role < ApplicationRecord
     admin? ? true : permision? && permission.can_edit_role
   end
 
+  def can_edit_permission?
+    admin? ? true : permision? && permission.can_edit_permission
+  end
+
   def can_set_role?
     admin? ? true : permision? && permission.can_set_role
   end

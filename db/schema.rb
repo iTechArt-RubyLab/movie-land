@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_26_070918) do
+ActiveRecord::Schema.define(version: 2022_02_28_182320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 2022_02_26_070918) do
     t.boolean "can_read_movie_and_person"
     t.boolean "can_read_entities"
     t.boolean "can_edit_entities"
+    t.boolean "can_edit_permission"
     t.index ["role_id"], name: "index_permissions_on_role_id"
   end
 
