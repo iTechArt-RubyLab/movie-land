@@ -11,8 +11,9 @@
 #
 # Indexes
 #
-#  index_actor_roles_on_actor_id  (actor_id)
-#  index_actor_roles_on_movie_id  (movie_id)
+#  index_actor_roles_on_actor_id                             (actor_id)
+#  index_actor_roles_on_movie_id                             (movie_id)
+#  index_actor_roles_on_role_name_and_movie_id_and_actor_id  (role_name,movie_id,actor_id) UNIQUE
 #
 # Foreign Keys
 #

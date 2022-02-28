@@ -11,9 +11,10 @@
 #
 # Indexes
 #
-#  index_movie_staffs_on_movie_id       (movie_id)
-#  index_movie_staffs_on_staff_id       (staff_id)
-#  index_movie_staffs_on_staff_type_id  (staff_type_id)
+#  index_movie_staffs_on_movie_id                                 (movie_id)
+#  index_movie_staffs_on_staff_id                                 (staff_id)
+#  index_movie_staffs_on_staff_type_id                            (staff_type_id)
+#  index_movie_staffs_on_staff_type_id_and_movie_id_and_staff_id  (staff_type_id,movie_id,staff_id) UNIQUE
 #
 # Foreign Keys
 #
