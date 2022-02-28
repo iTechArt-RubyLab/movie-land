@@ -1,11 +1,10 @@
 module Api
   module V1
     class ViewListsController < ApplicationController
-      before_action :authenticate_user!
       before_action :set_view_list, only: %i[update destroy]
 
       def index
-        @view_lists = ViewListService.new(ViewList, params, current_user).call
+        @view_lists = ViewListService.new(ViewList, current_user, params).call
 
         render json: @view_lists, each_serializer: ViewListSerializer
       end
