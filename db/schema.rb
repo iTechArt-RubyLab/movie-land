@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_28_001558) do
+ActiveRecord::Schema.define(version: 2022_02_28_222131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,13 +85,12 @@ ActiveRecord::Schema.define(version: 2022_02_28_001558) do
   create_table "movie_staffs", force: :cascade do |t|
     t.bigint "movie_id", null: false
     t.bigint "staff_id", null: false
-    t.bigint "staff_type_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "staff_type", default: 0
+    t.index ["movie_id", "staff_id"], name: "index_movie_staffs_on_movie_id_and_staff_id", unique: true
     t.index ["movie_id"], name: "index_movie_staffs_on_movie_id"
     t.index ["staff_id"], name: "index_movie_staffs_on_staff_id"
-    t.index ["staff_type_id", "movie_id", "staff_id"], name: "index_movie_staffs_on_staff_type_id_and_movie_id_and_staff_id", unique: true
-    t.index ["staff_type_id"], name: "index_movie_staffs_on_staff_type_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -164,13 +163,6 @@ ActiveRecord::Schema.define(version: 2022_02_28_001558) do
     t.index ["name"], name: "index_roles_on_name", unique: true
   end
 
-  create_table "staff_types", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_staff_types_on_name", unique: true
-  end
-
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -220,7 +212,6 @@ ActiveRecord::Schema.define(version: 2022_02_28_001558) do
   add_foreign_key "actor_roles", "people", column: "actor_id"
   add_foreign_key "movie_staffs", "movies"
   add_foreign_key "movie_staffs", "people", column: "staff_id"
-  add_foreign_key "movie_staffs", "staff_types"
   add_foreign_key "people", "countries"
   add_foreign_key "permissions", "roles"
   add_foreign_key "ratings", "movies"
