@@ -1,2 +1,2 @@
-class CountryPolicy < BasePolicy
+class CountryPolicy < BaseEntityPolicy
 end

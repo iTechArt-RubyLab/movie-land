@@ -1,29 +1,16 @@
 class UserPolicy < ApplicationPolicy
   attr_reader :user, :record
 
-  def initialize(user, record)
-    super(user)
-    super(record)
-  end
-
   def index?
-    user.can_read?
+    user.can_read_user?
   end
 
   def show?
-    user.can_read?
+    user.can_read_user?
   end
 
   def update?
     user.can_set_role?
-  end
-
-  def lock_user?
-    user.can_lock_user?
-  end
-
-  def unlock_user?
-    user.can_lock_user?
   end
 
   class Scope

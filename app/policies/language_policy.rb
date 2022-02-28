@@ -1,2 +1,2 @@
-class LanguagePolicy < BasePolicy
+class LanguagePolicy < BaseEntityPolicy
 end

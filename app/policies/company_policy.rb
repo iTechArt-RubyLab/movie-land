@@ -1,2 +1,2 @@
-class CompanyPolicy < BasePolicy
+class CompanyPolicy < BaseEntityPolicy
 end

@@ -6,7 +6,8 @@ class PersonService
 
   def call
     if params[:filter].present?
-      class_name.where('name ILIKE ? OR surname ILIKE ? ', "%#{params[:filter]}%", "%#{params[:filter]}%").paginate(page: params[:page]).order("name #{order}")
+      class_name.where('name ILIKE ? OR surname ILIKE ? ', "%#{params[:filter]}%",
+                       "%#{params[:filter]}%").paginate(page: params[:page]).order("name #{order}")
     else
       class_name.paginate(page: params[:page]).order("name #{order}")
     end
