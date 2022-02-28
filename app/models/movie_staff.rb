@@ -25,6 +25,5 @@
 class MovieStaff < ApplicationRecord
   belongs_to :movie
   belongs_to :staff, class_name: 'Person'
-  belongs_to :staff_type
-  validates :staff_id, uniqueness: { scope: %i[movie_id staff_type_id], message: 'This movie staff already appointed' }
+  validates :staff_id, uniqueness: { scope: :movie_id, message: 'This movie staff already appointed' }
 end
