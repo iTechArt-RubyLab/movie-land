@@ -23,9 +23,6 @@ AllCops:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
-
-Layout/LineLength:
-  Enabled: false
   
 Documentation:
   Enabled: false
