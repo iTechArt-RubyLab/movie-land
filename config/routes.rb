@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         resource :permissions
       end
       resources :tags
+      resources :view_lists
       resources :user do
         put 'access', to: 'access_user#update'
       end
