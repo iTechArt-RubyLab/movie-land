@@ -43,4 +43,34 @@ class Movie < ApplicationRecord
   validates :age_limit, numericality: { only_integer: true }, inclusion: { in: 1..100 }
   validates :budget, numericality: { only_integer: true, greater_than: 0 }
   validates :duration, numericality: { only_integer: true, greater_than: 1 }
+
+  def directors
+    staffs_by_occupation(:director)
+  end
+
+  def editors
+    staffs_by_occupation(:editor)
+  end
+
+  def compositors
+    staffs_by_occupation(:compositor)
+  end
+
+  def artists
+    staffs_by_occupation(:artist)
+  end
+
+  def producers
+    staffs_by_occupation(:producer)
+  end
+
+  def screencasters
+    staffs_by_occupation(:screencaster)
+  end
+
+  private
+
+  def staffs_by_occupation(occupation)
+    staffs.where(movie_staffs: { staff_type: occupation })
+  end
 end
