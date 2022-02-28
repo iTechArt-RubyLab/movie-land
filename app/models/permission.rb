@@ -10,6 +10,7 @@
 #  can_lock_user             :boolean
 #  can_read_entities         :boolean
 #  can_read_movie_and_person :boolean
+#  can_read_user             :boolean
 #  can_set_role              :boolean
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
