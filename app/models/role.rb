@@ -45,12 +45,20 @@ class Role < ApplicationRecord
     editor? ? true : permision? && permission.can_edit_entities
   end
 
-  def can_read_movie_and_person?
-    predefined_user? ? true : permision? && permission.can_read_movie_and_person
+  def can_read_movie?
+    predefined_user? ? true : permision? && permission.can_read_movie
   end
 
-  def can_edit_movie_and_person?
-    editor? ? true : permision? && permission.can_edit_movie_and_person
+  def can_edit_movie?
+    editor? ? true : permision? && permission.can_edit_movie
+  end
+
+  def can_read_person?
+    predefined_user? ? true : permision? && permission.can_read_person
+  end
+
+  def can_edit_person?
+    editor? ? true : permision? && permission.can_edit_person
   end
 
   def admin?
