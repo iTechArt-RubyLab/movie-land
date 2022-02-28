@@ -22,9 +22,9 @@
 #
 class Person < ApplicationRecord
   belongs_to :country
-  has_many :actor_roles, dependent: :delete_all
+  has_many :actor_roles, foreign_key: :actor_id, class_name: 'ActorRole', dependent: :delete_all, inverse_of: :actor
   has_many :movies, through: :actor_roles, dependent: :destroy
-  has_many :movie_staffs, dependent: :delete_all
+  has_many :movie_staffs, foreign_key: :staff_id, class_name: 'MovieStaff', dependent: :delete_all, inverse_of: :staff
   has_many :movies, through: :movie_staffs, dependent: :destroy
   validates :name, length: { in: 2..103 }
   validates :surname, length: { in: 2..103 }
