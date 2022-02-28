@@ -6,10 +6,6 @@ RSpec.describe Api::V1::RatingsController, type: :routing do
       expect(get: '/api/v1/ratings').to route_to('api/v1/ratings#index')
     end
 
-    it 'routes to #show' do
-      expect(get: '/api/v1/ratings/1').to route_to('api/v1/ratings#show', id: '1')
-    end
-
     it 'routes to #create' do
       expect(post: '/api/v1/ratings').to route_to('api/v1/ratings#create')
     end
