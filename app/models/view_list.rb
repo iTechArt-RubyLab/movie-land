@@ -26,7 +26,8 @@ class ViewList < ApplicationRecord
   belongs_to :user
   belongs_to :movie
 
-  validates :watching_status, uniqueness: { scope: :movie_id, message: 'This movie has already been added to your viewlist.' }
+  validates :watching_status,
+            uniqueness: { scope: :movie_id, message: 'This movie has already been added to your viewlist.' }
 
   aasm column: :watching_status do
     state :will_watch

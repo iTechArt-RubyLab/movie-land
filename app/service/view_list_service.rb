@@ -7,7 +7,10 @@ class ViewListService
 
   def call
     if params[:filter].present?
-      class_name.where(watching_status: params[:filter]).where(user_id: current_user.id).paginate(page: params[:page]).order("watching_status #{order}")
+      class_name.where(watching_status: params[:filter])
+                .where(user_id: current_user.id)
+                .paginate(page: params[:page])
+                .order("watching_status #{order}")
     else
       class_name.where(user_id: current_user.id).paginate(page: params[:page]).order("watching_status #{order}")
     end

@@ -25,7 +25,7 @@ FactoryBot.define do
     association :user
     association :movie
 
-    trait :will_watch_status do 
+    trait :will_watch_status do
       watching_status { :will_watch }
     end
 
