@@ -24,5 +24,17 @@ FactoryBot.define do
   factory :view_list do
     association :user
     association :movie
+
+    trait :will_watch_status do 
+      watching_status { :will_watch }
+    end
+
+    trait :now_watching_status do
+      watching_status { :watching }
+    end
+
+    trait :already_viewed_status do
+      watching_status { :viewed }
+    end
   end
 end

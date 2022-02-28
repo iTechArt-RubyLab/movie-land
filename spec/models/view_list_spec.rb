@@ -28,4 +28,22 @@ RSpec.describe ViewList, type: :model do
   context 'with valid attributes' do
     it { expect(view_list).to be_valid }
   end
+
+  describe '#watching_status' do
+    context 'when watching_status is will_watch' do
+      it { expect(view_list).to transition_from(:watching, :viewed).to(:will_watch).on_event(:will_watching) }
+    end
+
+    context 'when watching status is watching' do
+      it { expect(view_list).to transition_from(:will_watch, :viewed).to(:watching).on_event(:now_watching) }
+    end
+
+    context 'when watching status is viewed' do
+      it { expect(view_list).to transition_from(:will_watch, :watching).to(:viewed).on_event(:already_viewed) }
+    end
+
+    context 'when watching status is invalid' do
+      it { expect(view_list).not_to transition_from(:will_watch).to(:viewed).on_event(:will_watching) }
+    end
+  end
 end
