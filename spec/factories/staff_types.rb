@@ -13,7 +13,7 @@
 #
 FactoryBot.define do
   factory :staff_type do
-    name { Faker::Emotion.unique.noun }
+    name { Faker::Company.unique.profession }
 
     trait :invalid_short_name do
       name { Faker::Lorem.characters(number: 1, min_alpha: 1) }
