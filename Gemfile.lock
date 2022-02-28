@@ -69,6 +69,9 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    after_commit_everywhere (1.1.0)
+      activerecord (>= 4.2)
+      activesupport
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
@@ -291,6 +294,7 @@ PLATFORMS
 DEPENDENCIES
   aasm (~> 5.2)
   active_model_serializers (~> 0.10.0)
+  after_commit_everywhere (~> 1.0)
   annotate
   bootsnap (>= 1.4.4)
   brakeman

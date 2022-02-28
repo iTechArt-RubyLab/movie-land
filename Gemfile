@@ -25,6 +25,8 @@ gem 'rswag-ui'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'aasm', '~> 5.2'
 
+gem 'after_commit_everywhere', '~> 1.0'
+
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'pundit'
