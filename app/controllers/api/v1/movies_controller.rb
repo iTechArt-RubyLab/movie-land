@@ -1,7 +1,6 @@
 module Api
   module V1
     class MoviesController < ApplicationController
-      skip_before_action :authenticate_user!
       before_action :set_movie, only: %i[show update destroy]
 
       def index

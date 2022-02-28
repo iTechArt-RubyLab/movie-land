@@ -1,6 +1,7 @@
 module Api
   module V1
     class ViewListsController < ApplicationController
+      before_action :authenticate_user!
       before_action :set_view_list, only: %i[update destroy]
 
       def index

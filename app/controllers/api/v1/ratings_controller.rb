@@ -1,6 +1,7 @@
 module Api
   module V1
     class RatingsController < ApplicationController
+      before_action :authenticate_user!
       before_action :set_rating, only: %i[update destroy]
 
       def index
