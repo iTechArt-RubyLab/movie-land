@@ -3,8 +3,6 @@ class ApplicationController < ActionController::API
   include Pundit::Authorization
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  include ActionController::RequestForgeryProtection
-  protect_from_forgery with: :null_session, unless: -> { request.format.json? }
   include Error::ErrorHandler
 
   protected
