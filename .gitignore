@@ -26,6 +26,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Ignore cloudinary config
+/config/cloudinary.yml
+
 # Ignore coverage folder
 coverage
 .idea/
