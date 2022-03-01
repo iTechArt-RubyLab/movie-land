@@ -30,19 +30,6 @@
 #
 FactoryBot.define do
   factory :permission do
-    can_lock_user { Faker::Boolean.boolean }
-    can_edit_role { Faker::Boolean.boolean }
-    can_set_role { Faker::Boolean.boolean }
-    can_edit_permission { Faker::Boolean.boolean }
-    can_give_rating { Faker::Boolean.boolean }
-    can_edit_person { Faker::Boolean.boolean }
-    can_read_movie { Faker::Boolean.boolean }
-    can_read_person { Faker::Boolean.boolean }
-    can_read_rating { Faker::Boolean.boolean }
-    can_read_user { Faker::Boolean.boolean }
-    can_edit_movie { Faker::Boolean.boolean }
-    can_read_entities { Faker::Boolean.boolean }
-    can_edit_entities { Faker::Boolean.boolean }
     association :role
 
     trait :admin do
