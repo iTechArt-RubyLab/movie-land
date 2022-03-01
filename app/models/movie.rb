@@ -30,6 +30,10 @@ class Movie < ApplicationRecord
   has_many :movies_tags, dependent: :delete_all
   has_many :tags, through: :movies_tags, dependent: :destroy
   has_many :ratings, dependent: :destroy
+  has_many :actor_roles, dependent: :delete_all
+  has_many :actors, through: :actor_roles, dependent: :destroy, class_name: 'Person'
+  has_many :movie_staffs, dependent: :delete_all
+  has_many :staffs, through: :movie_staffs, dependent: :destroy, class_name: 'Person'
   accepts_nested_attributes_for :movies_tags
 
   validates :name, length: { in: 2..300 }, uniqueness: { message: 'This movie already exists' }
@@ -39,4 +43,34 @@ class Movie < ApplicationRecord
   validates :age_limit, numericality: { only_integer: true }, inclusion: { in: 1..100 }
   validates :budget, numericality: { only_integer: true, greater_than: 0 }
   validates :duration, numericality: { only_integer: true, greater_than: 1 }
+
+  def directors
+    staffs_by_occupation(:director)
+  end
+
+  def editors
+    staffs_by_occupation(:editor)
+  end
+
+  def compositors
+    staffs_by_occupation(:compositor)
+  end
+
+  def artists
+    staffs_by_occupation(:artist)
+  end
+
+  def producers
+    staffs_by_occupation(:producer)
+  end
+
+  def screencasters
+    staffs_by_occupation(:screencaster)
+  end
+
+  private
+
+  def staffs_by_occupation(occupation)
+    staffs.where(movie_staffs: { staff_type: occupation })
+  end
 end

@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_28_211548) do
+ActiveRecord::Schema.define(version: 2022_02_28_225040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actor_roles", force: :cascade do |t|
+    t.string "role_name"
+    t.bigint "actor_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["actor_id"], name: "index_actor_roles_on_actor_id"
+    t.index ["movie_id"], name: "index_actor_roles_on_movie_id"
+    t.index ["role_name", "movie_id", "actor_id"], name: "index_actor_roles_on_role_name_and_movie_id_and_actor_id", unique: true
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -69,6 +80,18 @@ ActiveRecord::Schema.define(version: 2022_02_28_211548) do
     t.bigint "movie_id", null: false
     t.index ["language_id", "movie_id"], name: "index_languages_movies_on_language_id_and_movie_id", unique: true
     t.index ["movie_id", "language_id"], name: "index_languages_movies_on_movie_id_and_language_id", unique: true
+  end
+
+  create_table "movie_staffs", force: :cascade do |t|
+    t.integer "staff_type", default: 0, null: false
+    t.bigint "movie_id", null: false
+    t.bigint "staff_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id", "staff_id", "staff_type"], name: "index_movie_staffs_on_movie_id_and_staff_id_and_staff_type", unique: true
+    t.index ["movie_id"], name: "index_movie_staffs_on_movie_id"
+    t.index ["staff_id"], name: "index_movie_staffs_on_staff_id"
+    t.index ["staff_type"], name: "index_movie_staffs_on_staff_type", unique: true
   end
 
   create_table "movies", force: :cascade do |t|
@@ -186,6 +209,10 @@ ActiveRecord::Schema.define(version: 2022_02_28_211548) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "actor_roles", "movies"
+  add_foreign_key "actor_roles", "people", column: "actor_id"
+  add_foreign_key "movie_staffs", "movies"
+  add_foreign_key "movie_staffs", "people", column: "staff_id"
   add_foreign_key "people", "countries"
   add_foreign_key "permissions", "roles"
   add_foreign_key "ratings", "movies"
