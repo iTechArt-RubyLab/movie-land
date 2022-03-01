@@ -328,6 +328,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 6.1.4, >= 6.1.4.4)
   rails-erd
+  redis (~> 4.6.0)
   rspec-rails
   rswag-api
   rswag-specs
