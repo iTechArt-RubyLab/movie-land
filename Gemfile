@@ -27,6 +27,10 @@ gem 'aasm', '~> 5.2'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'sidekiq'
+
+gem 'sidekiq-cron'
+
 gem 'pundit'
 
 gem 'validate_url'
