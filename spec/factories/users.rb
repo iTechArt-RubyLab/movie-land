@@ -94,15 +94,15 @@ FactoryBot.define do
     end
 
     trait :admin do
-      role { build :role, :admin }
+      role { Role.find_or_create_by(name: 'admin') }
     end
 
     trait :redactor do
-      role { build :role, :redactor }
+      role { Role.find_or_create_by(name: 'redactor') }
     end
 
     trait :reviewer do
-      role { build :role, :reviewer }
+      role { Role.find_or_create_by(name: 'reviewer') }
     end
   end
 end
