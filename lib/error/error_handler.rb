@@ -2,28 +2,12 @@ module Error
   module ErrorHandler
     def self.included(clazz)
       clazz.class_eval do
-        rescue_from ActionController::RoutingError do |error|
-          respond(:routing_error, 404, error.to_s)
+        rescue_from StandardError do |e|
+          respond(:standard_error, 500, e.to_s)
         end
 
-        rescue_from ActionController::MethodNotAllowed do |error|
-          respond(:method_not_allowed, 405, error.to_s)
-        end
-
-        rescue_from ActionController::UnknownHttpMethod do |error|
-          respond(:unknown_http_method, 405, error.to_s)
-        end
-
-        rescue_from ActionController::NotImplemented do |error|
-          respond(:not_implemented, 501, error.to_s)
-        end
-
-        rescue_from ActionController::UnknownFormat do |error|
-          respond(:unknown_format, 406, error.to_s)
-        end
-
-        rescue_from ActionController::BadRequest do |error|
-          respond(:bad_request, 400, error.to_s)
+        rescue_from ArgumentError do |error|
+          respond(:argument_error, 404, error.to_s)
         end
 
         rescue_from ActionController::ParameterMissing do |error|
@@ -76,14 +60,6 @@ module Error
 
         rescue_from AASM::InvalidTransition do |error|
           respond(:invalid_transition, 422, error.to_s)
-        end
-
-        rescue_from ArgumentError do |error|
-          respond(:argument_error, 404, error.to_s)
-        end
-
-        rescue_from StandardError do |e|
-          respond(:standard_error, 500, e.to_s)
         end
       end
     end
