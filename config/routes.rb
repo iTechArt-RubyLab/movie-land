@@ -27,4 +27,5 @@ Rails.application.routes.draw do
       resources :awards
     end
   end
+  get 'search', to: 'home#search'
 end
