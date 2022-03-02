@@ -26,5 +26,13 @@ FactoryBot.define do
     trait :reviewer do
       name { 'reviewer' }
     end
+
+    trait :invalid_long_name do
+      name { Faker::Lorem.characters(number: 101) }
+    end
+
+    trait :invalid_short_name do
+      name { Faker::Lorem.characters(number: 1) }
+    end
   end
 end
