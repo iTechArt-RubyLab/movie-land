@@ -21,6 +21,8 @@
 #  index_movies_on_name  (name) UNIQUE
 #
 class Movie < ApplicationRecord
+  include Searchable
+
   has_many :companies_movies, dependent: :delete_all
   has_many :companies, through: :companies_movies, dependent: :destroy
   has_many :countries_movies, dependent: :delete_all
