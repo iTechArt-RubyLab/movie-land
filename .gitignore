@@ -29,6 +29,9 @@
 # Ignore cloudinary config
 /config/cloudinary.yml
 
+# Ignore public/uploads
+/public/uploads
+
 # Ignore coverage folder
 coverage
 .idea/

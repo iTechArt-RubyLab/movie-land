@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_05_234036) do
+ActiveRecord::Schema.define(version: 2022_03_01_164517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(version: 2022_03_05_234036) do
     t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "poster"
+    t.string "image"
     t.index ["name"], name: "index_movies_on_name", unique: true
   end
 
@@ -244,4 +246,8 @@ ActiveRecord::Schema.define(version: 2022_03_05_234036) do
   add_foreign_key "users", "roles"
   add_foreign_key "view_lists", "movies"
   add_foreign_key "view_lists", "users"
+  add_foreign_key "actor_roles", "movies"
+  add_foreign_key "actor_roles", "people", column: "actor_id"
+  add_foreign_key "movie_staffs", "movies"
+  add_foreign_key "movie_staffs", "people", column: "staff_id"
 end
