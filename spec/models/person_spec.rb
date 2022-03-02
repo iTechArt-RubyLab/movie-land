@@ -54,4 +54,8 @@ RSpec.describe Person, type: :model do
       it { expect(invalid_long_surname).not_to be_valid }
     end
   end
+
+  context 'with associations' do
+    it { should belong_to(:country) }
+  end
 end

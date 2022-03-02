@@ -37,4 +37,9 @@ RSpec.describe Genre, type: :model do
   describe 'validations' do
     it { is_expected.to validate_uniqueness_of(:name).with_message('This genre already exists') }
   end
+
+  context 'with associations' do
+    it { should have_many(:genres_movies) }
+    it { should have_many(:movies) }
+  end
 end

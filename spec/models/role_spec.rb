@@ -37,4 +37,10 @@ RSpec.describe Role, type: :model do
   describe 'validations' do
     it { is_expected.to validate_uniqueness_of(:name).with_message('This role already exists') }
   end
+
+  context 'with associations' do
+    it { should have_one(:permission) }
+    it { should have_many(:users) }
+    it { should accept_nested_attributes_for(:permission) }
+  end
 end

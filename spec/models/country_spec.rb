@@ -37,4 +37,10 @@ RSpec.describe Country, type: :model do
   describe 'validations' do
     it { is_expected.to validate_uniqueness_of(:name).with_message('This country already exists') }
   end
+
+  context 'with associations' do
+    it { should have_many(:countries_movies) }
+    it { should have_many(:movies) }
+    it { should have_many(:people) }
+  end
 end

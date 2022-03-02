@@ -62,4 +62,8 @@ RSpec.describe Permission, type: :model do
       it { expect(reviewer.role).to eq(reviewer_role) }
     end
   end
+
+  context 'with associations' do
+    it { should belong_to(:role) }
+  end
 end

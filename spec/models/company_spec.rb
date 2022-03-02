@@ -37,4 +37,9 @@ RSpec.describe Company, type: :model do
   describe 'validations' do
     it { is_expected.to validate_uniqueness_of(:name).with_message('This company already exists') }
   end
+
+  context 'with associations' do
+    it { should have_many(:companies_movies) }
+    it { should have_many(:movies) }
+  end
 end

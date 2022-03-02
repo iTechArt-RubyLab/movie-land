@@ -96,4 +96,25 @@ RSpec.describe User, type: :model do
       it { expect(invalid_long_username).not_to be_valid }
     end
   end
+
+  context 'with associations' do
+    it { should belong_to(:role).optional }
+    it { should have_many(:ratings) }
+    it { should delegate_method(:can_read_entities?).to(:role) }
+    it { should delegate_method(:can_edit_entities?).to(:role) }
+    it { should delegate_method(:can_lock_user?).to(:role) }
+    it { should delegate_method(:can_read_rating?).to(:role) }
+    it { should delegate_method(:can_give_rating?).to(:role) }
+    it { should delegate_method(:can_read_user?).to(:role) }
+    it { should delegate_method(:can_edit_role?).to(:role) }
+    it { should delegate_method(:can_edit_permission?).to(:role) }
+    it { should delegate_method(:can_set_role?).to(:role) }
+    it { should delegate_method(:can_edit_person?).to(:role) }
+    it { should delegate_method(:can_read_movie?).to(:role) }
+    it { should delegate_method(:can_edit_movie?).to(:role) }
+    it { should delegate_method(:can_read_person?).to(:role) }
+    it { should delegate_method(:admin?).to(:role) }
+    it { should delegate_method(:redactor?).to(:role) }
+    it { should delegate_method(:reviewer?).to(:role) }
+  end
 end

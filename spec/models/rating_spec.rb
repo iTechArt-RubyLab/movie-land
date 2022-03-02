@@ -41,4 +41,9 @@ RSpec.describe Rating, type: :model do
       it { expect(invalid_long_rating).not_to be_valid }
     end
   end
+
+  context 'with associations' do
+    it { should belong_to(:user) }
+    it { should belong_to(:movie) }
+  end
 end
