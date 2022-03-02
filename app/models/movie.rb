@@ -40,6 +40,7 @@ class Movie < ApplicationRecord
   accepts_nested_attributes_for :movies_tags
 
   mount_uploader :poster, PosterUploader
+  mount_uploaders :image, ImageUploader
 
   validates :name, length: { in: 2..300 }, uniqueness: { message: 'This movie already exists' }
   validates :description, length: { in: 2..500 }
