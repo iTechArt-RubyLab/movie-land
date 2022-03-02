@@ -1,14 +1,14 @@
 module Api
   module V1
     class PermissionsController < ApplicationController
-      before_action :set_permission, only: %i[show update destroy]
+      before_action :set_permission, only: %i[show update]
 
       def show
         render json: @permission, serializer: PermissionSerializer
       end
 
       def create
-        @permission = Permission.new(permission_params)
+        @permission = Role.find(params[:role_id]).build_permission(permission_params)
 
         if @permission.save
           render json: @permission, status: :created, serializer: PermissionSerializer
@@ -25,14 +25,10 @@ module Api
         end
       end
 
-      def destroy
-        @permission.destroy
-      end
-
       private
 
       def set_permission
-        @permission = Permission.find(params[:role_id])
+        @permission = Permission.find_by(role_id: params[:role_id])
       end
 
       def permission_params
