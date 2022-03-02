@@ -41,3 +41,7 @@ Metrics/MethodLength:
 
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
+
+RSpec/ImplicitExpect:
+  Exclude:
+    - 'spec/models/**'
