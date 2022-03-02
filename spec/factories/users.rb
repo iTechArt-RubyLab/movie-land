@@ -92,5 +92,17 @@ FactoryBot.define do
     trait :invalid_long_username do
       username { Faker::Lorem.characters(number: 30) }
     end
+
+    trait :admin do
+      role { Role.find_or_create_by(name: 'admin') }
+    end
+
+    trait :redactor do
+      role { Role.find_or_create_by(name: 'redactor') }
+    end
+
+    trait :reviewer do
+      role { Role.find_or_create_by(name: 'reviewer') }
+    end
   end
 end

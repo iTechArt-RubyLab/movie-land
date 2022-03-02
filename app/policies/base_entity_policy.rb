@@ -5,10 +5,6 @@ class BaseEntityPolicy < ApplicationPolicy
     user.can_read_entities?
   end
 
-  def show?
-    user.can_read_entities?
-  end
-
   def create?
     user.can_edit_entities?
   end

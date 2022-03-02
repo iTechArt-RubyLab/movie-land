@@ -14,6 +14,7 @@
 #
 require 'support/factory_bot'
 require 'database_cleaner/active_record'
+require 'pundit/matchers'
 
 require 'simplecov'
 SimpleCov.start
