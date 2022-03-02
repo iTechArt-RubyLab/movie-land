@@ -246,8 +246,4 @@ ActiveRecord::Schema.define(version: 2022_03_01_164517) do
   add_foreign_key "users", "roles"
   add_foreign_key "view_lists", "movies"
   add_foreign_key "view_lists", "users"
-  add_foreign_key "actor_roles", "movies"
-  add_foreign_key "actor_roles", "people", column: "actor_id"
-  add_foreign_key "movie_staffs", "movies"
-  add_foreign_key "movie_staffs", "people", column: "staff_id"
 end
