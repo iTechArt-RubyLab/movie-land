@@ -113,8 +113,8 @@ RSpec.describe Movie, type: :model do
     end
   end
 
-  describe 'validations' do
-    it { is_expected.to validate_uniqueness_of(:name).with_message('This movie already exists') }
+  context 'with validations' do
+    it { should validate_uniqueness_of(:name).with_message('This movie already exists') }
   end
 
   context 'with associations' do

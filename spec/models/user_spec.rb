@@ -49,51 +49,47 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject(:user) { create :user }
-
   context 'with valid attributes' do
-    it { expect(user).to be_valid }
+    subject(:user) { create :user }
+
+    include_examples 'valid model'
   end
 
-  describe '#name' do
-    context 'when name is short' do
+  context 'with invalid attributes' do
+    context 'when name too short' do
       subject(:invalid_short_name) { build :user, :invalid_short_name }
 
-      it { expect(invalid_short_name).not_to be_valid }
+      include_examples 'invalid model'
     end
 
-    context 'when name is long' do
+    context 'when name too long' do
       subject(:invalid_long_name) { build :user, :invalid_long_name }
 
-      it { expect(invalid_long_name).not_to be_valid }
+      include_examples 'invalid model'
     end
-  end
 
-  describe '#surname' do
-    context 'when surname is short' do
+    context 'when surname too short' do
       subject(:invalid_short_surname) { build :user, :invalid_short_surname }
 
-      it { expect(invalid_short_surname).not_to be_valid }
+      include_examples 'invalid model'
     end
 
-    context 'when surname is long' do
+    context 'when surname too long' do
       subject(:invalid_long_surname) { build :user, :invalid_long_surname }
 
-      it { expect(invalid_long_surname).not_to be_valid }
+      include_examples 'invalid model'
     end
-  end
 
-  describe '#username' do
-    context 'when username is short' do
+    context 'when username too short' do
       subject(:invalid_short_username) { build :user, :invalid_short_username }
 
-      it { expect(invalid_short_username).not_to be_valid }
+      include_examples 'invalid model'
     end
 
-    context 'when username is long' do
+    context 'when username too long' do
       subject(:invalid_long_username) { build :user, :invalid_long_username }
 
-      it { expect(invalid_long_username).not_to be_valid }
+      include_examples 'invalid model'
     end
   end
 

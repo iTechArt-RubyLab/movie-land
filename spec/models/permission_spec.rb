@@ -38,7 +38,7 @@ RSpec.describe Permission, type: :model do
   end
 
   context 'with different roles' do
-    context 'with admin role' do
+    context 'when role admin' do
       subject(:admin) { build :permission, :admin }
 
       let(:admin_role) { Role.find_by(name: 'admin') }
@@ -46,7 +46,7 @@ RSpec.describe Permission, type: :model do
       it { expect(admin.role).to eq(admin_role) }
     end
 
-    context 'with redactor role' do
+    context 'when role redactor' do
       subject(:redactor) { build :permission, :redactor }
 
       let(:redactor_role) { Role.find_by(name: 'redactor') }
@@ -54,7 +54,7 @@ RSpec.describe Permission, type: :model do
       it { expect(redactor.role).to eq(redactor_role) }
     end
 
-    context 'with reviewer role' do
+    context 'when role reviewer' do
       subject(:reviewer) { build :permission, :reviewer }
 
       let(:reviewer_role) { Role.find_by(name: 'reviewer') }

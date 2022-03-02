@@ -25,11 +25,11 @@ FactoryBot.define do
     association :user
     association :movie
 
-    trait :invalid_short_rating do
+    trait :invalid_small_rating do
       rating { Faker::Number.between(from: -1, to: 0) }
     end
 
-    trait :invalid_long_rating do
+    trait :invalid_big_rating do
       rating { Faker::Number.between(from: 11, to: 15) }
     end
   end
