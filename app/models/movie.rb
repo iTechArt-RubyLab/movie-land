@@ -7,7 +7,9 @@
 #  budget       :bigint
 #  description  :text
 #  duration     :integer
+#  image        :string
 #  name         :string
+#  poster       :string
 #  release_date :date
 #  tagline      :string
 #  trailer      :string
@@ -36,6 +38,8 @@ class Movie < ApplicationRecord
   has_many :staffs, through: :movie_staffs, dependent: :destroy, class_name: 'Person'
   has_many :view_lists, dependent: :destroy
   accepts_nested_attributes_for :movies_tags
+
+  mount_uploader :poster, PosterUploader
 
   validates :name, length: { in: 2..300 }, uniqueness: { message: 'This movie already exists' }
   validates :description, length: { in: 2..500 }
