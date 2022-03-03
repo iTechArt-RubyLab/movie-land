@@ -1,0 +1,6 @@
+Hello,dear redactor  - <%= @redactor.name %>!
+New movie ratings for yesterday
+  <% @ratings.each do |rating| %>
+    Rating: <%= rating.first %> Movie: <%= Movie.where(id: rating.second).pluck(:name)[0] %> User: <%= User.where(id: rating.third).pluck(:name)[0]%>
+  <% end %>
+Good day!
