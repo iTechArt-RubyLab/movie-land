@@ -21,20 +21,25 @@ RSpec.describe Genre, type: :model do
   end
 
   context 'with invalid attributes' do
-    context 'with name too short' do
+    context 'when name too short' do
       subject(:invalid_short_name) { build :genre, :invalid_short_name }
 
       include_examples 'invalid model'
     end
 
-    context 'with name too long' do
+    context 'when name too long' do
       subject(:invalid_long_name) { build :genre, :invalid_long_name }
 
       include_examples 'invalid model'
     end
   end
 
-  describe 'validations' do
-    it { is_expected.to validate_uniqueness_of(:name).with_message('This genre already exists') }
+  context 'with validations' do
+    it { should validate_uniqueness_of(:name).with_message('This genre already exists') }
+  end
+
+  context 'with associations' do
+    it { should have_many(:genres_movies) }
+    it { should have_many(:movies) }
   end
 end

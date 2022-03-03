@@ -22,23 +22,28 @@
 require 'rails_helper'
 
 RSpec.describe Rating, type: :model do
-  subject(:rating) { create :rating }
-
   context 'with valid attributes' do
-    it { expect(rating).to be_valid }
+    subject(:rating) { create :rating }
+
+    include_examples 'valid model'
   end
 
-  describe '#rating' do
-    context 'when rating is short' do
-      subject(:invalid_short_rating) { build :rating, :invalid_short_rating }
+  context 'with invalid attributes' do
+    context 'when rating too small' do
+      subject(:invalid_small_rating) { build :rating, :invalid_small_rating }
 
-      it { expect(invalid_short_rating).not_to be_valid }
+      include_examples 'invalid model'
     end
 
-    context 'when rating is long' do
-      subject(:invalid_long_rating) { build :rating, :invalid_long_rating }
+    context 'when rating too big' do
+      subject(:invalid_big_rating) { build :rating, :invalid_big_rating }
 
-      it { expect(invalid_long_rating).not_to be_valid }
+      include_examples 'invalid model'
     end
+  end
+
+  context 'with associations' do
+    it { should belong_to(:user) }
+    it { should belong_to(:movie) }
   end
 end

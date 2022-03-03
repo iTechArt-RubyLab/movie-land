@@ -20,21 +20,26 @@ RSpec.describe Company, type: :model do
     include_examples 'valid model'
   end
 
-  describe '#name' do
-    context 'when too long' do
+  context 'with invalid attributes' do
+    context 'when name too long' do
       subject(:invalid_long_name) { build :company, :invalid_long_name }
 
       include_examples 'invalid model'
     end
 
-    context 'when too short' do
+    context 'when name too short' do
       subject(:invalid_short_name) { build :company, :invalid_short_name }
 
       include_examples 'invalid model'
     end
   end
 
-  describe 'validations' do
-    it { is_expected.to validate_uniqueness_of(:name).with_message('This company already exists') }
+  context 'with validations' do
+    it { should validate_uniqueness_of(:name).with_message('This company already exists') }
+  end
+
+  context 'with associations' do
+    it { should have_many(:companies_movies) }
+    it { should have_many(:movies) }
   end
 end

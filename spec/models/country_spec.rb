@@ -14,27 +14,33 @@
 require 'rails_helper'
 
 RSpec.describe Country, type: :model do
-  subject(:country) { create :country }
-
   context 'with valid attributes' do
-    it { expect(country).to be_valid }
+    subject(:country) { create :country }
+
+    include_examples 'valid model'
   end
 
-  describe '#name' do
-    context 'when name is short' do
+  context 'with invalid attributes' do
+    context 'when name too short' do
       subject(:invalid_short_name) { build :country, :invalid_short_name }
 
-      it { expect(invalid_short_name).not_to be_valid }
+      include_examples 'invalid model'
     end
 
-    context 'when name is long' do
+    context 'when name too long' do
       subject(:invalid_long_name) { build :country, :invalid_long_name }
 
-      it { expect(invalid_long_name).not_to be_valid }
+      include_examples 'invalid model'
     end
   end
 
-  describe 'validations' do
-    it { is_expected.to validate_uniqueness_of(:name).with_message('This country already exists') }
+  context 'with validations' do
+    it { should validate_uniqueness_of(:name).with_message('This country already exists') }
+  end
+
+  context 'with associations' do
+    it { should have_many(:countries_movies) }
+    it { should have_many(:movies) }
+    it { should have_many(:people) }
   end
 end
