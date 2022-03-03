@@ -154,7 +154,7 @@ ActiveRecord::Schema.define(version: 2022_02_28_225040) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["movie_id"], name: "index_ratings_on_movie_id"
-    t.index ["rating", "movie_id"], name: "index_ratings_on_rating_and_movie_id", unique: true
+    t.index ["user_id", "movie_id"], name: "index_ratings_on_user_id_and_movie_id", unique: true
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
@@ -217,10 +217,14 @@ ActiveRecord::Schema.define(version: 2022_02_28_225040) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "watching_status"
     t.index ["movie_id"], name: "index_view_lists_on_movie_id"
+    t.index ["user_id", "movie_id"], name: "index_view_lists_on_user_id_and_movie_id", unique: true
     t.index ["user_id"], name: "index_view_lists_on_user_id"
-    t.index ["watching_status", "movie_id"], name: "index_view_lists_on_watching_status_and_movie_id", unique: true
   end
 
+  add_foreign_key "actor_roles", "movies"
+  add_foreign_key "actor_roles", "people", column: "actor_id"
+  add_foreign_key "movie_staffs", "movies"
+  add_foreign_key "movie_staffs", "people", column: "staff_id"
   add_foreign_key "people", "countries"
   add_foreign_key "permissions", "roles"
   add_foreign_key "ratings", "movies"
@@ -228,8 +232,4 @@ ActiveRecord::Schema.define(version: 2022_02_28_225040) do
   add_foreign_key "users", "roles"
   add_foreign_key "view_lists", "movies"
   add_foreign_key "view_lists", "users"
-  add_foreign_key "actor_roles", "movies"
-  add_foreign_key "actor_roles", "people", column: "actor_id"
-  add_foreign_key "movie_staffs", "movies"
-  add_foreign_key "movie_staffs", "people", column: "staff_id"
 end
