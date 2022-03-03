@@ -1,17 +1,17 @@
 class RatingService
-  def initialize(class_name, params, current_user)
+  def initialize(class_name, params = {})
     @class_name = class_name
-    @params = params
-    @current_user = current_user
+    @user = params[:user]
+    @params = params[:attributes]
   end
 
   def call
-    class_name.where(user_id: current_user.id).paginate(page: params[:page]).order("rating #{order}")
+    class_name.where(user: user).paginate(page: params[:page]).order("rating #{order}")
   end
 
   private
 
-  attr_accessor :class_name, :params, :current_user
+  attr_reader :class_name, :user, :params
 
   def order
     params[:order].presence || 'asc'

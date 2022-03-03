@@ -18,7 +18,8 @@ Rails.application.routes.draw do
       resources :user do
         put 'access', to: 'access_user#update'
       end
-      resources :ratings
+      resources :view_lists, as: :my_view_list, path: 'my-view-list'
+      resources :ratings, as: :my_ratings, path: 'my-ratings'
     end
   end
 end

@@ -23,6 +23,8 @@ gem 'rswag-ui'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'aasm', '~> 5.2'
+
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'pundit'
@@ -32,8 +34,6 @@ gem 'validate_url'
 gem 'will_paginate'
 
 gem 'strong_migrations'
-
-gem 'aasm'
 
 gem 'active_model_serializers', '~> 0.10.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
