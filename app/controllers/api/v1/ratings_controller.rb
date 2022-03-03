@@ -4,7 +4,7 @@ module Api
       before_action :set_rating, only: %i[update destroy]
 
       def index
-        @ratings = RatingService.new(Rating, current_user, params).call
+        @ratings = RatingService.new(Rating, user: current_user, attributes: params).call
 
         render json: @ratings, each_serializer: RatingSerializer
       end

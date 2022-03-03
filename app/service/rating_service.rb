@@ -1,8 +1,8 @@
 class RatingService
-  def initialize(class_name, user, params = {})
+  def initialize(class_name, params = {})
     @class_name = class_name
-    @user = user
-    @params = params
+    @user = params[:user]
+    @params = params[:attributes]
   end
 
   def call
@@ -11,7 +11,7 @@ class RatingService
 
   private
 
-  attr_reader :class_name, :params, :user
+  attr_reader :class_name, :user, :params
 
   def order
     params[:order].presence || 'asc'

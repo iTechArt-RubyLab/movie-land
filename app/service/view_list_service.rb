@@ -1,8 +1,8 @@
 class ViewListService
-  def initialize(class_name, user, params = {})
+  def initialize(class_name, params = {})
     @class_name = class_name
-    @user = user
-    @params = params
+    @user = params[:user]
+    @params = params[:attributes]
   end
 
   def call

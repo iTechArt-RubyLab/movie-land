@@ -4,7 +4,7 @@ module Api
       before_action :set_view_list, only: %i[update destroy]
 
       def index
-        @view_lists = ViewListService.new(ViewList, current_user, params).call
+        @view_lists = ViewListService.new(ViewList, user: current_user, attributes: params).call
 
         render json: @view_lists, each_serializer: ViewListSerializer
       end
@@ -38,7 +38,7 @@ module Api
       end
 
       def view_list_params
-        params.require(:view_list).permit(:watching_status, :user_id, :movie_id)
+        params.permit(:watching_status, :user_id, :movie_id)
       end
     end
   end
