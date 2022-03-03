@@ -42,6 +42,17 @@ jobs:
         run: |
           bundle exec bundler-audit --update
           bundle exec brakeman -q -w2
+      - name: Configure sysctl limits
+        run: |
+          sudo swapoff -a
+          sudo sysctl -w vm.swappiness=1
+          sudo sysctl -w fs.file-max=262144
+          sudo sysctl -w vm.max_map_count=262144
+
+      - name: Runs Elasticsearch
+        uses: elastic/elastic-github-actions/elasticsearch@master
+        with:
+          stack-version: 7.6.0
       # Add or Replace any other Linters here
       - name: Run linters
         run: |
@@ -58,3 +69,4 @@ jobs:
         run: |
           bundle exec rails db:setup
           bundle exec rspec
+          
