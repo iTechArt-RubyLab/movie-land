@@ -11,9 +11,9 @@
 #
 # Indexes
 #
-#  index_ratings_on_movie_id             (movie_id)
-#  index_ratings_on_rating_and_movie_id  (rating,movie_id) UNIQUE
-#  index_ratings_on_user_id              (user_id)
+#  index_ratings_on_movie_id              (movie_id)
+#  index_ratings_on_user_id               (user_id)
+#  index_ratings_on_user_id_and_movie_id  (user_id,movie_id) UNIQUE
 #
 # Foreign Keys
 #
@@ -25,5 +25,5 @@ class Rating < ApplicationRecord
   belongs_to :movie
 
   validates :rating, numericality: { only_integer: true }, inclusion: { in: 1..10 }
-  validates :rating, uniqueness: { scope: :movie_id, message: 'This movie already rated by you.' }
+  validates :user_id, uniqueness: { scope: :movie_id, message: 'This movie already rated by you.' }
 end
