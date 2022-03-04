@@ -12,3 +12,6 @@ FactoryBot.create(:user, :redactor, email: 'redactor@example.com', password: '12
 FactoryBot.create(:user, :reviewer, email: 'reviewer@example.com', password: '123456', password_confirmation: '123456')
 FactoryBot.create_list(:award, 20)
 FactoryBot.create_list(:view_list, 20)
+FactoryBot.create_list(:comment, 20)
+FactoryBot.create_list(:comment, 20, :for_comment)
+FactoryBot.create_list(:comment, 20, :for_person)
