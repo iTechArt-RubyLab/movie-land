@@ -2,8 +2,7 @@ class RedactorNotificationService
   def call
     ratings = Rating.where(created_at: Date.yesterday).joins(:movie, :user).pluck('rating', 'movies.name', 'users.name')
     User.joins(:role).where(roles: { name: 'redactor' }).find_each do |user|
-      redactor = user
-      call_mailer(ratings, redactor)
+      call_mailer(ratings, user)
     end
   end
 
