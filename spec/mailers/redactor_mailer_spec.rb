@@ -4,7 +4,7 @@ RSpec.describe RedactorMailer, type: :mailer do
   describe 'redactor notification' do
     let!(:ratings) { create_list(:rating, 20).pluck(:rating, :movie_id, :user_id) }
     let!(:redactor) { create :user, :redactor }
-    let(:mail) { described_class.redactor_notification(ratings, redactor).deliver_later }
+    let(:mail) { described_class.redactor_notification(ratings, redactor).deliver }
 
     it 'renders the subject' do
       expect(mail.subject).to eq('Redactor Notification')
@@ -19,7 +19,7 @@ RSpec.describe RedactorMailer, type: :mailer do
     end
 
     it 'sends an email' do
-      described_class.redactor_notification(ratings, redactor).deliver_later
+      described_class.redactor_notification(ratings, redactor).deliver
       expect(ActionMailer::Base.deliveries.count).to eq(1)
     end
   end
