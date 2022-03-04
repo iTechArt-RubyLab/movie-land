@@ -101,6 +101,7 @@ RSpec.describe User, type: :model do
     it { should delegate_method(:can_lock_user?).to(:role) }
     it { should delegate_method(:can_read_rating?).to(:role) }
     it { should delegate_method(:can_give_rating?).to(:role) }
+    it { should delegate_method(:can_leave_comment?).to(:role) }
     it { should delegate_method(:can_read_user?).to(:role) }
     it { should delegate_method(:can_edit_role?).to(:role) }
     it { should delegate_method(:can_edit_permission?).to(:role) }

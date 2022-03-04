@@ -47,7 +47,7 @@ module Api
                                                                       can_edit_entities can_read_user can_edit_award
                                                                       can_read_person can_read_entities
                                                                       can_edit_entities can_read_user can_edit_view_list
-                                                                      can_read_view_list])
+                                                                      can_read_view_list can_leave_comment])
       end
 
       def authorize_role!
