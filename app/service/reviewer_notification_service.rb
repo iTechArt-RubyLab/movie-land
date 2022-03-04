@@ -1,6 +1,6 @@
 class ReviewerNotificationService
   def call
-    movies = Movie.where(release_date: (Time.zone.today..Time.zone.today + 7)).pluck(:name, :release_date)
+    movies = Movie.where(release_date: (Time.zone.today..1.week.after.utc)).pluck(:name, :release_date)
     User.joins(:role).where(roles: { name: 'reviewer' }).find_each do |user|
       reviewer = user
       call_mailer(movies, reviewer)
