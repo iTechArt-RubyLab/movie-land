@@ -1,7 +1,7 @@
 module Api
   module V1
     class CommentsController < ApplicationController
-      before_action :set_commentable
+      before_action :set_comment, only: %i[update destroy]
 
       def create
         @comment = @commentable.comments.build(comment_params)
@@ -15,23 +15,31 @@ module Api
       end
 
       def update
-        if @commentable.update(comment_params)
-          render json: @commentable, serializer: CommentSerializer
+        if @comment.update(comment_params)
+          render json: @comment, serializer: CommentSerializer
         else
-          render json: @commentable.errors, status: :unprocessable_entity
+          render json: @comment.errors, status: :unprocessable_entity
         end
       end
 
       def destroy
-        @commentable.destroy
+        @comment.destroy
       end
 
       private
 
+      def set_comment
+        @company = @commentable.comments.find(params[:id])
+      end
+
       def set_commentable
-        @commentable = Comment.find_by(id: params[:comment_id]) if params[:comment_id]
-        @commentable = Movie.find_by(id: params[:movie_id]) if params[:movie_id]
-        @commentable = Person.find_by(id: params[:person_id]) if params[:person_id]
+        @commentable = if params[:comment_id]
+                         Comment.find(params[:comment_id])
+                       elsif params[:movie_id]
+                         Movie.find(params[:movie_id])
+                       elsif params[:person_id]
+                         Person.find(params[:person_id])
+                       end
       end
 
       def comment_params
