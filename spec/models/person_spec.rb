@@ -57,5 +57,6 @@ RSpec.describe Person, type: :model do
 
   context 'with associations' do
     it { should belong_to(:country) }
+    it { should have_many(:comments) }
   end
 end
