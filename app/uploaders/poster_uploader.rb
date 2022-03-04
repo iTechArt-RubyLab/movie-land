@@ -1,21 +1,19 @@
 class PosterUploader < CarrierWave::Uploader::Base
-  include Cloudinary::CarrierWave
+  include CarrierWave::MiniMagick
 
-  process convert: 'png'
+  storage :file
 
-  version :standard do
-    process resize_to_fill: [70, 100, :north]
+  process resize_to_fit: [70, 100]
+
+  def store_dir
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  version :thumbnail do
-    resize_to_fit(50, 50)
+  def extension_whitelist
+    %w[jpg jpeg gif png]
   end
 
-  def public_id
-    "posters/#{model.class}/#{model.id}"
-  end
-
-  CarrierWave.configure do |config|
-    config.cache_storage = :file
+  def filename
+    original_filename
   end
 end

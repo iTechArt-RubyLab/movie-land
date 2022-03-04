@@ -24,7 +24,7 @@ module Api
       end
 
       def update
-        if @movie.update(movie_params)
+        if @movie.update!(movie_params)
           render json: @movie, serializer: MovieSerializer
         else
           render json: @movie.errors, status: :unprocessable_entity
@@ -45,7 +45,7 @@ module Api
         params
           .require(:movie)
           .permit(:name, :description, :tagline, :trailer, :release_date,
-                  :age_limit, :budget, :duration, :poster, { image: [] },
+                  :age_limit, :budget, :duration, :poster, { images: [] },
                   { movies_tags_attributes: [tag_attributes: [:name]] })
       end
     end

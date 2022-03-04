@@ -1,17 +1,19 @@
 class ImageUploader < CarrierWave::Uploader::Base
-  include Cloudinary::CarrierWave
+  include CarrierWave::MiniMagick
 
-  process convert: 'png'
+  storage :file
 
-  version :standard do
-    process resize_to_fill: [350, 350, :north]
+  process resize_to_fit: [800, 800]
+
+  def store_dir
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def public_id
-    "images/#{model.class}/#{model.id}"
+  def extension_whitelist
+    %w[jpg jpeg gif png]
   end
 
-  CarrierWave.configure do |config|
-    config.cache_storage = :file
+  def filename
+    original_filename
   end
 end
