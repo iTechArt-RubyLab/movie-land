@@ -9,6 +9,6 @@ class ReviewerNotificationService
   private
 
   def call_mailer(movies, reviewer)
-    ReviewerMailer.reviewer_notification(movies, reviewer).deliver_now
+    ReviewerMailer.reviewer_notification(movies, reviewer).deliver_later
   end
 end

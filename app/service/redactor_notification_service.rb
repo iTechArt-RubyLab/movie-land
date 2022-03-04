@@ -9,6 +9,6 @@ class RedactorNotificationService
   private
 
   def call_mailer(ratings, redactor)
-    RedactorMailer.redactor_notification(ratings, redactor).deliver_now
+    RedactorMailer.redactor_notification(ratings, redactor).deliver_later
   end
 end
