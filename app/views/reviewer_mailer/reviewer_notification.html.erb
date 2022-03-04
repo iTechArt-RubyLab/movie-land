@@ -2,7 +2,7 @@
  <p>
    Movies coming out this week : </br>
    <% @movies.each do |movie| %>
-    <%= movie.first %> - <%= movie.second %> </br>
+    <%= movie[:name] %> - <%= movie[:release_date] %> </br>
    <% end %>
  </p>
  <p>Pleasant viewing!</p>

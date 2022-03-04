@@ -2,7 +2,7 @@
 <h3>New movie ratings for yesterday</h3> 
  <p>
    <% @ratings.each do |rating| %>
-    Rating: <%= rating.first %> Movie: <%= rating.second %> User: <%= rating.third %> </br>
+    Rating: <%= rating[:rating] %> Movie: <%= rating[:"movies.name"]%> User: <%= rating[:"users.name"] %> </br>
    <% end %>
  </p>
  <p>Good day!</p>

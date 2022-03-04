@@ -2,7 +2,12 @@ require 'rails_helper'
 
 RSpec.describe RedactorMailer, type: :mailer do
   describe 'redactor notification' do
-    let!(:ratings) { create_list(:rating, 20).pluck(:rating, :movie_id, :user_id) }
+    let!(:ratings) do
+      create_list(:rating, 20).pluck('rating', 'movies.name', 'users.name')
+                              .map do |rating, movie_name, user_name|
+        { rating: rating, 'movies.name': movie_name, 'users.name': user_name }
+      end
+    end
     let!(:redactor) { create :user, :redactor }
     let(:mail) { described_class.redactor_notification(ratings, redactor).deliver }
 

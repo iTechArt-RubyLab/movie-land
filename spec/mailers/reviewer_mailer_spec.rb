@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.describe ReviewerMailer, type: :mailer do
   describe 'reviewer notification' do
-    let!(:movies) { create_list(:movie, 20).pluck(:name, :release_date) }
+    let!(:movies) do
+      create_list(:movie, 20).pluck(:name, :release_date).map do |name, release_date|
+        { name: name, release_date: release_date }
+      end
+    end
     let!(:reviewer) { create :user, :reviewer }
     let(:mail) { described_class.reviewer_notification(movies, reviewer).deliver }
 

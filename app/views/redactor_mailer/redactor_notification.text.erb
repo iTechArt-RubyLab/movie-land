@@ -1,6 +1,6 @@
 Hello,dear redactor  - <%= @redactor.name %>!
 New movie ratings for yesterday
   <% @ratings.each do |rating| %>
-    Rating: <%= rating.first %> Movie: <%= rating.second %> User: <%= rating.third %>
+     Rating: <%= rating[:rating] %> Movie: <%= rating[:"movies.name"]%> User: <%= rating[:"users.name"] %>
   <% end %>
 Good day!
