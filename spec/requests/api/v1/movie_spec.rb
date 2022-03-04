@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe '/movies', type: :request do
+  before do
+    Faker::Movie.unique.clear
+    Faker::UniqueGenerator.clear
+  end
+
   let(:valid_attributes) do
     attributes_for :movie
   end

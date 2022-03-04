@@ -7,15 +7,12 @@ name: Security, Linter, Eager loading and Tests
 
 on:
   push:
-    branches: [master]
+    branches: [ master ]
   pull_request:
-    branches: [master]
+    branches: [ master ]
 jobs:
   run-all:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        redis-version: [4, 5]
     env:
       RAILS_ENV: test
       POSTGRES_PASSWORD: postgres
@@ -49,10 +46,10 @@ jobs:
       - name: Run linters
         run: |
           bundle exec rubocop -p
-      - name: Start Redis v${{ matrix.redis-version }}
+      - name: Start Redis
         uses: superchargejs/redis-github-action@1.1.0
         with:
-          redis-version: ${{ matrix.redis-version }}
+          redis-version: 4
       - run: echo „done“
       - name: Eager load app
         run: |
