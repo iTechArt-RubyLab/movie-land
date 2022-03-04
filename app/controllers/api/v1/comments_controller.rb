@@ -31,6 +31,7 @@ module Api
       def set_commentable
         @commentable = Comment.find_by(id: params[:comment_id]) if params[:comment_id]
         @commentable = Movie.find_by(id: params[:movie_id]) if params[:movie_id]
+        @commentable = Person.find_by(id: params[:person_id]) if params[:person_id]
       end
 
       def comment_params

@@ -19,7 +19,9 @@ Rails.application.routes.draw do
       resources :comments do
         resources :comments
       end
-      resources :people
+      resources :people do
+        resources :comments
+      end
       resources :roles do
         resource :permissions
       end
