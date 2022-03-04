@@ -13,7 +13,12 @@ Rails.application.routes.draw do
       resources :companies
       resources :genres
       resources :languages
-      resources :movies
+      resources :movies do
+        resources :comments
+      end
+      resources :comments do
+        resources :comments
+      end
       resources :people
       resources :roles do
         resource :permissions
