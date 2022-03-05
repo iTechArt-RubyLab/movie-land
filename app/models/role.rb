@@ -69,6 +69,14 @@ class Role < ApplicationRecord
     editor? ? true : permision? && permission.can_edit_person
   end
 
+  def can_read_award?
+    predefined_user? ? true : permision? && permission.can_read_award
+  end
+
+  def can_edit_award?
+    editor? ? true : permision? && permission.can_edit_award
+  end
+
   def admin?
     name == 'admin'
   end
