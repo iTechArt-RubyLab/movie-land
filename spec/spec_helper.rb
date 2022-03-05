@@ -17,6 +17,7 @@ require 'database_cleaner/active_record'
 require 'pundit/matchers'
 require 'aasm/rspec'
 require 'simplecov'
+require 'carrierwave/test/matchers'
 
 SimpleCov.start
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
@@ -43,6 +44,12 @@ RSpec.configure do |config|
   config.around(:each) do |example|
     DatabaseCleaner.cleaning do
       example.run
+    end
+  end
+
+  config.after(:each) do
+    if Rails.env.test? || Rails.env.cucumber?
+      FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads"])
     end
   end
 
