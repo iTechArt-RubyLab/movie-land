@@ -3,6 +3,7 @@
 # Table name: permissions
 #
 #  id                  :bigint           not null, primary key
+#  can_edit_award      :boolean
 #  can_edit_entities   :boolean
 #  can_edit_movie      :boolean
 #  can_edit_permission :boolean
@@ -10,6 +11,7 @@
 #  can_edit_role       :boolean
 #  can_give_rating     :boolean
 #  can_lock_user       :boolean
+#  can_read_award      :boolean
 #  can_read_entities   :boolean
 #  can_read_movie      :boolean
 #  can_read_person     :boolean
