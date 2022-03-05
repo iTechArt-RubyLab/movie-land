@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_28_225040) do
+ActiveRecord::Schema.define(version: 2022_03_05_220844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 2022_02_28_225040) do
     t.index ["actor_id"], name: "index_actor_roles_on_actor_id"
     t.index ["movie_id"], name: "index_actor_roles_on_movie_id"
     t.index ["role_name", "movie_id", "actor_id"], name: "index_actor_roles_on_role_name_and_movie_id_and_actor_id", unique: true
+  end
+
+  create_table "awards", force: :cascade do |t|
+    t.string "name"
+    t.bigint "country_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["country_id"], name: "index_awards_on_country_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -223,6 +231,7 @@ ActiveRecord::Schema.define(version: 2022_02_28_225040) do
 
   add_foreign_key "actor_roles", "movies"
   add_foreign_key "actor_roles", "people", column: "actor_id"
+  add_foreign_key "awards", "countries"
   add_foreign_key "movie_staffs", "movies"
   add_foreign_key "movie_staffs", "people", column: "staff_id"
   add_foreign_key "people", "countries"
