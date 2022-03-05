@@ -2,6 +2,8 @@ module Api
   module V1
     class CompaniesController < ApplicationController
       before_action :set_company, only: %i[update destroy]
+      before_action :authorize_company!
+      after_action :verify_authorized
 
       def index
         @companies = Dictionary::FindService.new(Company, params).call
@@ -39,6 +41,10 @@ module Api
 
       def company_params
         params.require(:company).permit(%i[name])
+      end
+
+      def authorize_company!
+        authorize(@company || Company)
       end
     end
   end

@@ -2,6 +2,8 @@ module Api
   module V1
     class LanguagesController < ApplicationController
       before_action :set_language, only: %i[update destroy]
+      before_action :authorize_language!
+      after_action :verify_authorized
 
       def index
         @languages = Dictionary::FindService.new(Language, params).call
@@ -39,6 +41,10 @@ module Api
 
       def language_params
         params.require(:language).permit(%i[name])
+      end
+
+      def authorize_language!
+        authorize(@language || Language)
       end
     end
   end

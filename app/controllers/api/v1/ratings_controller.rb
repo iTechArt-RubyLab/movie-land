@@ -2,6 +2,9 @@ module Api
   module V1
     class RatingsController < ApplicationController
       before_action :set_rating, only: %i[update destroy]
+      before_action :authenticate_user!
+      before_action :authorize_rating!
+      after_action :verify_authorized
 
       def index
         @ratings = RatingService.new(Rating, user: current_user, attributes: params).call
@@ -39,6 +42,10 @@ module Api
 
       def rating_params
         params.require(:rating).permit(%i[rating user_id movie_id])
+      end
+
+      def authorize_rating!
+        authorize(@rating || Rating)
       end
     end
   end

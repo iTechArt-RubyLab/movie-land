@@ -2,6 +2,9 @@ module Api
   module V1
     class ViewListsController < ApplicationController
       before_action :set_view_list, only: %i[update destroy]
+      before_action :authenticate_user!
+      before_action :authorize_view_list!
+      after_action :verify_authorized
 
       def index
         @view_lists = ViewListService.new(ViewList, user: current_user, attributes: params).call
@@ -38,7 +41,11 @@ module Api
       end
 
       def view_list_params
-        params.permit(:watching_status, :user_id, :movie_id)
+        params.require(:view_list).permit(:watching_status, :user_id, :movie_id)
+      end
+
+      def authorize_view_list!
+        authorize(@view_list || ViewList)
       end
     end
   end

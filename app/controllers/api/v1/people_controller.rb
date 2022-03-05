@@ -2,6 +2,8 @@ module Api
   module V1
     class PeopleController < ApplicationController
       before_action :set_person, only: %i[show update destroy]
+      before_action :authorize_person!
+      after_action :verify_authorized
 
       def index
         @people = PersonService.new(Person, params).call
@@ -43,6 +45,10 @@ module Api
 
       def person_params
         params.require(:person).permit(%i[name surname birthday deathday married country_id])
+      end
+
+      def authorize_person!
+        authorize(@person || Person)
       end
     end
   end
