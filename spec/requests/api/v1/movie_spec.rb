@@ -6,16 +6,15 @@ RSpec.describe '/movies', type: :request do
     Faker::UniqueGenerator.clear
   end
 
+  let(:admin) { create :user, :admin }
+  let(:valid_headers) { sign_in admin }
+
   let(:valid_attributes) do
     attributes_for :movie
   end
 
   let(:invalid_attributes) do
     attributes_for :movie, :invalid_short_name
-  end
-
-  let(:valid_headers) do
-    { 'ACCEPT' => 'application/json' }
   end
 
   describe 'GET /index' do
@@ -29,7 +28,7 @@ RSpec.describe '/movies', type: :request do
   describe 'GET /show' do
     it 'renders a successful response' do
       movie = Movie.create! valid_attributes
-      get api_v1_movie_url(movie), as: :json
+      get api_v1_movie_url(movie), headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end

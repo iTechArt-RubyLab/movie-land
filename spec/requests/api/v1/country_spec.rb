@@ -1,16 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe '/conutries', type: :request do
+  let(:admin) { create :user, :admin }
+  let(:valid_headers) { sign_in admin }
+
   let(:valid_attributes) do
     attributes_for :country
   end
 
   let(:invalid_attributes) do
     attributes_for :country, :invalid_short_name
-  end
-
-  let(:valid_headers) do
-    { 'ACCEPT' => 'application/json' }
   end
 
   describe 'GET /index' do

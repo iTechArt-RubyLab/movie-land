@@ -1,16 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe '/roles', type: :request do
+  let!(:admin) { create :user, :admin }
+  let!(:valid_headers) { sign_in admin }
+
   let(:valid_attributes) do
     attributes_for :role
   end
 
   let(:invalid_attributes) do
     attributes_for :role, :invalid_short_name
-  end
-
-  let(:valid_headers) do
-    { 'ACCEPT' => 'application/json' }
   end
 
   describe 'GET /index' do
@@ -47,7 +46,7 @@ RSpec.describe '/roles', type: :request do
         attributes_for :role
       end
 
-      it 'updates the requested role' do
+      it 'updates the requested person' do
         role = Role.create! valid_attributes
         patch api_v1_role_url(role),
               params: { role: new_attributes }, headers: valid_headers, as: :json
