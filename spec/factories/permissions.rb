@@ -10,6 +10,7 @@
 #  can_edit_person     :boolean
 #  can_edit_role       :boolean
 #  can_give_rating     :boolean
+#  can_give_view_list  :boolean
 #  can_lock_user       :boolean
 #  can_read_award      :boolean
 #  can_read_entities   :boolean
@@ -17,6 +18,7 @@
 #  can_read_person     :boolean
 #  can_read_rating     :boolean
 #  can_read_user       :boolean
+#  can_read_view_list  :boolean
 #  can_set_role        :boolean
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -37,6 +39,8 @@ FactoryBot.define do
     can_set_role { Faker::Boolean.boolean }
     can_edit_permission { Faker::Boolean.boolean }
     can_give_rating { Faker::Boolean.boolean }
+    can_give_view_list { Faker::Boolean.boolean }
+    can_read_view_list { Faker::Boolean.boolean }
     can_edit_person { Faker::Boolean.boolean }
     can_read_movie { Faker::Boolean.boolean }
     can_read_person { Faker::Boolean.boolean }
@@ -57,6 +61,8 @@ FactoryBot.define do
       can_give_rating { true }
       can_edit_person { true }
       can_read_movie { true }
+      can_give_view_list { true }
+      can_read_view_list { true }
       can_read_person { true }
       can_read_rating { true }
       can_read_user { true }
@@ -76,6 +82,8 @@ FactoryBot.define do
       can_give_rating { true }
       can_edit_person { true }
       can_read_movie { true }
+      can_give_view_list { true }
+      can_read_view_list { true }
       can_read_person { true }
       can_read_rating { true }
       can_read_user { true }
@@ -94,6 +102,8 @@ FactoryBot.define do
       can_edit_permission { false }
       can_give_rating { true }
       can_edit_person { false }
+      can_give_view_list { true }
+      can_read_view_list { true }
       can_read_movie { true }
       can_read_person { true }
       can_read_rating { true }

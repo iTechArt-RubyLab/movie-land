@@ -10,6 +10,7 @@
 #  can_edit_person     :boolean
 #  can_edit_role       :boolean
 #  can_give_rating     :boolean
+#  can_give_view_list  :boolean
 #  can_lock_user       :boolean
 #  can_read_award      :boolean
 #  can_read_entities   :boolean
@@ -17,6 +18,7 @@
 #  can_read_person     :boolean
 #  can_read_rating     :boolean
 #  can_read_user       :boolean
+#  can_read_view_list  :boolean
 #  can_set_role        :boolean
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null

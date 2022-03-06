@@ -22,6 +22,7 @@
 #
 FactoryBot.define do
   factory :view_list do
+    watching_status { %i[will_watch watching viewed].sample }
     association :user
     association :movie
 
@@ -35,6 +36,10 @@ FactoryBot.define do
 
     trait :already_viewed_status do
       watching_status { :viewed }
+    end
+
+    trait :invalid_watching_status do
+      watching_status { :idk }
     end
   end
 end
