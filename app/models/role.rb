@@ -33,6 +33,14 @@ class Role < ApplicationRecord
     predefined_user? ? true : permision? && permission.can_edit_rating
   end
 
+  def can_read_view_list?
+    predefined_user? ? true : permision? && permission.can_read_view_list
+  end
+
+  def can_give_view_list?
+    predefined_user? ? true : permision? && permission.can_edit_view_list
+  end
+
   def can_edit_role?
     admin? ? true : permision? && permission.can_edit_role
   end

@@ -30,7 +30,7 @@ class ViewList < ApplicationRecord
             uniqueness: { scope: :movie_id, message: 'This movie has already been added to your viewlist.' }
 
   aasm column: :watching_status do
-    state :will_watch
+    state :will_watch, initial: true
     state :watching
     state :viewed
 
