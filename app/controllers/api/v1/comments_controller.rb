@@ -2,6 +2,8 @@ module Api
   module V1
     class CommentsController < ApplicationController
       before_action :set_comment, only: %i[update destroy]
+      before_action :set_commentable, only: %i[create]
+      before_action :authenticate_user!
 
       def create
         @comment = @commentable.comments.build(comment_params)
