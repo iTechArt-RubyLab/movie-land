@@ -51,6 +51,9 @@
 class User < ApplicationRecord
   extend Devise::Models
   include DeviseTokenAuth::Concerns::User
+
+  before_save :default_role
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -64,10 +67,14 @@ class User < ApplicationRecord
   delegate :can_read_entities?, :can_edit_entities?, :can_lock_user?, :can_read_rating?, :can_give_rating?,
            :can_read_user?, :can_edit_role?, :can_edit_permission?, :can_set_role?, :can_edit_person?,
            :can_read_movie?, :can_edit_movie?, :can_read_person?, :admin?, :redactor?, :reviewer?,
-           :can_read_award?, :can_edit_award?, to: :role
+           :can_read_award?, :can_edit_award?, :can_read_view_list?, :can_give_view_list?, to: :role
 
   validates :name, length: { in: 2..25 }
   validates :surname, length: { in: 2..25 }
   validates :username, length: { in: 4..20 }, uniqueness: { message: 'User with this username already exists' }
   validates :birthday, presence: true
+
+  def default_role
+    self.role ||= Role.find_or_create_by(name: 'reviewer')
+  end
 end
