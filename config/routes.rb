@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
       resources :movies do
         resources :comments, only: %i[create update destroy]
+        resources :movie_awards
       end
 
       resources :comments, only: %i[create update destroy] do
