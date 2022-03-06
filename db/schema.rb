@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_05_234036) do
+ActiveRecord::Schema.define(version: 2022_03_06_152341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,6 +155,8 @@ ActiveRecord::Schema.define(version: 2022_03_05_234036) do
     t.boolean "can_read_rating"
     t.boolean "can_read_award"
     t.boolean "can_edit_award"
+    t.boolean "can_read_view_list"
+    t.boolean "can_give_view_list"
     t.index ["role_id"], name: "index_permissions_on_role_id"
   end
 
