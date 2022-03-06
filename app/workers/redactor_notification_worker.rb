@@ -3,6 +3,6 @@ class RedactorNotificationWorker
   queue_as :default
 
   def perform
-    RedactorNotificationService.new.call
+    Notification::RedactorService.new.call
   end
 end
