@@ -1,9 +1,6 @@
 <h1>Hello,dear movie buff - <%= @reviewer.name %>!</h1>
- <p>
-   Movies coming out this week : </br>
-   <% @movies.each do |movie| %>
-    <%= movie[:name] %> - <%= movie[:release_date] %> </br>
-   <% end %>
- </p>
- <p>Pleasant viewing!</p>
-
+<h2> Movies coming out this week : </br> </h2>
+  <% @movies.each do |movie| %>
+    <p> <%= movie[:name] %> - <%= movie[:release_date] %> </br> </p>
+  <% end %>
+<h3>Pleasant viewing!</h3>

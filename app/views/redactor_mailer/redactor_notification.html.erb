@@ -1,8 +1,6 @@
 <h1>Hello,dear redactor  - <%= @redactor.name %>!</h1>
 <h3>New movie ratings for yesterday</h3> 
- <p>
-   <% @ratings.each do |rating| %>
-    Rating: <%= rating[:rating] %> Movie: <%= rating[:"movies.name"]%> User: <%= rating[:"users.name"] %> </br>
-   <% end %>
- </p>
- <p>Good day!</p>
+  <% @ratings.each do |rating| %>
+    <p>Rating: <%= rating[:rating] %> Movie: <%= rating[:"movies.name"]%> User: <%= rating[:"users.name"] %> </br> </p>
+  <% end %>
+<h3>Good day!</h3>
