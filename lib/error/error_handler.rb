@@ -61,6 +61,8 @@ module Error
         rescue_from AASM::InvalidTransition do |error|
           respond(:invalid_transition, 422, error.to_s)
         end
+
+        rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
       end
     end
 
@@ -69,6 +71,10 @@ module Error
     def respond(error, status, message)
       json = Helpers::Render.json(error, status, message)
       render json: json, status: status
+    end
+
+    def user_not_authorized
+      render json: { data: 'You need to sign in or sign up before continuing.' }
     end
   end
 end
