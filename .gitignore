@@ -32,6 +32,9 @@
 # Ignore public/uploads
 /public/uploads
 
+# Ignore configiration containig Tmdb api key
+/config/initializers/themoviedb.rb
+
 # Ignore coverage folder
 coverage
 .idea/
