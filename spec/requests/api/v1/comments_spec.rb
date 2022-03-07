@@ -9,11 +9,8 @@ RSpec.describe '/comments', type: :request do
     attributes_for :comment, :invalid_short_body
   end
 
-  let(:valid_headers) do
-    { 'ACCEPT' => 'application/json' }
-  end
-
   let(:admin) { create :user, :admin }
+
   let(:valid_headers) { sign_in admin }
 
   describe 'POST /create' do

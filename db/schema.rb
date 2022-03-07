@@ -166,11 +166,11 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
     t.boolean "can_edit_person"
     t.boolean "can_give_rating"
     t.boolean "can_read_rating"
+    t.boolean "can_leave_comment"
     t.boolean "can_read_award"
     t.boolean "can_edit_award"
     t.boolean "can_read_view_list"
     t.boolean "can_edit_view_list"
-    t.boolean "can_leave_comment"
     t.index ["role_id"], name: "index_permissions_on_role_id"
   end
 
@@ -250,11 +250,8 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
 
   add_foreign_key "actor_roles", "movies"
   add_foreign_key "actor_roles", "people", column: "actor_id"
-<<<<<<< HEAD
   add_foreign_key "awards", "countries"
-=======
   add_foreign_key "comments", "users"
->>>>>>> ML-046/add comment model
   add_foreign_key "movie_staffs", "movies"
   add_foreign_key "movie_staffs", "people", column: "staff_id"
   add_foreign_key "people", "countries"
