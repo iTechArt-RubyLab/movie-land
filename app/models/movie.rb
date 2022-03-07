@@ -38,6 +38,7 @@ class Movie < ApplicationRecord
   has_many :staffs, through: :movie_staffs, dependent: :destroy, class_name: 'Person'
   has_many :view_lists, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :delete_all
+  has_many :movie_awards, dependent: :destroy
   accepts_nested_attributes_for :movies_tags
 
   mount_uploader :poster, PosterUploader
