@@ -46,7 +46,7 @@ RSpec.describe '/roles', type: :request do
         attributes_for :role
       end
 
-      it 'updates the requested person' do
+      it 'updates the requested role' do
         role = Role.create! valid_attributes
         patch api_v1_role_url(role),
               params: { role: new_attributes }, headers: valid_headers, as: :json
