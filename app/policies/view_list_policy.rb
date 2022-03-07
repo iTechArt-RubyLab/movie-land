@@ -6,14 +6,14 @@ class ViewListPolicy < ApplicationPolicy
   end
 
   def create?
-    user.can_give_view_list?
+    user.can_edit_view_list?
   end
 
   def update?
-    user.can_give_view_list?
+    user.can_edit_view_list?
   end
 
   def destroy?
-    user.can_give_view_list?
+    user.can_edit_view_list?
   end
 end

@@ -38,7 +38,7 @@ module Api
                                            :can_read_rating, :can_give_rating, :can_set_role,
                                            :can_edit_movie, :can_read_movie, :can_edit_person,
                                            :can_read_person, :can_read_entities, :can_edit_entities,
-                                           :can_read_user, :can_give_view_list, :can_read_view_list)
+                                           :can_read_user, :can_edit_view_list, :can_read_view_list)
       end
 
       def authorize_permission!

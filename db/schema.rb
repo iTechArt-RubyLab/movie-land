@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
     t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "poster"
+    t.string "images", default: [], array: true
     t.index ["name"], name: "index_movies_on_name", unique: true
   end
 
@@ -156,7 +158,7 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
     t.boolean "can_read_award"
     t.boolean "can_edit_award"
     t.boolean "can_read_view_list"
-    t.boolean "can_give_view_list"
+    t.boolean "can_edit_view_list"
     t.index ["role_id"], name: "index_permissions_on_role_id"
   end
 

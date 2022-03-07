@@ -46,7 +46,7 @@ module Api
                                                                       can_read_person can_read_entities can_read_award
                                                                       can_edit_entities can_read_user can_edit_award
                                                                       can_read_person can_read_entities
-                                                                      can_edit_entities can_read_user can_give_view_list
+                                                                      can_edit_entities can_read_user can_edit_view_list
                                                                       can_read_view_list])
       end
 

@@ -37,7 +37,7 @@ class Role < ApplicationRecord
     predefined_user? ? true : permision? && permission.can_read_view_list
   end
 
-  def can_give_view_list?
+  def can_edit_view_list?
     predefined_user? ? true : permision? && permission.can_edit_view_list
   end
 
