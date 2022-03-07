@@ -13,7 +13,7 @@ module Api
       private
 
       def authorize_tag!
-        authorize(@tag || Tag)
+        authorize(@tags || Tag)
       end
     end
   end
