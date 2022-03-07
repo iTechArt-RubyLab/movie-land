@@ -7,7 +7,9 @@
 #  budget       :bigint
 #  description  :text
 #  duration     :integer
+#  images       :string           default([]), is an Array
 #  name         :string
+#  poster       :string
 #  release_date :date
 #  tagline      :string
 #  trailer      :string
