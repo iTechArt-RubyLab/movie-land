@@ -31,7 +31,7 @@ module Api
       private
 
       def set_comment
-        @company = @commentable.comments.find(params[:id])
+        @comment = set_commentable.comments.find(params[:id])
       end
 
       def set_commentable
