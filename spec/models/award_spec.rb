@@ -50,5 +50,6 @@ RSpec.describe Award, type: :model do
 
   context 'with associations' do
     it { should belong_to(:country) }
+    it { should have_many(:movie_awards) }
   end
 end

@@ -144,6 +144,7 @@ RSpec.describe Movie, type: :model do
     it { should have_many(:tags) }
     it { should have_many(:ratings) }
     it { should have_many(:comments) }
+    it { should have_many(:movie_awards) }
     it { should accept_nested_attributes_for(:movies_tags) }
   end
 end
