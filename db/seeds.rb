@@ -24,8 +24,8 @@ end
 ['Best movie', 'Best sound', 'Best adapted screenplay', 'The best music',
  'Best cast', 'Best editing', 'Best original soundtrack', 'Best screenplay',
  'Best costumes', 'Best visual effects', 'Best makeup', 'Best scenery',
- 'Best action scene', 'Best operator performance', 'Best sound editing'].each do |movie_award|
+ 'Best action scene', 'Best operator performance', 'Best sound editing'].each do |category|
   awards.each do |award|
-    FactoryBot.create(:movie_award, name: movie_award, award: award)
+    FactoryBot.create(:category, name: category, award: award)
   end
 end
