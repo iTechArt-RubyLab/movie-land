@@ -3,6 +3,7 @@
 # Table name: permissions
 #
 #  id                  :bigint           not null, primary key
+#  can_edit_award      :boolean
 #  can_edit_entities   :boolean
 #  can_edit_movie      :boolean
 #  can_edit_permission :boolean
@@ -10,6 +11,7 @@
 #  can_edit_role       :boolean
 #  can_give_rating     :boolean
 #  can_lock_user       :boolean
+#  can_read_award      :boolean
 #  can_read_entities   :boolean
 #  can_read_movie      :boolean
 #  can_read_person     :boolean
@@ -43,6 +45,8 @@ FactoryBot.define do
     can_edit_movie { Faker::Boolean.boolean }
     can_read_entities { Faker::Boolean.boolean }
     can_edit_entities { Faker::Boolean.boolean }
+    can_read_award { Faker::Boolean.boolean }
+    can_edit_award { Faker::Boolean.boolean }
     association :role
 
     trait :admin do
@@ -59,6 +63,8 @@ FactoryBot.define do
       can_edit_movie { true }
       can_read_entities { true }
       can_edit_entities { true }
+      can_read_award { true }
+      can_edit_award { true }
       role { create :role, :admin }
     end
 
@@ -76,6 +82,8 @@ FactoryBot.define do
       can_edit_movie { true }
       can_read_entities { true }
       can_edit_entities { true }
+      can_read_award { true }
+      can_edit_award { true }
       role { create :role, :redactor }
     end
 
@@ -93,6 +101,8 @@ FactoryBot.define do
       can_edit_movie { false }
       can_read_entities { false }
       can_edit_entities { false }
+      can_read_award { true }
+      can_edit_award { false }
       role { create :role, :reviewer }
     end
   end

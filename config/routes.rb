@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       end
       resources :view_lists, as: :my_view_list, path: 'my-view-list'
       resources :ratings, as: :my_ratings, path: 'my-ratings'
+      resources :awards
     end
   end
 end
