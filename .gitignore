@@ -37,3 +37,4 @@ coverage
 .idea/
 .env
 dump.rdb
+erd.pdf
