@@ -101,6 +101,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to delegate_method(:can_lock_user?).to(:role) }
     it { is_expected.to delegate_method(:can_read_rating?).to(:role) }
     it { is_expected.to delegate_method(:can_give_rating?).to(:role) }
+    it { is_expected.to delegate_method(:can_export_to_csv?).to(:role) }
     it { is_expected.to delegate_method(:can_read_user?).to(:role) }
     it { is_expected.to delegate_method(:can_edit_role?).to(:role) }
     it { is_expected.to delegate_method(:can_edit_permission?).to(:role) }
