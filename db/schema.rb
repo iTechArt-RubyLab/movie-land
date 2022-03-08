@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
     t.index ["name"], name: "index_awards_on_name", unique: true
   end
 
+<<<<<<< HEAD
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.bigint "user_id", null: false
@@ -44,6 +45,14 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
+=======
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "award_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["award_id"], name: "index_categories_on_award_id"
+>>>>>>> ML-043/add join table
   end
 
   create_table "companies", force: :cascade do |t|
@@ -103,14 +112,21 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
   end
 
   create_table "movie_awards", force: :cascade do |t|
-    t.string "name"
     t.integer "delivery_year"
+    t.integer "nomination_type"
     t.bigint "movie_id", null: false
-    t.bigint "award_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["award_id"], name: "index_movie_awards_on_award_id"
+    t.index ["category_id"], name: "index_movie_awards_on_category_id"
     t.index ["movie_id"], name: "index_movie_awards_on_movie_id"
+  end
+
+  create_table "movie_awards_people", id: false, force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.bigint "movie_award_id", null: false
+    t.index ["movie_award_id", "person_id"], name: "index_movie_awards_people_on_movie_award_id_and_person_id", unique: true
+    t.index ["person_id", "movie_award_id"], name: "index_movie_awards_people_on_person_id_and_movie_award_id", unique: true
   end
 
   create_table "movie_staffs", force: :cascade do |t|
@@ -264,6 +280,8 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
   add_foreign_key "awards", "countries"
   add_foreign_key "comments", "users"
   add_foreign_key "movie_awards", "awards"
+  add_foreign_key "categories", "awards"
+  add_foreign_key "movie_awards", "categories"
   add_foreign_key "movie_awards", "movies"
   add_foreign_key "movie_staffs", "movies"
   add_foreign_key "movie_staffs", "people", column: "staff_id"
