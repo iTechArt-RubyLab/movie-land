@@ -36,7 +36,7 @@ module Api
       end
 
       def movie_award_params
-        params.require(:movie_award).permit(:name, :delivery_year, :award_id)
+        params.require(:movie_award).permit(:category_id, :delivery_year, :nomination_type)
       end
     end
   end

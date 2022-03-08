@@ -1,9 +1,9 @@
 module Api
   module V1
     class MovieAwardSerializer < ActiveModel::Serializer
-      attributes :id, :name, :delivery_year
+      attributes :id, :nomination_type, :delivery_year
       belongs_to :movie, serializer: MovieSerializer
-      belongs_to :award, serializer: AwardSerializer
+      belongs_to :category, serializer: CategorySerializer
     end
   end
 end
