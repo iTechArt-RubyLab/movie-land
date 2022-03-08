@@ -24,7 +24,7 @@ module Api
       end
 
       def update
-        if @movie.update!(movie_params)
+        if @movie.update(movie_params)
           render json: @movie, serializer: MovieSerializer
         else
           render json: @movie.errors, status: :unprocessable_entity
