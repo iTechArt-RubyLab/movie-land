@@ -19,6 +19,7 @@
 #
 class Award < ApplicationRecord
   belongs_to :country
+  has_many :categories, dependent: :nullify
   has_many :movie_awards, dependent: :destroy
 
   validates :name, length: { in: 2..100 }, uniqueness: { message: 'This award already exists' }
