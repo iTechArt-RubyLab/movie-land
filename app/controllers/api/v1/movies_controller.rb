@@ -46,6 +46,7 @@ module Api
           .require(:movie)
           .permit(:name, :description, :tagline, :trailer, :release_date,
                   :age_limit, :budget, :duration, :poster, { images: [] },
+                  :remote_poster_url, { remote_images_url: [] },
                   { movies_tags_attributes: [tag_attributes: [:name]] })
       end
     end
