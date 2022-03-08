@@ -24,7 +24,7 @@ FactoryBot.define do
     description { Faker::Lorem.sentence(word_count: 5) }
     tagline { Faker::Movie.quote }
     trailer { Faker::Internet.url }
-    release_date { Faker::Date.between(from: '1895-01-01', to: '2040-01-01') }
+    release_date { Faker::Date.between(from: '2022-03-02', to: '2022-04-01') }
     age_limit { Faker::Number.between(from: 1, to: 100) }
     budget { Faker::Number.number(digits: 5) }
     duration { Faker::Number.number(digits: 3) }

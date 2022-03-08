@@ -23,6 +23,7 @@
 FactoryBot.define do
   factory :rating do
     rating { Faker::Number.between(from: 1, to: 10) }
+    created_at { Faker::Date.between(from: '2022-03-02', to: '2022-04-04') }
     association :user
     association :movie
 

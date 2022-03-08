@@ -46,6 +46,11 @@ jobs:
       - name: Run linters
         run: |
           bundle exec rubocop -p
+      - name: Start Redis
+        uses: superchargejs/redis-github-action@1.1.0
+        with:
+          redis-version: 4
+      - run: echo „done“
       - name: Eager load app
         run: |
           bundle exec rails zeitwerk:check

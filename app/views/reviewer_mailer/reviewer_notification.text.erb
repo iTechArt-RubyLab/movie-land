@@ -1,0 +1,8 @@
+Hello,dear movie buff - <%= @reviewer.name %>!
+
+Movies coming out this week : 
+<% @movies.each do |movie| %>
+    <%= movie[:name] %> - <%= movie[:release_date] %> 
+<% end %>
+Pleasant viewing!
+
