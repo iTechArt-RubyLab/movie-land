@@ -113,6 +113,18 @@ RSpec.describe Movie, type: :model do
 
       include_examples 'invalid model'
     end
+
+    context 'when poster format is incorrect' do
+      subject(:invalid_poster_format) { build :movie, :invalid_poster_format }
+
+      include_examples 'invalid model'
+    end
+
+    context 'when images format is incorrect' do
+      subject(:invalid_images_format) { build :movie, :invalid_images_format }
+
+      include_examples 'invalid model'
+    end
   end
 
   context 'with validations' do

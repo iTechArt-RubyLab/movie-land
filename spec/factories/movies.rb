@@ -30,6 +30,10 @@ FactoryBot.define do
     age_limit { Faker::Number.between(from: 1, to: 100) }
     budget { Faker::Number.number(digits: 5) }
     duration { Faker::Number.number(digits: 3) }
+    poster { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/posters/test.jpg')) }
+    images do
+      [Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/images/test.jpg'), 'spec/fixtures/images/test.jpg')]
+    end
 
     trait :invalid_long_name do
       name { Faker::Lorem.characters(number: 301) }
@@ -85,6 +89,17 @@ FactoryBot.define do
 
     trait :invalid_decimal_duration do
       duration { Faker::Number.decimal(l_digits: 2) }
+    end
+
+    trait :invalid_poster_format do
+      poster { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/posters/test.svg')) }
+    end
+
+    trait :invalid_images_format do
+      images do
+        [Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/images/test.svg'),
+                                      'spec/fixtures/images/test.svg')]
+      end
     end
   end
 end
