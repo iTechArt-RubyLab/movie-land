@@ -3,14 +3,18 @@ class PosterUploader < CarrierWave::Uploader::Base
 
   storage :file
 
-  process resize_to_fit: [70, 100]
+  process resize_to_fit: [100, 70]
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def extension_whitelist
-    %w[jpg jpeg gif png]
+  def default_url
+    "/images/fallback/#{[version_name, 'default.png'].compact.join('_')}"
+  end
+
+  def extension_allowlist
+    %w[jpg jpeg png]
   end
 
   def filename
