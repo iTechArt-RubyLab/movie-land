@@ -2,11 +2,11 @@ class PersonPolicy < ApplicationPolicy
   attr_reader :user, :record
 
   def index?
-    user.can_read_person? || user.guest?
+    user.can_read_person?
   end
 
   def show?
-    user.can_read_person? || user.guest?
+    user.can_read_person?
   end
 
   def create?

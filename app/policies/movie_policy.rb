@@ -2,11 +2,11 @@ class MoviePolicy < ApplicationPolicy
   attr_reader :user, :record
 
   def index?
-    user.can_read_movie? || user.guest?
+    user.can_read_movie?
   end
 
   def show?
-    user.can_read_movie? || user.guest?
+    user.can_read_movie?
   end
 
   def create?

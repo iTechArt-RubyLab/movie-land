@@ -74,10 +74,6 @@ class User < ApplicationRecord
   validates :username, length: { in: 4..20 }, uniqueness: { message: 'User with this username already exists' }
   validates :birthday, presence: true
 
-  def guest?
-    false
-  end
-
   def default_role
     self.role ||= Role.find_or_create_by(name: 'reviewer')
   end
