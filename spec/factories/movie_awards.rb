@@ -23,7 +23,7 @@
 FactoryBot.define do
   factory :movie_award do
     delivery_year { Faker::Number.between(from: 1900, to: Time.zone.now.year) }
-    nomination_type { ['winner', 'nominator'].sample }
+    nomination_type { %w[winner nominator].sample }
     association :movie
     association :category
 
