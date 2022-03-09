@@ -2,6 +2,8 @@ module Api
   module V1
     class MoviesController < ApplicationController
       before_action :set_movie, only: %i[show update destroy]
+      before_action :authorize_movie!
+      after_action :verify_authorized
 
       def index
         @movies = Dictionary::FindService.new(Movie, params).call
@@ -48,6 +50,10 @@ module Api
                   :age_limit, :budget, :duration, :poster, { images: [] },
                   :remote_poster_url, { remote_images_url: [] },
                   { movies_tags_attributes: [tag_attributes: [:name]] })
+      end
+
+      def authorize_movie!
+        authorize(@movie || Movie)
       end
     end
   end

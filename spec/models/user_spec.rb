@@ -111,6 +111,8 @@ RSpec.describe User, type: :model do
     it { should delegate_method(:can_read_person?).to(:role) }
     it { should delegate_method(:can_read_award?).to(:role) }
     it { should delegate_method(:can_edit_award?).to(:role) }
+    it { should delegate_method(:can_read_view_list?).to(:role) }
+    it { should delegate_method(:can_edit_view_list?).to(:role) }
     it { should delegate_method(:admin?).to(:role) }
     it { should delegate_method(:redactor?).to(:role) }
     it { should delegate_method(:reviewer?).to(:role) }

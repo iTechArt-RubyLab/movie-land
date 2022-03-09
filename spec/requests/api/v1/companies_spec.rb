@@ -1,16 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe '/companies', type: :request do
+  let(:admin) { create :user, :admin }
+  let(:valid_headers) { sign_in admin }
+
   let(:valid_attributes) do
     attributes_for :company
   end
 
   let(:invalid_attributes) do
     attributes_for :company, :invalid_short_name
-  end
-
-  let(:valid_headers) do
-    { 'ACCEPT' => 'application/json' }
   end
 
   describe 'GET /index' do

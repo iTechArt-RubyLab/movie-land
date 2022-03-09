@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe '/permissions', type: :request do
+  let(:admin) { create :user, :admin }
+  let(:valid_headers) { sign_in admin }
+
   let(:valid_attributes) do
     attributes_for :permission
   end
@@ -9,15 +12,11 @@ RSpec.describe '/permissions', type: :request do
     attributes_for :permission, :invalid_nil_attributes
   end
 
-  let(:valid_headers) do
-    { 'ACCEPT' => 'application/json' }
-  end
-
   let(:permission) { create(:permission, :admin) }
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      get api_v1_role_permissions_url(role_id: permission.role.id), as: :json
+      get api_v1_role_permissions_url(role_id: permission.role.id), headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end

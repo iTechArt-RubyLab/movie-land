@@ -2,6 +2,8 @@ module Api
   module V1
     class UserController < ApplicationController
       before_action :set_user, only: %i[show update]
+      before_action :authorize_user!
+      after_action :verify_authorized
 
       def index
         @users = User.all
@@ -29,6 +31,10 @@ module Api
 
       def user_params
         params.require(:user).permit(:id, :role_id)
+      end
+
+      def authorize_user!
+        authorize(@user || User)
       end
     end
   end

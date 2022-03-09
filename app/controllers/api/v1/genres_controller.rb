@@ -2,6 +2,8 @@ module Api
   module V1
     class GenresController < ApplicationController
       before_action :set_genre, only: %i[update destroy]
+      before_action :authorize_genre!
+      after_action :verify_authorized
 
       def index
         @genres = Dictionary::FindService.new(Genre, params).call
@@ -39,6 +41,10 @@ module Api
 
       def genre_params
         params.require(:genre).permit(%i[name])
+      end
+
+      def authorize_genre!
+        authorize(@genre || Genre)
       end
     end
   end

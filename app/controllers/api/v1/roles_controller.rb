@@ -2,6 +2,8 @@ module Api
   module V1
     class RolesController < ApplicationController
       before_action :set_role, only: %i[update destroy]
+      before_action :authorize_role!
+      after_action :verify_authorized
 
       def index
         @roles = Dictionary::FindService.new(Role, params).call
@@ -42,7 +44,14 @@ module Api
                                                                       can_read_rating can_give_rating can_set_role
                                                                       can_edit_movie can_read_movie can_edit_person
                                                                       can_read_person can_read_entities can_read_award
-                                                                      can_edit_entities can_read_user can_edit_award])
+                                                                      can_edit_entities can_read_user can_edit_award
+                                                                      can_read_person can_read_entities
+                                                                      can_edit_entities can_read_user can_edit_view_list
+                                                                      can_read_view_list])
+      end
+
+      def authorize_role!
+        authorize(@role || Role)
       end
     end
   end

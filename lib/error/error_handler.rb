@@ -61,6 +61,10 @@ module Error
         rescue_from AASM::InvalidTransition do |error|
           respond(:invalid_transition, 422, error.to_s)
         end
+
+        rescue_from Pundit::NotAuthorizedError do
+          respond(:not_authorized, 401, 'You are not authorized to perform this action!')
+        end
       end
     end
 

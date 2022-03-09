@@ -2,6 +2,8 @@ module Api
   module V1
     class CountriesController < ApplicationController
       before_action :set_country, only: %i[update destroy]
+      before_action :authorize_country!
+      after_action :verify_authorized
 
       def index
         @countries = Dictionary::FindService.new(Country, params).call
@@ -39,6 +41,10 @@ module Api
 
       def country_params
         params.require(:country).permit(%i[name])
+      end
+
+      def authorize_country!
+        authorize(@country || Country)
       end
     end
   end

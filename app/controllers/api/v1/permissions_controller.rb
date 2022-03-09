@@ -2,6 +2,8 @@ module Api
   module V1
     class PermissionsController < ApplicationController
       before_action :set_permission, only: %i[show update]
+      before_action :authorize_permission!
+      after_action :verify_authorized
 
       def show
         render json: @permission, serializer: PermissionSerializer
@@ -35,7 +37,12 @@ module Api
         params.require(:permission).permit(:can_lock_user, :can_edit_role, :can_edit_permission,
                                            :can_read_rating, :can_give_rating, :can_set_role,
                                            :can_edit_movie, :can_read_movie, :can_edit_person,
-                                           :can_read_person, :can_read_entities, :can_edit_entities, :can_read_user)
+                                           :can_read_person, :can_read_entities, :can_edit_entities,
+                                           :can_read_user, :can_edit_view_list, :can_read_view_list)
+      end
+
+      def authorize_permission!
+        authorize(@permission || Permission)
       end
     end
   end

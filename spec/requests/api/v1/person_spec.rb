@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe '/people', type: :request do
+  let(:admin) { create :user, :admin }
+  let(:valid_headers) { sign_in admin }
+
   let!(:country) { create :country }
   let(:valid_attributes) do
     attributes_for :person, country_id: country.id
@@ -8,10 +11,6 @@ RSpec.describe '/people', type: :request do
 
   let(:invalid_attributes) do
     attributes_for :person, :invalid_short_name
-  end
-
-  let(:valid_headers) do
-    { 'ACCEPT' => 'application/json' }
   end
 
   describe 'GET /index' do
@@ -25,7 +24,7 @@ RSpec.describe '/people', type: :request do
   describe 'GET /show' do
     it 'renders a successful response' do
       person = Person.create! valid_attributes
-      get api_v1_person_url(person), as: :json
+      get api_v1_person_url(person), headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
