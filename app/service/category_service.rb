@@ -5,7 +5,7 @@ class CategoryService
 
   def call
     if params[:filter].present?
-      Category.where('award_id = ? && name ILIKE ?', params[:award_id], "%#{params[:filter]}%")
+      Category.where('award_id = ? AND name ILIKE ?', params[:award_id], "%#{params[:filter]}%")
               .paginate(page: params[:page]).order("name #{order}")
     else
       Category.where(award_id: params[:award_id]).paginate(page: params[:page]).order("name #{order}")
