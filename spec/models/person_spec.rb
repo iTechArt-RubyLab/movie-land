@@ -56,7 +56,12 @@ RSpec.describe Person, type: :model do
   end
 
   context 'with associations' do
-    it { should belong_to(:country) }
-    it { should have_many(:comments) }
+    it { is_expected.to belong_to(:country) }
+    it { is_expected.to have_many(:comments) }
+    it { is_expected.to have_many(:actor_roles).with_foreign_key('actor_id') }
+    it { is_expected.to have_many(:movie_staffs).with_foreign_key('staff_id') }
+    it { is_expected.to have_many(:movies).through(:movie_staffs) }
+    it { is_expected.to have_many(:movie_awards_person) }
+    it { is_expected.to have_many(:movie_awards).through(:movie_awards_person) }
   end
 end
