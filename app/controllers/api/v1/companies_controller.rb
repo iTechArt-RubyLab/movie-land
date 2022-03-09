@@ -6,7 +6,7 @@ module Api
       after_action :verify_authorized
 
       def index
-        @companies = Dictionary::FindService.new(Company, params).call
+        @companies = Dictionary::FindService.call(Company, params)
 
         render json: @companies, each_serializer: DictionarySerializer
       end

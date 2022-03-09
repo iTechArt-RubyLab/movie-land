@@ -4,7 +4,7 @@ module Api
       before_action :set_award, only: %i[show update destroy]
 
       def index
-        @awards = Dictionary::FindService.new(Award, params).call
+        @awards = Dictionary::FindService.call(Award, params)
 
         render json: @awards, each_serializer: AwardSerializer
       end
