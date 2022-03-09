@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_06_152341) do
+ActiveRecord::Schema.define(version: 2022_03_08_225925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,14 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
     t.index ["name"], name: "index_awards_on_name", unique: true
   end
 
-<<<<<<< HEAD
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "award_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["award_id"], name: "index_categories_on_award_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.bigint "user_id", null: false
@@ -45,14 +52,6 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
-=======
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.bigint "award_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["award_id"], name: "index_categories_on_award_id"
->>>>>>> ML-043/add join table
   end
 
   create_table "companies", force: :cascade do |t|
@@ -278,9 +277,8 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
   add_foreign_key "actor_roles", "movies"
   add_foreign_key "actor_roles", "people", column: "actor_id"
   add_foreign_key "awards", "countries"
-  add_foreign_key "comments", "users"
-  add_foreign_key "movie_awards", "awards"
   add_foreign_key "categories", "awards"
+  add_foreign_key "comments", "users"
   add_foreign_key "movie_awards", "categories"
   add_foreign_key "movie_awards", "movies"
   add_foreign_key "movie_staffs", "movies"
