@@ -2,6 +2,8 @@ module Api
   module V1
     class MovieAwardsController < ApplicationController
       before_action :set_movie_award, only: %i[show update destroy]
+      before_action :authorize_movie_award!
+      after_action :verify_authorized
 
       def index
         @movie_awards = MovieAwardService.new(params).call
@@ -43,6 +45,10 @@ module Api
 
       def movie_award_params
         params.require(:movie_award).permit(:category_id, :delivery_year, :nomination_type)
+      end
+
+      def authorize_movie_award!
+        authorize(@movie_award || MovieAward)
       end
     end
   end

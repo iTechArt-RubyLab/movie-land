@@ -2,6 +2,8 @@ module Api
   module V1
     class CategoriesController < ApplicationController
       before_action :set_category, only: %i[update destroy]
+      before_action :authorize_category!
+      after_action :verify_authorized
 
       def index
         @categories = CategoryService.new(params).call
@@ -39,6 +41,10 @@ module Api
 
       def category_params
         params.require(:category).permit(:name)
+      end
+
+      def authorize_category!
+        authorize(@category || Category)
       end
     end
   end

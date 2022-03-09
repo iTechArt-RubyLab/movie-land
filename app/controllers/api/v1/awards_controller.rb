@@ -2,6 +2,8 @@ module Api
   module V1
     class AwardsController < ApplicationController
       before_action :set_award, only: %i[show update destroy]
+      before_action :authorize_award!
+      after_action :verify_authorized
 
       def index
         @awards = Dictionary::FindService.new(Award, params).call
@@ -43,6 +45,10 @@ module Api
 
       def award_params
         params.require(:award).permit(:name, :country_id)
+      end
+
+      def authorize_award!
+        authorize(@award || Award)
       end
     end
   end
