@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe '/movie_awards', type: :request do
   let!(:movie) { create(:movie) }
 
-  let!(:award) { create(:award) }
+  let!(:category) { create(:category) }
 
   let(:valid_attributes) do
-    attributes_for :movie_award, movie_id: movie.id, award_id: award.id
+    attributes_for :movie_award, movie_id: movie.id, category_id: category.id
   end
 
   let(:invalid_attributes) do
