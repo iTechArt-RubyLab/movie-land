@@ -44,7 +44,7 @@ RSpec.describe Rating, type: :model do
   end
 
   context 'with associations' do
-    it { should belong_to(:user) }
-    it { should belong_to(:movie) }
+    it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:movie) }
   end
 end

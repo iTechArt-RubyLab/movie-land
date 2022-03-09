@@ -40,6 +40,6 @@ RSpec.describe Category, type: :model do
   end
 
   context 'with associations' do
-    it { should belong_to(:award) }
+    it { is_expected.to belong_to(:award) }
   end
 end

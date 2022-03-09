@@ -44,10 +44,10 @@ RSpec.describe MovieAward, type: :model do
   end
 
   context 'with associations' do
-    it { should belong_to(:movie) }
-    it { should belong_to(:category) }
-    it { should have_many(:movie_awards_person) }
-    it { should have_many(:people).through(:movie_awards_person) }
-    it { should define_enum_for(:nomination_type) }
+    it { is_expected.to belong_to(:movie) }
+    it { is_expected.to belong_to(:category) }
+    it { is_expected.to have_many(:movie_awards_person) }
+    it { is_expected.to have_many(:people).through(:movie_awards_person) }
+    it { is_expected.to define_enum_for(:nomination_type) }
   end
 end
