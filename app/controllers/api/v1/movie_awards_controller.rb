@@ -3,6 +3,12 @@ module Api
     class MovieAwardsController < ApplicationController
       before_action :set_movie_award, only: %i[show update destroy]
 
+      def index
+        @movie_awards = MovieAwardService.new(params).call
+
+        render json: @movie_awards, each_serializer: MovieAwardSerializer
+      end
+
       def show
         render json: @movie_award, serializer: MovieAwardSerializer
       end

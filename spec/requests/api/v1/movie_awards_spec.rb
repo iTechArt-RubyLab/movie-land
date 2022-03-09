@@ -17,6 +17,14 @@ RSpec.describe '/movie_awards', type: :request do
     { 'ACCEPT' => 'application/json' }
   end
 
+  describe 'GET /index' do
+    it 'renders a successful response' do
+      create(:movie_award)
+      get api_v1_movie_movie_awards_url(movie_id: movie.id), headers: valid_headers, as: :json
+      expect(response).to be_successful
+    end
+  end
+
   describe 'GET /show' do
     it 'renders a successful response' do
       movie_award = MovieAward.create! valid_attributes

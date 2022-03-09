@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::MovieAwardsController, type: :routing do
   describe 'routing' do
+    it 'routes to #index' do
+      expect(get: 'api/v1/movies/1/movie_awards').to route_to('api/v1/movie_awards#index', movie_id: '1')
+    end
+
     it 'routes to #show' do
       expect(get: 'api/v1/movies/1/movie_awards/1').to route_to('api/v1/movie_awards#show', id: '1', movie_id: '1')
     end
