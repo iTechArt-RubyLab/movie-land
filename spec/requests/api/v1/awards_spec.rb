@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe '/awards', type: :request do
+  let(:admin) { create :user, :admin }
+  let(:valid_headers) { sign_in admin }
   let!(:country) { create :country }
 
   let(:valid_attributes) do
@@ -9,10 +11,6 @@ RSpec.describe '/awards', type: :request do
 
   let(:invalid_attributes) do
     attributes_for :award, :invalid_short_name
-  end
-
-  let(:valid_headers) do
-    { 'ACCEPT' => 'application/json' }
   end
 
   describe 'GET /index' do

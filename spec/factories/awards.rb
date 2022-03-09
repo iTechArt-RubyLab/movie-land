@@ -19,7 +19,7 @@
 #
 FactoryBot.define do
   factory :award do
-    name { Faker::Games::ElderScrolls.unique.city }
+    name { Faker::Name.unique.name }
     association :country
 
     trait :invalid_long_name do

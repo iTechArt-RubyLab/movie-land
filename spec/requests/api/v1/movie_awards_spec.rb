@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe '/movie_awards', type: :request do
+  let(:admin) { create :user, :admin }
+  let(:valid_headers) { sign_in admin }
   let!(:movie) { create(:movie) }
 
   let!(:category) { create(:category) }
@@ -13,10 +15,6 @@ RSpec.describe '/movie_awards', type: :request do
     attributes_for :movie_award, :invalid_short_name
   end
 
-  let(:valid_headers) do
-    { 'ACCEPT' => 'application/json' }
-  end
-
   describe 'GET /index' do
     it 'renders a successful response' do
       create(:movie_award)
@@ -27,8 +25,8 @@ RSpec.describe '/movie_awards', type: :request do
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      movie_award = MovieAward.create! valid_attributes
-      get api_v1_movie_movie_award_url(movie_id: movie.id, id: movie_award.id), as: :json
+      movie_award = create(:movie_award)
+      get api_v1_movie_movie_awards_url(movie_id: movie.id, id: movie_award.id), headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
