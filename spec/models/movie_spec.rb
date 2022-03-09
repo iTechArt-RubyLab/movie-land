@@ -7,7 +7,9 @@
 #  budget       :bigint
 #  description  :text
 #  duration     :integer
+#  images       :string           default([]), is an Array
 #  name         :string
+#  poster       :string
 #  release_date :date
 #  tagline      :string
 #  trailer      :string
@@ -108,6 +110,18 @@ RSpec.describe Movie, type: :model do
 
     context 'when duration decimal' do
       subject(:invalid_decimal_duration) { build :movie, :invalid_decimal_duration }
+
+      include_examples 'invalid model'
+    end
+
+    context 'when poster format is incorrect' do
+      subject(:invalid_poster_format) { build :movie, :invalid_poster_format }
+
+      include_examples 'invalid model'
+    end
+
+    context 'when images format is incorrect' do
+      subject(:invalid_images_format) { build :movie, :invalid_images_format }
 
       include_examples 'invalid model'
     end

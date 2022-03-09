@@ -15,8 +15,10 @@ gem 'puma', '~> 5.0'
 gem 'redis', '~> 4.6.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'carrierwave'
 gem 'devise'
 gem 'devise_token_auth', '~> 1.2'
+gem 'mini_magick'
 gem 'rswag-api'
 gem 'rswag-ui'
 # Use Active Storage variant
@@ -44,9 +46,6 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'rack-cors'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
-
   gem 'brakeman'
   gem 'bundler-audit'
   gem 'factory_bot_rails'
