@@ -7,7 +7,7 @@ module Api
       after_action :verify_authorized
 
       def index
-        @ratings = RatingService.new(Rating, user: current_user, attributes: params).call
+        @ratings = EntityManager::RatingService.call(user: current_user, attributes: params)
 
         render json: @ratings, each_serializer: RatingSerializer
       end
