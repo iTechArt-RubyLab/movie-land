@@ -52,9 +52,13 @@ gem 'active_model_serializers', '~> 0.10.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
+<<<<<<< HEAD
 gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: 'main'
 
 gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: 'main'
+=======
+gem 'rest-client'
+>>>>>>> 1b117e8 (ML-049/add rest-client gem)
 
 group :development, :test do
   gem 'brakeman'
