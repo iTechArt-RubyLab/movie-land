@@ -114,8 +114,6 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
     t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "poster"
-    t.string "images", default: [], array: true
     t.index ["name"], name: "index_movies_on_name", unique: true
   end
 
