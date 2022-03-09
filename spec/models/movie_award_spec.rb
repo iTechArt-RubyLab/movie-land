@@ -46,5 +46,7 @@ RSpec.describe MovieAward, type: :model do
   context 'with associations' do
     it { should belong_to(:movie) }
     it { should belong_to(:category) }
+    it { should have_many(:movie_awards_people) }
+    it { should have_many(:people) }
   end
 end
