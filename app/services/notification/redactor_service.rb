@@ -1,5 +1,5 @@
 module Notification
-  class RedactorService< ApplicationService
+  class RedactorService < ApplicationService
     def call
       ratings = Rating
                 .joins(:movie, :user)
