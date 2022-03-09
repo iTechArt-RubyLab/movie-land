@@ -27,8 +27,8 @@ class Person < ApplicationRecord
   has_many :movie_staffs, foreign_key: :staff_id, class_name: 'MovieStaff', dependent: :delete_all, inverse_of: :staff
   has_many :movies, through: :movie_staffs, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :delete_all
-  has_many :movie_awards_people, dependent: :delete_all
-  has_many :movie_awards, through: :movie_awards_people, dependent: :destroy
+  has_many :movie_awards_person, dependent: :delete_all
+  has_many :movie_awards, through: :movie_awards_person, dependent: :destroy
   validates :name, length: { in: 2..103 }
   validates :surname, length: { in: 2..103 }
 end
