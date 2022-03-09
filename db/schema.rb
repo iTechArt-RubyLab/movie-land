@@ -155,8 +155,6 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
     t.boolean "can_edit_person"
     t.boolean "can_give_rating"
     t.boolean "can_read_rating"
-    t.boolean "can_read_view_list"
-    t.boolean "can_edit_view_list"
     t.boolean "can_read_award"
     t.boolean "can_edit_award"
     t.boolean "can_read_view_list"
