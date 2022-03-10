@@ -16,7 +16,7 @@ RSpec.describe Dictionary::FindService, type: :model do
       let!(:genre) { genres.first }
       let(:params) { { filter: genre.name } }
 
-      it 'returns genres' do
+      it 'returns genre' do
         expect(find_service.call).eql? genre
       end
     end
@@ -24,7 +24,7 @@ RSpec.describe Dictionary::FindService, type: :model do
     context 'when params contain name of non-existent genres' do
       let(:params) { { filter: Faker::Lorem.characters(number: 7) } }
 
-      it 'returns genres' do
+      it 'returns count of genres' do
         expect(find_service.call.count).to eq 0
       end
     end

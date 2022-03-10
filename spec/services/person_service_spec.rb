@@ -11,7 +11,7 @@ RSpec.describe PersonService, type: :model do
       let!(:person) { people.first }
       let(:params) { { filter: person.name } }
 
-      it 'returns people' do
+      it 'returns person' do
         expect(person_service.call).eql? person
       end
     end
@@ -20,7 +20,7 @@ RSpec.describe PersonService, type: :model do
       let!(:person) { people.second }
       let(:params) { { filter: person.surname } }
 
-      it 'returns people' do
+      it 'returns person' do
         expect(person_service.call).eql? person
       end
     end
@@ -28,7 +28,7 @@ RSpec.describe PersonService, type: :model do
     context 'when params contain name of non-existent person' do
       let(:params) { { filter: Faker::Lorem.characters(number: 7) } }
 
-      it 'returns people' do
+      it 'returns count of people' do
         expect(person_service.call.count).to eq 0
       end
     end
