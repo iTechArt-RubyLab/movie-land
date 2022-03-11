@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
     t.index ["name"], name: "index_awards_on_name", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.bigint "user_id", null: false
+    t.string "commentable_type", null: false
+    t.bigint "commentable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -155,6 +166,7 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
     t.boolean "can_edit_person"
     t.boolean "can_give_rating"
     t.boolean "can_read_rating"
+    t.boolean "can_leave_comment"
     t.boolean "can_read_award"
     t.boolean "can_edit_award"
     t.boolean "can_read_view_list"
@@ -239,6 +251,7 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
   add_foreign_key "actor_roles", "movies"
   add_foreign_key "actor_roles", "people", column: "actor_id"
   add_foreign_key "awards", "countries"
+  add_foreign_key "comments", "users"
   add_foreign_key "movie_staffs", "movies"
   add_foreign_key "movie_staffs", "people", column: "staff_id"
   add_foreign_key "people", "countries"

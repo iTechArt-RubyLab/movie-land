@@ -41,6 +41,10 @@ class Role < ApplicationRecord
     predefined_user? ? true : permision? && permission.can_edit_view_list
   end
 
+  def can_leave_comment?
+    predefined_user? ? true : permision? && permission.can_leave_comment
+  end
+
   def can_edit_role?
     admin? ? true : permision? && permission.can_edit_role
   end
