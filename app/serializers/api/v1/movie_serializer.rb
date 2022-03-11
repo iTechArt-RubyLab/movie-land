@@ -10,6 +10,7 @@ module Api
       has_many :genres, serializer: DictionarySerializer
       has_many :languages, serializer: DictionarySerializer
       has_many :tags, serializer: DictionarySerializer
+      has_many :movie_awards, serializer: MovieAwardSerializer
     end
   end
 end

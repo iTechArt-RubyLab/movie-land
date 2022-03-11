@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_06_152341) do
+ActiveRecord::Schema.define(version: 2022_03_08_225925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["country_id"], name: "index_awards_on_country_id"
     t.index ["name"], name: "index_awards_on_name", unique: true
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "award_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["award_id"], name: "index_categories_on_award_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -100,6 +108,24 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
     t.bigint "movie_id", null: false
     t.index ["language_id", "movie_id"], name: "index_languages_movies_on_language_id_and_movie_id", unique: true
     t.index ["movie_id", "language_id"], name: "index_languages_movies_on_movie_id_and_language_id", unique: true
+  end
+
+  create_table "movie_awards", force: :cascade do |t|
+    t.integer "delivery_year"
+    t.integer "nomination_type"
+    t.bigint "movie_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_movie_awards_on_category_id"
+    t.index ["movie_id"], name: "index_movie_awards_on_movie_id"
+  end
+
+  create_table "movie_awards_people", id: false, force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.bigint "movie_award_id", null: false
+    t.index ["movie_award_id", "person_id"], name: "index_movie_awards_people_on_movie_award_id_and_person_id", unique: true
+    t.index ["person_id", "movie_award_id"], name: "index_movie_awards_people_on_person_id_and_movie_award_id", unique: true
   end
 
   create_table "movie_staffs", force: :cascade do |t|
@@ -251,7 +277,10 @@ ActiveRecord::Schema.define(version: 2022_03_06_152341) do
   add_foreign_key "actor_roles", "movies"
   add_foreign_key "actor_roles", "people", column: "actor_id"
   add_foreign_key "awards", "countries"
+  add_foreign_key "categories", "awards"
   add_foreign_key "comments", "users"
+  add_foreign_key "movie_awards", "categories"
+  add_foreign_key "movie_awards", "movies"
   add_foreign_key "movie_staffs", "movies"
   add_foreign_key "movie_staffs", "people", column: "staff_id"
   add_foreign_key "people", "countries"

@@ -49,6 +49,7 @@ RSpec.describe Award, type: :model do
   end
 
   context 'with associations' do
-    it { should belong_to(:country) }
+    it { is_expected.to belong_to(:country) }
+    it { is_expected.to have_many(:categories) }
   end
 end

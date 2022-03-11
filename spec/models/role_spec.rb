@@ -35,12 +35,12 @@ RSpec.describe Role, type: :model do
   end
 
   context 'with validations' do
-    it { should validate_uniqueness_of(:name).with_message('This role already exists') }
+    it { is_expected.to validate_uniqueness_of(:name).with_message('This role already exists') }
   end
 
   context 'with associations' do
-    it { should have_one(:permission) }
-    it { should have_many(:users) }
-    it { should accept_nested_attributes_for(:permission) }
+    it { is_expected.to have_one(:permission) }
+    it { is_expected.to have_many(:users) }
+    it { is_expected.to accept_nested_attributes_for(:permission) }
   end
 end

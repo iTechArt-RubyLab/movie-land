@@ -69,6 +69,6 @@ RSpec.describe Permission, type: :model do
   end
 
   context 'with associations' do
-    it { should belong_to(:role) }
+    it { is_expected.to belong_to(:role) }
   end
 end

@@ -1,29 +1,28 @@
 # == Schema Information
 #
-# Table name: awards
+# Table name: categories
 #
 #  id         :bigint           not null, primary key
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  country_id :bigint           not null
+#  award_id   :bigint           not null
 #
 # Indexes
 #
-#  index_awards_on_country_id  (country_id)
-#  index_awards_on_name        (name) UNIQUE
+#  index_categories_on_award_id  (award_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (country_id => countries.id)
+#  fk_rails_...  (award_id => awards.id)
 #
 FactoryBot.define do
-  factory :award do
-    name { Faker::Name.unique.name }
-    association :country
+  factory :category do
+    name { Faker::Job.key_skill }
+    association :award
 
     trait :invalid_long_name do
-      name { Faker::Lorem.characters(number: 101) }
+      name { Faker::Lorem.characters(number: 201) }
     end
 
     trait :invalid_short_name do

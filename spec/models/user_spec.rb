@@ -94,28 +94,27 @@ RSpec.describe User, type: :model do
   end
 
   context 'with associations' do
-    it { should belong_to(:role).optional }
-    it { should have_many(:ratings) }
-    it { should delegate_method(:can_read_entities?).to(:role) }
-    it { should delegate_method(:can_edit_entities?).to(:role) }
-    it { should delegate_method(:can_lock_user?).to(:role) }
-    it { should delegate_method(:can_read_rating?).to(:role) }
-    it { should delegate_method(:can_give_rating?).to(:role) }
-    it { should delegate_method(:can_leave_comment?).to(:role) }
-    it { should delegate_method(:can_read_user?).to(:role) }
-    it { should delegate_method(:can_edit_role?).to(:role) }
-    it { should delegate_method(:can_edit_permission?).to(:role) }
-    it { should delegate_method(:can_set_role?).to(:role) }
-    it { should delegate_method(:can_edit_person?).to(:role) }
-    it { should delegate_method(:can_read_movie?).to(:role) }
-    it { should delegate_method(:can_edit_movie?).to(:role) }
-    it { should delegate_method(:can_read_person?).to(:role) }
-    it { should delegate_method(:can_read_award?).to(:role) }
-    it { should delegate_method(:can_edit_award?).to(:role) }
-    it { should delegate_method(:can_read_view_list?).to(:role) }
-    it { should delegate_method(:can_edit_view_list?).to(:role) }
-    it { should delegate_method(:admin?).to(:role) }
-    it { should delegate_method(:redactor?).to(:role) }
-    it { should delegate_method(:reviewer?).to(:role) }
+    it { is_expected.to belong_to(:role).optional }
+    it { is_expected.to have_many(:ratings) }
+    it { is_expected.to delegate_method(:can_read_entities?).to(:role) }
+    it { is_expected.to delegate_method(:can_edit_entities?).to(:role) }
+    it { is_expected.to delegate_method(:can_lock_user?).to(:role) }
+    it { is_expected.to delegate_method(:can_read_rating?).to(:role) }
+    it { is_expected.to delegate_method(:can_give_rating?).to(:role) }
+    it { is_expected.to delegate_method(:can_read_user?).to(:role) }
+    it { is_expected.to delegate_method(:can_edit_role?).to(:role) }
+    it { is_expected.to delegate_method(:can_edit_permission?).to(:role) }
+    it { is_expected.to delegate_method(:can_set_role?).to(:role) }
+    it { is_expected.to delegate_method(:can_edit_person?).to(:role) }
+    it { is_expected.to delegate_method(:can_read_movie?).to(:role) }
+    it { is_expected.to delegate_method(:can_edit_movie?).to(:role) }
+    it { is_expected.to delegate_method(:can_read_person?).to(:role) }
+    it { is_expected.to delegate_method(:can_read_award?).to(:role) }
+    it { is_expected.to delegate_method(:can_edit_award?).to(:role) }
+    it { is_expected.to delegate_method(:can_read_view_list?).to(:role) }
+    it { is_expected.to delegate_method(:can_edit_view_list?).to(:role) }
+    it { is_expected.to delegate_method(:admin?).to(:role) }
+    it { is_expected.to delegate_method(:redactor?).to(:role) }
+    it { is_expected.to delegate_method(:reviewer?).to(:role) }
   end
 end

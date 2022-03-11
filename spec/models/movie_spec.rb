@@ -128,22 +128,23 @@ RSpec.describe Movie, type: :model do
   end
 
   context 'with validations' do
-    it { should validate_uniqueness_of(:name).with_message('This movie already exists') }
+    it { is_expected.to validate_uniqueness_of(:name).with_message('This movie already exists') }
   end
 
   context 'with associations' do
-    it { should have_many(:companies_movies) }
-    it { should have_many(:companies) }
-    it { should have_many(:countries_movies) }
-    it { should have_many(:countries) }
-    it { should have_many(:genres_movies) }
-    it { should have_many(:genres) }
-    it { should have_many(:languages_movies) }
-    it { should have_many(:languages) }
-    it { should have_many(:movies_tags) }
-    it { should have_many(:tags) }
-    it { should have_many(:ratings) }
-    it { should have_many(:comments) }
-    it { should accept_nested_attributes_for(:movies_tags) }
+    it { is_expected.to have_many(:companies_movies) }
+    it { is_expected.to have_many(:companies) }
+    it { is_expected.to have_many(:countries_movies) }
+    it { is_expected.to have_many(:countries) }
+    it { is_expected.to have_many(:genres_movies) }
+    it { is_expected.to have_many(:genres) }
+    it { is_expected.to have_many(:languages_movies) }
+    it { is_expected.to have_many(:languages) }
+    it { is_expected.to have_many(:movies_tags) }
+    it { is_expected.to have_many(:tags) }
+    it { is_expected.to have_many(:ratings) }
+    it { is_expected.to have_many(:comments) }
+    it { is_expected.to have_many(:movie_awards) }
+    it { is_expected.to accept_nested_attributes_for(:movies_tags) }
   end
 end
