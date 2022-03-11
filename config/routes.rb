@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :movies do
         resources :comments, only: %i[create update destroy]
         resources :movie_awards
+        get 'movie-report', to: 'movie_reports#show'
       end
 
       resources :comments, only: %i[create update destroy] do
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
 
       resources :people do
         resources :comments, only: %i[create update destroy]
+        get 'person-report', to: 'person_reports#show'
       end
 
       resources :roles do
@@ -39,9 +41,13 @@ Rails.application.routes.draw do
       
       resources :view_lists, as: :my_view_list, path: 'my-view-list'
       resources :ratings, as: :my_ratings, path: 'my-ratings'
+
       resources :awards do
         resources :categories, only: %i[index create update destroy]
       end
+      
+      get 'movie-reports', to: 'movie_reports#index'
+      get 'person-reports', to: 'person_reports#index'
     end
   end
   get 'search', to: 'home#search'
