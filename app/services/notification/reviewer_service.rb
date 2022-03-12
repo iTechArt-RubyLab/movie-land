@@ -1,5 +1,5 @@
 module Notification
-  class ReviewerService
+  class ReviewerService < ApplicationService
     def call
       movies = Movie
                .select('movies.name, release_date')

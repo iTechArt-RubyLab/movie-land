@@ -45,3 +45,7 @@ RSpec/MultipleMemoizedHelpers:
 RSpec/ImplicitExpect:
   Exclude:
     - 'spec/models/**'
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/services/**/*'

@@ -7,7 +7,7 @@ module Api
       after_action :verify_authorized
 
       def index
-        @view_lists = ViewListService.new(ViewList, user: current_user, attributes: params).call
+        @view_lists = EntityManager::ViewListService.call(user: current_user, attributes: params)
 
         render json: @view_lists, each_serializer: ViewListSerializer
       end

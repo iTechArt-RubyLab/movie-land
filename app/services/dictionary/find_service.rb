@@ -1,5 +1,5 @@
 module Dictionary
-  class FindService
+  class FindService < ApplicationService
     def initialize(class_name, params)
       @class_name = class_name
       @params = params

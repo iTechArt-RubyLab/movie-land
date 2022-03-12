@@ -6,7 +6,7 @@ module Api
       after_action :verify_authorized
 
       def index
-        @people = PersonService.new(Person, params).call
+        @people = EntityManager::PersonService.call(params)
 
         render json: @people, each_serializer: PersonSerializer
       end
