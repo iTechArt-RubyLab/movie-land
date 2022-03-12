@@ -10,6 +10,7 @@
 #  can_edit_person     :boolean
 #  can_edit_role       :boolean
 #  can_edit_view_list  :boolean
+#  can_export_to_csv   :boolean
 #  can_give_rating     :boolean
 #  can_leave_comment   :boolean
 #  can_lock_user       :boolean

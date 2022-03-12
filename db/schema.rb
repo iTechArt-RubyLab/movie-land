@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(version: 2022_03_08_225925) do
     t.boolean "can_edit_award"
     t.boolean "can_read_view_list"
     t.boolean "can_edit_view_list"
+    t.boolean "can_export_to_csv"
     t.index ["role_id"], name: "index_permissions_on_role_id"
   end
 

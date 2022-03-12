@@ -45,6 +45,10 @@ class Role < ApplicationRecord
     predefined_user? ? true : permision? && permission.can_leave_comment
   end
 
+  def can_export_to_csv?
+    editor? ? true : permision? && permission.can_export_to_csv
+  end
+
   def can_edit_role?
     admin? ? true : permision? && permission.can_edit_role
   end
