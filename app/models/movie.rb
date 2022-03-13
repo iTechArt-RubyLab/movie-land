@@ -56,6 +56,10 @@ class Movie < ApplicationRecord
   validates :budget, numericality: { only_integer: true, greater_than: 0 }
   validates :duration, numericality: { only_integer: true, greater_than: 1 }
 
+  def average_rating
+    number_of_ratings.zero? ? 0 : total_score / number_of_ratings
+  end
+
   def directors
     staffs_by_occupation(:director)
   end
