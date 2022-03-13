@@ -10,7 +10,7 @@
 #  surname    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  country_id :bigint           not null
+#  country_id :bigint
 #
 # Indexes
 #
@@ -65,7 +65,7 @@ RSpec.describe Person, type: :model do
   end
 
   context 'with associations' do
-    it { is_expected.to belong_to(:country) }
+    it { is_expected.to belong_to(:country).optional }
     it { is_expected.to have_many(:comments) }
     it { is_expected.to have_many(:actor_roles).with_foreign_key('actor_id') }
     it { is_expected.to have_many(:movie_staffs).with_foreign_key('staff_id') }
