@@ -2,7 +2,7 @@ module EntityManager
   class MovieService < ApplicationService
     RELATED_ENTITIES = %i[companies_movies companies countries_movies
                           countries genres_movies genres languages_movies
-                          languages movies_tags tags ratings view_lists].freeze
+                          languages movies_tags tags movie_awards comments].freeze
 
     def initialize(params)
       @params = params
@@ -15,6 +15,11 @@ module EntityManager
           .where('name ILIKE ?', "%#{params[:filter]}%")
           .paginate(page: params[:page])
           .order("name #{order}")
+      elsif params[:top].present?
+        Movie
+          .includes(RELATED_ENTITIES)
+          .sort_by { |movie| movie&.average_rating }
+          .reverse.take(params[:top].to_i)
       else
         Movie
           .includes(RELATED_ENTITIES)
