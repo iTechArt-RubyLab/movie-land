@@ -129,6 +129,22 @@ RSpec.describe Movie, type: :model do
     end
   end
 
+  context 'with average_rating' do
+    context 'when attributes valid' do
+      subject(:valid_ratings_attributes) { build :movie, :valid_ratings_attributes }
+
+      let(:average_result) { valid_ratings_attributes.total_score / valid_ratings_attributes.number_of_ratings }
+
+      it { expect(valid_ratings_attributes.average_rating).to be(average_result) }
+    end
+
+    context 'when attributes are zero' do
+      subject(:zero_ratings_attributes) { build :movie, :zero_ratings_attributes }
+
+      it { expect(zero_ratings_attributes.average_rating).to be_zero }
+    end
+  end
+
   context 'with validations' do
     it { is_expected.to validate_uniqueness_of(:name).with_message('This movie already exists') }
   end

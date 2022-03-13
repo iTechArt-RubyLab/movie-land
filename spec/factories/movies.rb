@@ -93,6 +93,16 @@ FactoryBot.define do
       duration { Faker::Number.decimal(l_digits: 2) }
     end
 
+    trait :valid_ratings_attributes do
+      total_score { 2 }
+      number_of_ratings { 18 }
+    end
+
+    trait :zero_ratings_attributes do
+      total_score { 0 }
+      number_of_ratings { 0 }
+    end
+
     trait :invalid_poster_format do
       poster { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/posters/test.svg')) }
     end
