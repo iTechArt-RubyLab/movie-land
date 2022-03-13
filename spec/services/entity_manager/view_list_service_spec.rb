@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe ViewListService, type: :model do
-  subject(:view_list_service) { described_class.new(ViewList, user: user, attributes: params) }
+RSpec.describe EntityManager::ViewListService, type: :model do
+  subject(:view_list_service) { described_class }
 
   let!(:view_lists) { create_list(:view_list, 10) }
   let(:user) { create :user, :reviewer }
@@ -11,7 +11,8 @@ RSpec.describe ViewListService, type: :model do
       let(:params) { { order: :desc } }
 
       it 'returns view lists' do
-        expect(view_list_service.call).eql? view_lists.sort_by(&:watching_status).reverse
+        expect(view_list_service.call(user: user,
+                                      attributes: params)).eql? view_lists.sort_by(&:watching_status).reverse
       end
     end
 
@@ -19,7 +20,7 @@ RSpec.describe ViewListService, type: :model do
       let(:params) { {} }
 
       it 'returns view lists' do
-        expect(view_list_service.call).eql? view_lists.sort_by(&:watching_status)
+        expect(view_list_service.call(user: user, attributes: params)).eql? view_lists.sort_by(&:watching_status)
       end
     end
   end

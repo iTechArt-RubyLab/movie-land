@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe PersonService, type: :model do
-  subject(:person_service) { described_class.new(class_name, params) }
+RSpec.describe EntityManager::PersonService, type: :model do
+  subject(:person_service) { described_class }
 
   let!(:people) { create_list(:person, 20) }
-  let(:class_name) { Person }
 
   describe '#call' do
     context 'when params contain name one of people' do
@@ -12,7 +11,7 @@ RSpec.describe PersonService, type: :model do
       let(:params) { { filter: person.name } }
 
       it 'returns person' do
-        expect(person_service.call).eql? person
+        expect(person_service.call(params)).eql? person
       end
     end
 
@@ -21,7 +20,7 @@ RSpec.describe PersonService, type: :model do
       let(:params) { { filter: person.surname } }
 
       it 'returns person' do
-        expect(person_service.call).eql? person
+        expect(person_service.call(params)).eql? person
       end
     end
 
@@ -29,7 +28,7 @@ RSpec.describe PersonService, type: :model do
       let(:params) { { filter: Faker::Lorem.characters(number: 7) } }
 
       it 'returns count of people' do
-        expect(person_service.call.count).to eq 0
+        expect(person_service.call(params).count).to eq 0
       end
     end
 
@@ -37,7 +36,7 @@ RSpec.describe PersonService, type: :model do
       let(:params) { { order: :desc } }
 
       it 'returns people' do
-        expect(person_service.call).eql? people.sort_by(&:name).reverse
+        expect(person_service.call(params)).eql? people.sort_by(&:name).reverse
       end
     end
 
@@ -45,7 +44,7 @@ RSpec.describe PersonService, type: :model do
       let(:params) { {} }
 
       it 'returns people' do
-        expect(person_service.call).eql? people.sort_by(&:name)
+        expect(person_service.call(params)).eql? people.sort_by(&:name)
       end
     end
   end
