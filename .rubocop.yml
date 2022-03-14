@@ -58,3 +58,7 @@ RSpec/EmptyExampleGroup:
   Exclude:
     - 'spec/integration/movie_report_spec.rb'
     - 'spec/integration/person_report_spec.rb'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'app/services/the_movie_db.rb'
