@@ -56,7 +56,6 @@ gem 'rack-cors'
 gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: 'main'
 
 gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: 'main'
-gem 'rest-client'
 
 group :development, :test do
   gem 'brakeman'
