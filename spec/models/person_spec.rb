@@ -3,6 +3,7 @@
 # Table name: people
 #
 #  id         :bigint           not null, primary key
+#  biography  :text
 #  birthday   :date
 #  deathday   :date
 #  married    :boolean

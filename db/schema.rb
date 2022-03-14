@@ -129,15 +129,14 @@ ActiveRecord::Schema.define(version: 2022_03_19_074127) do
   end
 
   create_table "movie_staffs", force: :cascade do |t|
-    t.integer "staff_type", default: 0, null: false
+    t.integer "staff_type"
     t.bigint "movie_id", null: false
     t.bigint "staff_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["movie_id", "staff_id", "staff_type"], name: "index_movie_staffs_on_movie_id_and_staff_id_and_staff_type", unique: true
     t.index ["movie_id"], name: "index_movie_staffs_on_movie_id"
     t.index ["staff_id"], name: "index_movie_staffs_on_staff_id"
-    t.index ["staff_type"], name: "index_movie_staffs_on_staff_type", unique: true
+    t.index ["staff_type", "movie_id", "staff_id"], name: "index_movie_staffs_on_staff_type_and_movie_id_and_staff_id", unique: true
   end
 
   create_table "movies", force: :cascade do |t|
@@ -170,10 +169,11 @@ ActiveRecord::Schema.define(version: 2022_03_19_074127) do
     t.string "surname"
     t.date "birthday"
     t.date "deathday"
-    t.bigint "country_id", null: false
+    t.bigint "country_id"
     t.boolean "married"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "biography"
     t.index ["country_id"], name: "index_people_on_country_id"
   end
 

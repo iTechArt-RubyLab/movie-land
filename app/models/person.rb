@@ -3,6 +3,7 @@
 # Table name: people
 #
 #  id         :bigint           not null, primary key
+#  biography  :text
 #  birthday   :date
 #  deathday   :date
 #  married    :boolean
@@ -10,7 +11,7 @@
 #  surname    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  country_id :bigint           not null
+#  country_id :bigint
 #
 # Indexes
 #
@@ -23,7 +24,7 @@
 class Person < ApplicationRecord
   include Searchable
 
-  belongs_to :country
+  belongs_to :country, optional: true
   has_many :actor_roles, foreign_key: :actor_id, class_name: 'ActorRole', dependent: :delete_all, inverse_of: :actor
   has_many :movies, through: :actor_roles, dependent: :destroy
   has_many :movie_staffs, foreign_key: :staff_id, class_name: 'MovieStaff', dependent: :delete_all, inverse_of: :staff
