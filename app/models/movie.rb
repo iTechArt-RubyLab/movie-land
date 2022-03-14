@@ -2,19 +2,21 @@
 #
 # Table name: movies
 #
-#  id           :bigint           not null, primary key
-#  age_limit    :integer
-#  budget       :bigint
-#  description  :text
-#  duration     :integer
-#  images       :string           default([]), is an Array
-#  name         :string
-#  poster       :string
-#  release_date :date
-#  tagline      :string
-#  trailer      :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id                :bigint           not null, primary key
+#  age_limit         :integer
+#  budget            :bigint
+#  description       :text
+#  duration          :integer
+#  images            :string           default([]), is an Array
+#  name              :string
+#  number_of_ratings :integer          default(0)
+#  poster            :string
+#  release_date      :date
+#  tagline           :string
+#  total_score       :integer          default(0)
+#  trailer           :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 # Indexes
 #
@@ -53,6 +55,10 @@ class Movie < ApplicationRecord
   validates :age_limit, numericality: { only_integer: true }, inclusion: { in: 1..100 }
   validates :budget, numericality: { only_integer: true, greater_than: 0 }
   validates :duration, numericality: { only_integer: true, greater_than: 1 }
+
+  def average_rating
+    number_of_ratings.zero? ? 0 : total_score / number_of_ratings
+  end
 
   def directors
     staffs_by_occupation(:director)

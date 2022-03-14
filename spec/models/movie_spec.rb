@@ -2,19 +2,21 @@
 #
 # Table name: movies
 #
-#  id           :bigint           not null, primary key
-#  age_limit    :integer
-#  budget       :bigint
-#  description  :text
-#  duration     :integer
-#  images       :string           default([]), is an Array
-#  name         :string
-#  poster       :string
-#  release_date :date
-#  tagline      :string
-#  trailer      :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id                :bigint           not null, primary key
+#  age_limit         :integer
+#  budget            :bigint
+#  description       :text
+#  duration          :integer
+#  images            :string           default([]), is an Array
+#  name              :string
+#  number_of_ratings :integer          default(0)
+#  poster            :string
+#  release_date      :date
+#  tagline           :string
+#  total_score       :integer          default(0)
+#  trailer           :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 # Indexes
 #
@@ -124,6 +126,22 @@ RSpec.describe Movie, type: :model do
       subject(:invalid_images_format) { build :movie, :invalid_images_format }
 
       include_examples 'invalid model'
+    end
+  end
+
+  context 'with average_rating' do
+    context 'when attributes valid' do
+      subject(:valid_ratings_attributes) { build :movie, :valid_ratings_attributes }
+
+      let(:average_result) { valid_ratings_attributes.total_score / valid_ratings_attributes.number_of_ratings }
+
+      it { expect(valid_ratings_attributes.average_rating).to be(average_result) }
+    end
+
+    context 'when attributes are zero' do
+      subject(:zero_ratings_attributes) { build :movie, :zero_ratings_attributes }
+
+      it { expect(zero_ratings_attributes.average_rating).to be_zero }
     end
   end
 

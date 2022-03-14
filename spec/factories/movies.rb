@@ -2,19 +2,21 @@
 #
 # Table name: movies
 #
-#  id           :bigint           not null, primary key
-#  age_limit    :integer
-#  budget       :bigint
-#  description  :text
-#  duration     :integer
-#  images       :string           default([]), is an Array
-#  name         :string
-#  poster       :string
-#  release_date :date
-#  tagline      :string
-#  trailer      :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id                :bigint           not null, primary key
+#  age_limit         :integer
+#  budget            :bigint
+#  description       :text
+#  duration          :integer
+#  images            :string           default([]), is an Array
+#  name              :string
+#  number_of_ratings :integer          default(0)
+#  poster            :string
+#  release_date      :date
+#  tagline           :string
+#  total_score       :integer          default(0)
+#  trailer           :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 # Indexes
 #
@@ -89,6 +91,16 @@ FactoryBot.define do
 
     trait :invalid_decimal_duration do
       duration { Faker::Number.decimal(l_digits: 2) }
+    end
+
+    trait :valid_ratings_attributes do
+      total_score { 2 }
+      number_of_ratings { 18 }
+    end
+
+    trait :zero_ratings_attributes do
+      total_score { 0 }
+      number_of_ratings { 0 }
     end
 
     trait :invalid_poster_format do

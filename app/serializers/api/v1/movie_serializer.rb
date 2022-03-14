@@ -1,9 +1,9 @@
 module Api
   module V1
     class MovieSerializer < ActiveModel::Serializer
-      attributes :id, :name, :description, :tagline, :trailer,
-                 :release_date, :age_limit, :budget, :duration,
-                 :poster, :images
+      attributes :id, :name, :description, :tagline, :duration,
+                 :release_date, :average_rating, :age_limit, :budget,
+                 :trailer, :poster, :images
       has_many :companies, serializer: DictionarySerializer
       has_many :countries, serializer: DictionarySerializer
       has_many :comments, serializer: CommentSerializer
