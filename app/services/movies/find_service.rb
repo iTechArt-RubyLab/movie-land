@@ -2,7 +2,8 @@ module Movies
   class FindService < ApplicationService
     RELATED_ENTITIES = %i[companies_movies companies countries_movies
                           countries genres_movies genres languages_movies
-                          languages movies_tags tags movie_awards comments].freeze
+                          languages movies_tags tags movie_awards comments
+                          actor_roles actors movie_staffs staffs].freeze
 
     def initialize(options = { filter: nil, page: nil, order: nil, top: nil })
       @filter = options[:filter]
