@@ -25,9 +25,9 @@
 require 'rails_helper'
 
 RSpec.describe Movie, type: :model do
-  context 'with valid attributes' do
-    subject(:movie) { create :movie }
+  subject(:movie) { create :movie }
 
+  context 'with valid attributes' do
     include_examples 'valid model'
   end
 
@@ -142,6 +142,68 @@ RSpec.describe Movie, type: :model do
       subject(:zero_ratings_attributes) { build :movie, :zero_ratings_attributes }
 
       it { expect(zero_ratings_attributes.average_rating).to be_zero }
+    end
+  end
+
+  context 'with staffs' do
+    context 'when directors' do
+      let(:person) { create :person }
+
+      before do
+        MovieStaff.create(movie: movie, staff: person, staff_type: 'director')
+      end
+
+      it { expect(movie.directors.first).to eq(person) }
+    end
+
+    context 'when editors' do
+      let(:person) { create :person }
+
+      before do
+        MovieStaff.create(movie: movie, staff: person, staff_type: 'editor')
+      end
+
+      it { expect(movie.editors.first).to eq(person) }
+    end
+
+    context 'when compositors' do
+      let(:person) { create :person }
+
+      before do
+        MovieStaff.create(movie: movie, staff: person, staff_type: 'compositor')
+      end
+
+      it { expect(movie.compositors.first).to eq(person) }
+    end
+
+    context 'when artists' do
+      let(:person) { create :person }
+
+      before do
+        MovieStaff.create(movie: movie, staff: person, staff_type: 'artist')
+      end
+
+      it { expect(movie.artists.first).to eq(person) }
+    end
+
+    context 'when producers' do
+      let(:person) { create :person }
+
+      before do
+        MovieStaff.create(movie: movie, staff: person, staff_type: 'producer')
+      end
+
+      it { expect(movie.producers.first).to eq(person) }
+    end
+
+    context 'when screencasters' do
+      let(:person) { create :person }
+
+      before do
+        MovieStaff.create(movie: movie, staff: person, staff_type: 'screencaster')
+      end
+
+      it { expect(movie.screencasters.first).to eq(person) }
     end
   end
 
