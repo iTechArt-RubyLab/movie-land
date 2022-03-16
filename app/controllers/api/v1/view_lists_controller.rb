@@ -7,7 +7,7 @@ module Api
       after_action :verify_authorized
 
       def index
-        @view_lists = ViewLists::FindService.call(current_user, options: params)
+        @view_lists = ViewLists::FindService.call(current_user, params)
 
         render json: @view_lists, each_serializer: ViewListSerializer
       end

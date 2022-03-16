@@ -1,24 +1,27 @@
 module Categories
   class FindService < ApplicationService
-    def initialize(params)
-      @params = params
+    def initialize(options = { filter: nil, page: nil, order: nil, award_id: nil })
+      @filter = options[:filter]
+      @page = options[:page]
+      @order = options[:order]
+      @award_id = options[:award_id]
     end
 
     def call
-      if params[:filter].present?
-        Category.where('award_id = ? AND name ILIKE ?', params[:award_id], "%#{params[:filter]}%")
-                .paginate(page: params[:page]).order("name #{order}")
+      if filter.present?
+        Category.where('award_id = ? AND name ILIKE ?', award_id, "%#{filter}%")
+                .paginate(page: page).order("name #{order}")
       else
-        Category.where(award_id: params[:award_id]).paginate(page: params[:page]).order("name #{order}")
+        Category.where(award_id: award_id).paginate(page: page).order("name #{order}")
       end
     end
 
     private
 
-    attr_reader :params
+    attr_reader :filter, :page, :award_id
 
     def order
-      params[:order].presence || 'asc'
+      @order ||= 'asc'
     end
   end
 end

@@ -1,27 +1,29 @@
 module Roles
   class FindService < ApplicationService
-    def initialize(params)
-      @params = params
+    def initialize(options = { filter: nil, page: nil, order: nil })
+      @filter = options[:filter]
+      @page = options[:page]
+      @order = options[:order]
     end
 
     def call
-      if params[:filter].present?
+      if filter.present?
         Role
           .includes(:permission)
-          .where('name ILIKE ?', "%#{params[:filter]}%")
-          .paginate(page: params[:page])
+          .where('name ILIKE ?', "%#{filter}%")
+          .paginate(page: page)
           .order("name #{order}")
       else
-        Role.includes(:permission).paginate(page: params[:page]).order("name #{order}")
+        Role.includes(:permission).paginate(page: page).order("name #{order}")
       end
     end
 
     private
 
-    attr_reader :params
+    attr_reader :filter, :page
 
     def order
-      params[:order].presence || 'asc'
+      @order ||= 'asc'
     end
   end
 end

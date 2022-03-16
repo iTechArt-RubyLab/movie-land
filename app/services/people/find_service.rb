@@ -1,27 +1,29 @@
 module People
   class FindService < ApplicationService
-    def initialize(params)
-      @params = params
+    def initialize(options = { filter: nil, page: nil, order: nil })
+      @filter = options[:filter]
+      @page = options[:page]
+      @order = options[:order]
     end
 
     def call
-      if params[:filter].present?
+      if filter.present?
         Person
           .includes(:country)
-          .where('name ILIKE ? OR surname ILIKE ? ', "%#{params[:filter]}%", "%#{params[:filter]}%")
-          .paginate(page: params[:page])
+          .where('name ILIKE ?', "%#{filter}%")
+          .paginate(page: page)
           .order("name #{order}")
       else
-        Person.includes(:country).paginate(page: params[:page]).order("name #{order}")
+        Person.includes(:country).paginate(page: page).order("name #{order}")
       end
     end
 
     private
 
-    attr_reader :params
+    attr_reader :filter, :page
 
     def order
-      params[:order].presence || 'asc'
+      @order ||= 'asc'
     end
   end
 end
