@@ -1,8 +1,8 @@
-module EntityManager
-  class ViewListService < ApplicationService
+module ViewLists
+  class FindService < ApplicationService
     def initialize(params = {})
       @user = params[:user]
-      @params = params[:attributes]
+      @params = params
     end
 
     def call

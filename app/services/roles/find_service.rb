@@ -1,5 +1,5 @@
-module EntityManager
-  class RoleService < ApplicationService
+module Roles
+  class FindService < ApplicationService
     def initialize(params)
       @params = params
     end

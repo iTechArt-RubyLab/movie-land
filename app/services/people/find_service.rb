@@ -1,5 +1,5 @@
-module EntityManager
-  class PersonService < ApplicationService
+module People
+  class FindService < ApplicationService
     def initialize(params)
       @params = params
     end

@@ -1,5 +1,5 @@
-module EntityManager
-  class RatingService < ApplicationService
+module Ratings
+  class FindService < ApplicationService
     def initialize(params = {})
       @user = params[:user]
       @params = params[:attributes]
