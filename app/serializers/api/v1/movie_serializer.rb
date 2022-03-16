@@ -4,12 +4,14 @@ module Api
       attributes :id, :name, :description, :tagline, :duration,
                  :release_date, :average_rating, :age_limit, :budget,
                  :trailer, :poster, :images
-      has_many :companies, serializer: DictionarySerializer
-      has_many :countries, serializer: DictionarySerializer
-      has_many :comments, serializer: CommentSerializer
       has_many :genres, serializer: DictionarySerializer
+      has_many :countries, serializer: DictionarySerializer
+      has_many :companies, serializer: DictionarySerializer
+      has_many :actors, serializer: PersonSerializer
+      has_many :staffs, serializer: PersonSerializer
       has_many :languages, serializer: DictionarySerializer
       has_many :tags, serializer: DictionarySerializer
+      has_many :comments, serializer: CommentSerializer
       has_many :movie_awards, serializer: MovieAwardSerializer
     end
   end
