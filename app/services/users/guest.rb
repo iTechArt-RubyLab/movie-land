@@ -10,8 +10,6 @@ module Users
       super(name, *args, &block)
     end
 
-    private
-
     def respond_to_missing?(name, include_private)
       return true if name.to_s.start_with?('can')
 
