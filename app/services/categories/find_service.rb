@@ -9,7 +9,7 @@ module Categories
 
     def call
       if filter.present?
-        Category.where('award_id = ? AND name ILIKE ?', award_id, "%#{filter}%")
+        Category.where('award_id = ? AND name ILIKE ?', award_id, "%#{Category.send(:sanitize_sql_like, filter)}%")
                 .paginate(page: page).order("name #{order}")
       else
         Category.where(award_id: award_id).paginate(page: page).order("name #{order}")

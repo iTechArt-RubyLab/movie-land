@@ -10,7 +10,7 @@ module Roles
       if filter.present?
         Role
           .includes(:permission)
-          .where('name ILIKE ?', "%#{filter}%")
+          .where('name ILIKE ?', "%#{Role.send(:sanitize_sql_like, filter)}%")
           .paginate(page: page)
           .order("name #{order}")
       else

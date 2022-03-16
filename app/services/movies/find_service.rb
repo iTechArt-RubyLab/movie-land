@@ -15,7 +15,7 @@ module Movies
       if filter.present?
         Movie
           .includes(RELATED_ENTITIES)
-          .where('name ILIKE ?', "%#{filter}%")
+          .where('name ILIKE ?', "%#{Movie.send(:sanitize_sql_like, filter)}%")
           .paginate(page: page)
           .order("name #{order}")
       elsif top.present?

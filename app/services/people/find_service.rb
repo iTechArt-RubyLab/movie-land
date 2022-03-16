@@ -10,7 +10,7 @@ module People
       if filter.present?
         Person
           .includes(:country)
-          .where('name ILIKE ?', "%#{filter}%")
+          .where('name ILIKE ?', "%#{Person.send(:sanitize_sql_like, filter)}%")
           .paginate(page: page)
           .order("name #{order}")
       else

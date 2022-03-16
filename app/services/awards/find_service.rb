@@ -9,7 +9,7 @@ module Awards
     def call
       if filter.present?
         Award.includes(%i[categories country])
-             .where('name ILIKE ?', "%#{filter}%")
+             .where('name ILIKE ?', "%#{Award.send(:sanitize_sql_like, filter)}%")
              .paginate(page: page)
              .order("name #{order}")
       else
