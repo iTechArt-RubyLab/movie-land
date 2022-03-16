@@ -30,7 +30,7 @@ class Role < ApplicationRecord
   end
 
   def can_give_rating?
-    predefined_user? ? true : permision? && permission.can_edit_rating
+    predefined_user? ? true : permision? && permission.can_give_rating
   end
 
   def can_read_view_list?
