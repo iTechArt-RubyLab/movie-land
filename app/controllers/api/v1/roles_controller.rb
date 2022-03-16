@@ -6,7 +6,7 @@ module Api
       after_action :verify_authorized
 
       def index
-        @roles = EntityManager::RoleService.call(params)
+        @roles = Roles::FindService.call(params)
 
         render json: @roles, each_serializer: RoleSerializer
       end

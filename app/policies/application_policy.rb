@@ -4,7 +4,7 @@ class ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
-    @user = user || GuestUser.new
+    @user = user || Users::Guest.new
     @record = record
   end
 

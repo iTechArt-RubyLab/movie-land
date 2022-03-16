@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
   before_action :configure_permitted_parameters, if: :devise_controller?
   include ActionController::RequestForgeryProtection
   protect_from_forgery with: :null_session, only: -> { request.format.json? }
-  include Error::ErrorHandler
+  include Errors::ErrorHandler
 
   protected
 

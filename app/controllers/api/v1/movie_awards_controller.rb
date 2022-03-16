@@ -6,7 +6,7 @@ module Api
       after_action :verify_authorized
 
       def index
-        @movie_awards = MovieAwardService.new(params).call
+        @movie_awards = MovieAwards::FindService.call(params)
 
         render json: @movie_awards, each_serializer: MovieAwardSerializer
       end
