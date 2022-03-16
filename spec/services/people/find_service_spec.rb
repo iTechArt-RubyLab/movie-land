@@ -25,7 +25,7 @@ RSpec.describe People::FindService, type: :model do
     end
 
     context 'when params contain name of non-existent person' do
-      let(:params) { { filter: Faker::Lorem.characters(number: 7) } }
+      let(:params) { { filter: Faker::Lorem.characters(number: 10) } }
 
       it 'returns count of people' do
         expect(person_service.call(params).count).to eq 0

@@ -11,8 +11,7 @@ RSpec.describe ViewLists::FindService, type: :model do
       let(:params) { { order: :desc } }
 
       it 'returns view lists' do
-        expect(view_list_service.call(user: user,
-                                      attributes: params)).eql? view_lists.sort_by(&:watching_status).reverse
+        expect(view_list_service.call(user, params)).eql? view_lists.sort_by(&:watching_status).reverse
       end
     end
 
@@ -20,7 +19,7 @@ RSpec.describe ViewLists::FindService, type: :model do
       let(:params) { {} }
 
       it 'returns view lists' do
-        expect(view_list_service.call(user: user, attributes: params)).eql? view_lists.sort_by(&:watching_status)
+        expect(view_list_service.call(user, params)).eql? view_lists.sort_by(&:watching_status)
       end
     end
   end
