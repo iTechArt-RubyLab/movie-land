@@ -1,27 +1,28 @@
 module ViewLists
   class FindService < ApplicationService
-    def initialize(params = {})
-      @user = params[:user]
-      @params = params
+    def initialize(user, options = { filter: nil, page: nil, order: nil })
+      @user = user
+      @filter = options[:filter]
+      @page = options[:page]
+      @order = options[:order]
     end
 
     def call
-      if params[:filter].present?
-        ViewList.where(watching_status: params[:filter])
-                .where(user: user)
-                .paginate(page: params[:page])
+      if filter.present?
+        ViewList.where(watching_status: filter, user: user)
+                .paginate(page: page)
                 .order("watching_status #{order}")
       else
-        ViewList.where(user: user).paginate(page: params[:page]).order("watching_status #{order}")
+        ViewList.where(user: user).paginate(page: page).order("watching_status #{order}")
       end
     end
 
     private
 
-    attr_reader :user, :params
+    attr_reader :user, :filter, :page
 
     def order
-      params[:order].presence || 'asc'
+      @order ||= 'asc'
     end
   end
 end
