@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe EntityManager::PersonService, type: :model do
+RSpec.describe People::FindService, type: :model do
   subject(:person_service) { described_class }
 
   let!(:people) { create_list(:person, 20) }

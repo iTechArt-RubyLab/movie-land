@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe EntityManager::ViewListService, type: :model do
+RSpec.describe ViewLists::FindService, type: :model do
   subject(:view_list_service) { described_class }
 
   let!(:view_lists) { create_list(:view_list, 10) }

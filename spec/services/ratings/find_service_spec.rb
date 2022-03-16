@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe EntityManager::RatingService, type: :model do
+RSpec.describe Ratings::FindService, type: :model do
   subject(:rating_service) { described_class }
 
   let!(:ratings) { create_list(:rating, 20) }
