@@ -1,6 +1,6 @@
 module Api
   module V1
-    class UserController < ApplicationController
+    class UsersController < ApplicationController
       before_action :set_user, only: %i[show update]
       before_action :authorize_user!
       after_action :verify_authorized
