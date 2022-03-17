@@ -4,7 +4,7 @@ RSpec.describe RedactorNotificationWorker, type: :model do
   subject(:redactor_notification) { described_class.new }
 
   context 'with perform' do
-    let(:notification) { Notification::RedactorService.new.call }
+    let(:notification) { Notification::RedactorService.call }
 
     it { expect(redactor_notification.perform).to be(notification) }
   end
