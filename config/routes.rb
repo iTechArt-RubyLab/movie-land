@@ -29,13 +29,13 @@ Rails.application.routes.draw do
         get 'person-report', to: 'person_reports#show'
       end
 
-      resources :roles do
+      resources :roles, only: %i[index create update destroy] do
         resource :permissions, only: %i[show create update]
       end
 
       resources :tags, only: %i[index]
 
-      resources :user, only: %i[index show update] do
+      resources :users, only: %i[index show update] do
         put 'access', to: 'access_user#update'
       end
       
