@@ -49,3 +49,10 @@ RSpec/ImplicitExpect:
 Lint/MissingSuper:
   Exclude:
     - 'app/services/**/*'
+
+RSpec/VariableName:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Exclude:
+    - 'spec/integration/**'
