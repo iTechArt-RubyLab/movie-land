@@ -8,10 +8,6 @@ RSpec.describe '/permissions', type: :request do
     attributes_for :permission
   end
 
-  let(:invalid_attributes) do
-    attributes_for :permission, :invalid_nil_attributes
-  end
-
   let(:permission) { create(:permission, :admin) }
 
   describe 'GET /show' do
