@@ -24,7 +24,7 @@
 #
 FactoryBot.define do
   factory :movie do
-    sequence(:name) { |var| Faker::Movie.title + var.to_s }
+    name { Faker::Movie.unique.title }
     description { Faker::Lorem.sentence(word_count: 5) }
     tagline { Faker::Movie.quote }
     trailer { Faker::Internet.url }

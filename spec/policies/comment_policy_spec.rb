@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe CommentPolicy do
   subject { described_class.new(user, comment) }
 
+  include_context 'with unique cleaner'
+
   let(:comment) { create :comment }
 
   context 'with admin access' do

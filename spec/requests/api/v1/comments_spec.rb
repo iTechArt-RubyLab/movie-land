@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe '/comments', type: :request do
+  include_context 'with unique cleaner'
+
   let(:valid_attributes) do
     attributes_for :comment
   end

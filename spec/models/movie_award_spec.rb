@@ -23,6 +23,8 @@
 require 'rails_helper'
 
 RSpec.describe MovieAward, type: :model do
+  include_context 'with unique cleaner'
+
   context 'with valid attributes' do
     subject(:movie_award) { create :movie_award }
 

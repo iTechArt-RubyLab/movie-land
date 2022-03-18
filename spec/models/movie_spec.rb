@@ -25,7 +25,10 @@
 require 'rails_helper'
 
 RSpec.describe Movie, type: :model do
-  subject(:movie) { create :movie }
+  include_context 'with unique cleaner'
+
+  context 'with valid attributes' do
+    subject(:movie) { create :movie }
 
   context 'with valid attributes' do
     include_examples 'valid model'

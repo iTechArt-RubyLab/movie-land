@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe MovieReportPolicy do
   subject { described_class.new(user, movie) }
 
+  include_context 'with unique cleaner'
+
   let(:movie) { create :movie }
 
   context 'with admin access' do
