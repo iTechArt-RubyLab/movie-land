@@ -51,8 +51,10 @@ Lint/MissingSuper:
     - 'app/services/**/*'
 
 RSpec/VariableName:
-  Enabled: false
+  IgnoredPatterns:
+    - access-token
 
 RSpec/EmptyExampleGroup:
   Exclude:
-    - 'spec/integration/**'
+    - 'spec/integration/movie_report_spec.rb'
+    - 'spec/integration/person_report_spec.rb'
