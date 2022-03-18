@@ -19,7 +19,17 @@ require 'aasm/rspec'
 require 'simplecov'
 require 'carrierwave/test/matchers'
 
-SimpleCov.start
+SimpleCov.start do
+  add_group "Models", "app/models"
+  add_group "Policies", "app/policies"
+  add_group "Mailers", "app/mailers"
+  add_group "Controllers", "app/controllers"
+  add_group "Services", "app/services"
+  add_group "Uploaders", "app/uploaders"
+  add_group "Workers", "app/workers"
+  add_group "Serializers", "app/serializers"
+  add_group "Specs", "spec"
+end
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

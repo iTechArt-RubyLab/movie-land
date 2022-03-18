@@ -1,26 +1,33 @@
 require 'factory_bot_rails'
 
-movies = FactoryBot.create_list(:movie, 60)
 FactoryBot.create_list(:country, 20)
 FactoryBot.create_list(:company, 20)
 FactoryBot.create_list(:genre, 20)
 FactoryBot.create_list(:language, 20)
-FactoryBot.create_list(:person, 20)
 FactoryBot.create(:permission, :admin)
 FactoryBot.create(:permission, :redactor)
 FactoryBot.create(:permission, :reviewer)
+movies = FactoryBot.create_list(:movie, 60)
+movies.each do |movie|
+  movie.countries << Country.all.sample(2)
+  movie.companies << Company.all.sample(2)
+  movie.genres << Genre.all.sample(2)
+  movie.languages << Language.all.sample(2)
+  movie.comments << FactoryBot.create(:comment, commentable_type: Movie, commentable_id: movie.id)
+end
+people = FactoryBot.create_list(:person, 20)
+people.each do |person|
+  person.comments << FactoryBot.create(:comment, :for_person, commentable_type: Person, commentable_id: person.id)
+end
 FactoryBot.create(:user, :admin, email: 'admin@example.com', password: '123456', password_confirmation: '123456')
 FactoryBot.create(:user, :redactor, email: 'redactor@example.com', password: '123456', password_confirmation: '123456')
 FactoryBot.create(:user, :reviewer, email: 'reviewer@example.com', password: '123456', password_confirmation: '123456')
-FactoryBot.create_list(:comment, 20)
-FactoryBot.create_list(:comment, 20, :for_comment)
-FactoryBot.create_list(:comment, 20, :for_person)
 FactoryBot.create_list(:user, 30, :admin)
 FactoryBot.create_list(:user, 30, :redactor)
 reviewers = FactoryBot.create_list(:user, 30, :reviewer)
-reviewers.each_with_index do |reviewer, idx|
-  FactoryBot.create(:view_list, user: reviewer, movie: movies[idx])
-  FactoryBot.create(:rating, user: reviewer, movie: movies[idx])
+reviewers.each do |reviewer|
+  FactoryBot.create(:view_list, user: reviewer, movie: Movie.all.sample)
+  FactoryBot.create(:rating, user: reviewer, movie: Movie.all.sample)
 end
 awards = []
 ['Oscar', 'Golden globe', 'British akademy',
