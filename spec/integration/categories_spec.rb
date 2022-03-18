@@ -19,7 +19,7 @@ RSpec.describe 'api/v1/categories', type: :request do
       parameter name: 'uid', in: :header, type: :string, required: true
       parameter name: :award_id, in: :path, type: :string, required: true
 
-      response '200', 'categories found.' do
+      response '200', 'Categories found.' do
         let(:category) { create :category }
 
         include_context 'with integration test'
@@ -53,7 +53,7 @@ RSpec.describe 'api/v1/categories', type: :request do
       }
       produces 'application/json'
 
-      response '201', 'category created.' do
+      response '201', 'Category created.' do
         let(:params) { attributes_for :category }
 
         include_context 'with integration test'

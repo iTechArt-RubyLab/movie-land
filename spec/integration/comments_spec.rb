@@ -33,7 +33,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       }
       produces 'application/json'
 
-      response '201', 'comment created.' do
+      response '201', 'Comment created.' do
         let(:params) { attributes_for :comment }
 
         include_context 'with integration test'
@@ -49,7 +49,7 @@ RSpec.describe 'api/v1/comments', type: :request do
         include_context 'with integration test'
       end
 
-      response '422', 'comment creation failed validation.' do
+      response '422', 'Comment creation failed validation.' do
         let(:params) { { comment: { body: 0 } } }
 
         include_context 'with integration test'
@@ -75,7 +75,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       }
       produces 'application/json'
 
-      response '200', 'comment updated.' do
+      response '200', 'Comment updated.' do
         schema type: :object,
                properties: {
                  id: { type: :integer },
@@ -100,7 +100,7 @@ RSpec.describe 'api/v1/comments', type: :request do
         include_context 'with integration test'
       end
 
-      response '404', 'comment not found.' do
+      response '404', 'Comment not found.' do
         let(:id) { -1 }
         let(:params) { {} }
 
@@ -118,7 +118,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       parameter name: :id, in: :path, type: :string, required: true
       produces 'application/json'
 
-      response '204', 'comment deleted successfully.' do
+      response '204', 'Comment deleted successfully.' do
         let(:id) { comment.id }
 
         run_test!
@@ -134,7 +134,7 @@ RSpec.describe 'api/v1/comments', type: :request do
         run_test!
       end
 
-      response '404', 'comment not found.' do
+      response '404', 'Comment not found.' do
         let(:id) { -1 }
 
         run_test!
@@ -144,7 +144,7 @@ RSpec.describe 'api/v1/comments', type: :request do
 
   path '/api/v1/comments/{comment_id}/comments' do
     post 'Create a nested comment.' do
-      tags 'NeasedComments'
+      tags 'NeastedComments'
       consumes 'application/json'
       parameter name: 'access-token', in: :header, type: :string, required: true
       parameter name: 'client', in: :header, type: :string, required: true
@@ -185,7 +185,7 @@ RSpec.describe 'api/v1/comments', type: :request do
 
   path '/api/v1/comments/{comment_id}/comments/{id}' do
     put 'Update comment.' do
-      tags 'NeasedComments'
+      tags 'NeastedComments'
       consumes 'application/json'
       parameter name: 'access-token', in: :header, type: :string, required: true
       parameter name: 'client', in: :header, type: :string, required: true
@@ -201,7 +201,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       }
       produces 'application/json'
 
-      response '200', 'comment updated.' do
+      response '200', 'Comment updated.' do
         schema type: :object,
                properties: {
                  id: { type: :integer },
@@ -235,7 +235,7 @@ RSpec.describe 'api/v1/comments', type: :request do
     end
 
     delete 'Delete comment.' do
-      tags 'NeasedComments'
+      tags 'NeastedComments'
       consumes 'application/json'
       parameter name: 'access-token', in: :header, type: :string, required: true
       parameter name: 'client', in: :header, type: :string, required: true

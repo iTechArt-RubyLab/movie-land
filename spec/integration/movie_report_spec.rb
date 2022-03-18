@@ -34,7 +34,7 @@ RSpec.describe 'api/v1/movie-reports', type: :request do
       parameter name: 'uid', in: :header, type: :string, required: true
       parameter name: :movie_id, in: :path, type: :string, required: true
 
-      response '200', 'Movis csv upload successfully' do
+      response '200', 'Movie csv upload successfully' do
         let(:movie) { create :movie }
 
         run_test!
