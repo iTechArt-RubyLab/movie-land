@@ -1,13 +1,9 @@
 module Search
-  class Autocompleter
+  class Autocompleter < ApplicationService
     MODELS_TO_SEARCH = [Movie, Person, ActorRole].freeze
 
     def initialize(query)
       @query = query
-    end
-
-    def self.call(query)
-      new(query).call
     end
 
     def call
@@ -22,7 +18,7 @@ module Search
 
     private
 
-    attr_accessor :query
+    attr_reader :query
 
     def results
       Elasticsearch::Model.search(search_query,
@@ -48,7 +44,7 @@ module Search
     def multi_match
       {
         multi_match: {
-          query: @query,
+          query: query,
           fields: %w[name release_date surname role_name],
           fuzziness: 'auto'
         }
