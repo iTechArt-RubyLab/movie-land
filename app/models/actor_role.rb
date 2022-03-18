@@ -29,7 +29,8 @@ class ActorRole < ApplicationRecord
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
-      indexes :role_name
+      indexes :role_name, type: 'text', analyzer: 'ngram_analyzer',
+                          search_analyzer: 'whitespace_analyzer'
     end
   end
 end
