@@ -623,7 +623,7 @@ paths:
     post:
       summary: Create a nested comment.
       tags:
-      - NeasedComments
+      - NeastedComments
       parameters:
       - name: access-token
         in: header
@@ -666,7 +666,7 @@ paths:
     put:
       summary: Update comment.
       tags:
-      - NeasedComments
+      - NeastedComments
       parameters:
       - name: access-token
         in: header
@@ -725,7 +725,7 @@ paths:
     delete:
       summary: Delete comment.
       tags:
-      - NeasedComments
+      - NeastedComments
       parameters:
       - name: access-token
         in: header
@@ -1774,7 +1774,7 @@ paths:
           type: string
       responses:
         '200':
-          description: Movis csv upload successfully
+          description: Movie csv upload successfully
         '404':
           description: Movie not found.
   "/api/v1/movies":
