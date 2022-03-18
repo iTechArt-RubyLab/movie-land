@@ -34,7 +34,8 @@ module Searchable
         ngram_analyzer: ngram_analyzer,
         whitespace_analyzer: whitespace_analyzer
       }
-    }
+    },
+             max_ngram_diff: 50
   end
 
   private
