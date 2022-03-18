@@ -83,6 +83,7 @@ GEM
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
+    ansi (1.5.0)
     ast (2.4.2)
     bcrypt (3.1.16)
     bootsnap (1.11.1)
@@ -131,6 +132,9 @@ GEM
       elasticsearch-transport (= 7.17.1)
     elasticsearch-api (7.17.1)
       multi_json
+    elasticsearch-extensions (0.0.33)
+      ansi
+      elasticsearch
     elasticsearch-transport (7.17.1)
       faraday (~> 1)
       multi_json
@@ -381,6 +385,7 @@ DEPENDENCIES
   database_cleaner-active_record
   devise
   devise_token_auth (~> 1.2)
+  elasticsearch-extensions
   elasticsearch-model!
   elasticsearch-rails!
   factory_bot_rails
