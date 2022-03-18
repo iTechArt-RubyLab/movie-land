@@ -21,6 +21,8 @@
 #  fk_rails_...  (country_id => countries.id)
 #
 class Person < ApplicationRecord
+  include Searchable
+
   belongs_to :country
   has_many :actor_roles, foreign_key: :actor_id, class_name: 'ActorRole', dependent: :delete_all, inverse_of: :actor
   has_many :movies, through: :actor_roles, dependent: :destroy
@@ -31,4 +33,11 @@ class Person < ApplicationRecord
   has_many :movie_awards, through: :movie_awards_person, dependent: :destroy
   validates :name, length: { in: 2..103 }
   validates :surname, length: { in: 2..103 }
+
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :name
+      indexes :surname
+    end
+  end
 end

@@ -21,7 +21,15 @@
 #  fk_rails_...  (movie_id => movies.id)
 #
 class ActorRole < ApplicationRecord
+  include Searchable
+
   belongs_to :actor, class_name: 'Person'
   belongs_to :movie
   validates :role_name, uniqueness: { scope: %i[movie_id actor_id], message: 'This actor role already appointed' }
+
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :role_name
+    end
+  end
 end

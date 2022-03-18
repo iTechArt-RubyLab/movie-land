@@ -84,6 +84,13 @@ class Movie < ApplicationRecord
     staffs_by_occupation(:screencaster)
   end
 
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :name
+      indexes :release_date
+    end
+  end
+
   private
 
   def staffs_by_occupation(occupation)
