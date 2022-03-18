@@ -45,10 +45,15 @@ Rails.application.routes.draw do
       resources :awards do
         resources :categories, only: %i[index create update destroy]
       end
+
+      resources :search, only: [] do
+        collection do
+          get :index
+        end
+      end
       
       get 'movie-reports', to: 'movie_reports#index'
       get 'person-reports', to: 'person_reports#index'
     end
   end
-  get 'search', to: 'home#search'
 end
