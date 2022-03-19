@@ -54,8 +54,6 @@ class User < ApplicationRecord
 
   before_save :default_role
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :lockable, :confirmable, :trackable
@@ -68,7 +66,7 @@ class User < ApplicationRecord
            :can_read_user?, :can_edit_role?, :can_edit_permission?, :can_set_role?, :can_edit_person?,
            :can_read_movie?, :can_edit_movie?, :can_read_person?, :admin?, :redactor?, :reviewer?,
            :can_read_award?, :can_edit_award?, :can_read_view_list?, :can_edit_view_list?,
-           :can_leave_comment?, :can_export_to_csv?, to: :role
+           :can_leave_comment?, :can_export_to_csv?, :can_use_search?, to: :role
 
   validates :name, length: { in: 2..25 }
   validates :surname, length: { in: 2..25 }
