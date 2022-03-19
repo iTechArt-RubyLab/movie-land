@@ -55,6 +55,15 @@ RSpec.describe Person, type: :model do
     end
   end
 
+  context 'with indexes' do
+    it 'when indexed' do
+      create(:person, name: 'John', surname: 'Doe')
+
+      described_class.__elasticsearch__.refresh_index!
+      expect(described_class.search('doe').results.total).to eq(1)
+    end
+  end
+
   context 'with associations' do
     it { is_expected.to belong_to(:country) }
     it { is_expected.to have_many(:comments) }

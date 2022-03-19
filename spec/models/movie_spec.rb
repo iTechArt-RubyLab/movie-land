@@ -131,6 +131,15 @@ RSpec.describe Movie, type: :model do
     end
   end
 
+  context 'with indexes' do
+    it 'when indexed' do
+      create(:movie, name: 'American History X')
+
+      described_class.__elasticsearch__.refresh_index!
+      expect(described_class.search('hist').results.total).to eq(1)
+    end
+  end
+
   context 'with average_rating' do
     context 'when attributes valid' do
       subject(:valid_ratings_attributes) { build :movie, :valid_ratings_attributes }
