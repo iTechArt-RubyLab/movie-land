@@ -10,7 +10,7 @@ RSpec.describe ViewLists::FindService, type: :model do
     context 'when params contain order by desc' do
       let(:params) { { order: :desc } }
 
-      it 'returns view lists' do
+      it do
         expect(view_list_service.call(user, params)).eql? view_lists.sort_by(&:watching_status).reverse
       end
     end
@@ -18,7 +18,7 @@ RSpec.describe ViewLists::FindService, type: :model do
     context 'when params is empty and default order by asc' do
       let(:params) { {} }
 
-      it 'returns view lists' do
+      it do
         expect(view_list_service.call(user, params)).eql? view_lists.sort_by(&:watching_status)
       end
     end
