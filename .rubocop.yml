@@ -62,3 +62,6 @@ RSpec/EmptyExampleGroup:
 Metrics/CyclomaticComplexity:
   Exclude:
     - 'app/services/the_movie_db.rb'
+Metrics/ClassLength:
+  Exclude:
+    - 'app/services/the_movie_db.rb'

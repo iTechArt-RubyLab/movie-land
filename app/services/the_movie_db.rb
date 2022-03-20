@@ -1,5 +1,5 @@
 class TheMovieDb
-  LIMIT = 650
+  LIMIT = 250
   AGE_ADULT = 18
   MIN_AGE = 0
   MAX_AGE = 17
@@ -7,15 +7,7 @@ class TheMovieDb
   def call
     genres_request
     companies_request
-    people_request
     movies_request
-    actors_request
-    movie_staffs_request('director')
-    movie_staffs_request('producer')
-    movie_staffs_request('editor')
-    movie_staffs_request('compositor')
-    movie_staffs_request('artist')
-    movie_staffs_request('screencaster')
   end
 
   private
@@ -26,28 +18,69 @@ class TheMovieDb
   end
 
   def companies_request
-    (1..LIMIT).each do |i|
-      result = Tmdb::Company.detail(i)
-      company = { name: result['name'] }
-      Company.create(company)
+    1.upto(LIMIT) do |company_id|
+      company = Tmdb::Company.detail(company_id)
+      Company.create({ name: company['name'] }) unless company.nil?
     end
   end
 
-  def people_request
-    (1..LIMIT).each do |i|
-      result = Tmdb::Person.detail(i)
-      country = Country.find_or_create_by(name: result['place_of_birth']&.split&.last)
-      country&.save
-      person = { name: result['name']&.split&.first, surname: result['name']&.split&.last,
-                 birthday: result['birthday'], deathday: result['deathday'], biography: result['biography'],
-                 country_id: country[:id],
-                 married: Faker::Boolean.boolean }
-      Person.create(person).save
+  def find_or_create_persons_country(persons_params)
+    if persons_params['place_of_birth'].present?
+      place_of_birth = persons_params['place_of_birth'].split.last
+      country = Country.find_or_create_by(name: place_of_birth)
+      country.id
+    end
+    nil
+  end
+
+  def movie_actors(movie)
+    movie_actors_params = Tmdb::Movie.casts(movie['id'])
+    movie_actors_params&.each do |movie_actor|
+      person_params = Tmdb::Person.detail(movie_actor['id'])
+      next if person_params.nil?
+
+      country_id = find_or_create_persons_country(person_params)
+      begin
+        person = Person.find_or_create_by(Helpers::TheMovieDbHelper::Person.new.params(
+                                            person_params, country_id
+                                          ))
+        ActorRole.find_or_create_by(actor: person, movie: movie, role_name: movie_actor['character'])
+      rescue StandardError
+        retry
+      end
+    end
+  end
+
+  def movie_staffs_request(movie, department, staff_type)
+    movie_staffs_params = Tmdb::Movie.crew(movie['id'])
+    movie_staffs_params&.each do |movie_staff|
+      if movie_staff['department'].eql?(department)
+        person_params = Tmdb::Person.detail(movie_staff['id'])
+        next if person_params.nil?
+
+        country_id = find_or_create_persons_country(person_params)
+        begin
+          person = Person.find_or_create_by(Helpers::TheMovieDbHelper::Person.new.params(
+                                              person_params, country_id
+                                            ))
+          MovieStaff.find_or_create_by(staff: person, movie: movie, staff_type: staff_type)
+        rescue StandardError
+          retry
+        end
+      end
+    end
+  end
+
+  def movie_tags_request(movie)
+    movie_tags_params = Tmdb::Movie.keywords(movie['id'])
+    movie_tags_params['keywords']&.each do |movie_tag|
+      tag = Tag.find_or_create_by(id: movie_tag['id'], name: movie_tag['name'])
+      MoviesTag.find_or_create_by(movie: movie, tag: tag)
     end
   end
 
   def movies_request
-    (1..LIMIT).each do |movie|
+    1.upto(LIMIT) do |movie|
       result = Tmdb::Movie.detail(movie)
       movie_values = { name: result['title'], age_limit: calculate_age_limit(result['adult']),
                        description: result['overview'], tagline: result['tagline'], trailer: Faker::Internet.url,
@@ -58,27 +91,15 @@ class TheMovieDb
       movie.genres.push(related_table_request(result['genres'], 'name', Genre))
       movie.companies.push(related_table_request(result['production_companies'], 'name', Company))
       movie.countries.push(related_table_request(result['production_countries'], 'name', Country))
+      movie_actors(movie)
+      movie_staffs_request(movie, 'Directing', 'director')
+      movie_staffs_request(movie, 'Production', 'producer')
+      movie_staffs_request(movie, 'Editing', 'editor')
+      movie_staffs_request(movie, 'Writing', 'screencaster')
+      movie_staffs_request(movie, 'Art', 'artist')
+      movie_staffs_request(movie, 'Sound', 'compositor')
+      movie_tags_request(movie)
       movie.save
-    end
-  end
-
-  def actors_request
-    person = Person.all
-    (1..Movie.count).each do |i|
-      next unless person[i]&.biography&.include?('actor' || 'actress')
-
-      actor = { actor_id: person[i].id, movie_id: Movie.find(i).id, role_name: Faker::Artist.name }
-      ActorRole.create(actor)
-    end
-  end
-
-  def movie_staffs_request(staff_type_name)
-    person = Person.all
-    (1..Movie.count).each do |i|
-      if person[i]&.biography&.include? staff_type_name
-        staff = { staff_id: person[i].id, movie_id: Movie.find(i).id, staff_type: staff_type_name }
-        MovieStaff.create(staff)
-      end
     end
   end
 
@@ -87,14 +108,12 @@ class TheMovieDb
   end
 
   def related_table_request(array, key, class_name)
-    temp = []
-    if array.nil?
-      temp = []
-    else
-      (0..array.length - 1).each do |i|
-        temp[i] = class_name.find_or_create_by(name: array[i][key])
+    result = []
+    unless array.nil?
+      0.upto(array.length - 1) do |array_element|
+        result[array_element] = class_name.find_or_create_by(name: array[array_element][key])
       end
-      temp
     end
+    result
   end
 end
