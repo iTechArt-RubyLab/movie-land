@@ -9,6 +9,7 @@ require 'elasticsearch/extensions/test/cluster'
 SimpleCov.start do
   add_group "Models", "app/models"
   add_group "Policies", "app/policies"
+  add_group "Integration", "spec/integration"
   add_group "Mailers", "app/mailers"
   add_group "Controllers", "app/controllers"
   add_group "Services", "app/services"
