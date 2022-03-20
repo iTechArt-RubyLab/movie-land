@@ -52,12 +52,6 @@ class User < ApplicationRecord
   extend Devise::Models
   include DeviseTokenAuth::Concerns::User
 
-  before_save :default_role
-
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :lockable, :confirmable, :trackable
-
   belongs_to :role, optional: true
   has_many :ratings, dependent: :destroy
   has_many :view_lists, dependent: :destroy
@@ -72,6 +66,14 @@ class User < ApplicationRecord
   validates :surname, length: { in: 2..25 }
   validates :username, length: { in: 4..20 }, uniqueness: { message: 'User with this username already exists' }
   validates :birthday, presence: true
+
+  before_save :default_role
+
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :lockable, :confirmable, :trackable
+
+  private
 
   def default_role
     self.role ||= Role.find_or_create_by(name: 'reviewer')
