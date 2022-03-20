@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe '/movie_reports', type: :request do
+  include_context 'with unique cleaner'
+
   let(:admin) { create :user, :admin }
   let(:valid_headers) { sign_in admin }
 

@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe MovieAwardPolicy do
   subject { described_class.new(user, movie_award) }
 
+  include_context 'with unique cleaner'
+
   let(:movie_award) { create :movie_award }
 
   context 'with admin access' do

@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe ViewListPolicy do
   subject { described_class.new(user, view_list) }
 
+  include_context 'with unique cleaner'
+
   let(:view_list) { create :view_list }
 
   context 'with admin access' do

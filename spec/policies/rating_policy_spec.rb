@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe RatingPolicy do
   subject { described_class.new(user, rating) }
 
+  include_context 'with unique cleaner'
+
   let(:rating) { create :rating }
 
   context 'with admin access' do

@@ -1,11 +1,3118 @@
 ---
 openapi: 3.0.1
 info:
-  title: API V1
+  title: Movie-land API
   version: v1
-paths: {}
+paths:
+  "/auth":
+    post:
+      summary: Sign up.
+      tags:
+      - Auth
+      parameters: []
+      responses:
+        '200':
+          description: Registration successfully.
+        '422':
+          description: Registration failed.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+                name:
+                  type: string
+                surname:
+                  type: string
+                username:
+                  type: string
+                birthday:
+                  type: date
+                role_id:
+                  type: integer
+              required:
+              - email
+              - password
+              - password_confirmation
+              - name
+              - surname
+              - username
+              - birthday
+              - role_id
+  "/auth/sign_in":
+    post:
+      summary: Sign in.
+      tags:
+      - Auth
+      parameters: []
+      responses:
+        '200':
+          description: Login successfully.
+        '401':
+          description: Login failed.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+  "/auth/sign_out":
+    delete:
+      summary: Sign out.
+      tags:
+      - Auth
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Logout successfully.
+        '404':
+          description: Logout failed.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+  "/api/v1/awards":
+    get:
+      summary: Retrieves all awards.
+      tags:
+      - Awards
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Awards found.
+        '401':
+          description: You are not authorized.
+    post:
+      summary: Create a award.
+      tags:
+      - Awards
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Award created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: Award creation failed validation.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                country_id:
+                  type: integer
+              required:
+              - name
+              - country_id
+  "/api/v1/awards/{id}":
+    get:
+      summary: Retrieves a award.
+      tags:
+      - Awards
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Awards found.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Award not found.
+    put:
+      summary: Update award.
+      tags:
+      - Awards
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Award updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  country:
+                    type: hash
+                required:
+                - id
+                - name
+                - country
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Award not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                country_id:
+                  type: integer
+              required:
+              - name
+              - country_id
+    delete:
+      summary: Delete award.
+      tags:
+      - Awards
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Award deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Award not found.
+  "/api/v1/awards/{award_id}/categories":
+    get:
+      summary: Retrieves all categories.
+      tags:
+      - AwardCategories
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: award_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: categories found.
+        '401':
+          description: You are not authorized.
+    post:
+      summary: Create a category on award.
+      tags:
+      - AwardCategories
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: award_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: category created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: Category creation failed validation.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                award_id:
+                  type: integer
+              required:
+              - name
+              - award_id
+  "/api/v1/awards/{award_id}/categories/{id}":
+    put:
+      summary: Update category.
+      tags:
+      - AwardCategories
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: award_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Category updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  award:
+                    type: hash
+                required:
+                - id
+                - name
+                - award
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Category not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                award_id:
+                  type: integer
+              required:
+              - name
+              - award_id
+    delete:
+      summary: Delete category.
+      tags:
+      - AwardCategories
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: award_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Category deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Category not found.
+  "/api/v1/movies/{movie_id}/comments":
+    post:
+      summary: Create a comment on movie.
+      tags:
+      - MovieComments
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: movie_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: comment created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: comment creation failed validation.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: text
+              required:
+              - body
+  "/api/v1/movies/{movie_id}/comments/{id}":
+    put:
+      summary: Update comment.
+      tags:
+      - MovieComments
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: movie_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: comment updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  body:
+                    type: text
+                required:
+                - id
+                - body
+        '401':
+          description: You are not authorized.
+        '404':
+          description: comment not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: text
+              required:
+              - body
+    delete:
+      summary: Delete comment.
+      tags:
+      - MovieComments
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: movie_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: comment deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: comment not found.
+  "/api/v1/comments/{comment_id}/comments":
+    post:
+      summary: Create a nested comment.
+      tags:
+      - NeastedComments
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: comment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Comment created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: Comment creation failed validation.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: text
+              required:
+              - body
+  "/api/v1/comments/{comment_id}/comments/{id}":
+    put:
+      summary: Update comment.
+      tags:
+      - NeastedComments
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: comment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: comment updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  body:
+                    type: text
+                required:
+                - id
+                - body
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Comment not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: text
+              required:
+              - body
+    delete:
+      summary: Delete comment.
+      tags:
+      - NeastedComments
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: comment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Comment deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Comment not found.
+  "/api/v1/people/{person_id}/comments":
+    post:
+      summary: Create a comment on person.
+      tags:
+      - PeopleComments
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: person_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Comment created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: Comment creation failed validation.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: text
+              required:
+              - body
+  "/api/v1/people/{person_id}/comments/{id}":
+    put:
+      summary: Update comment.
+      tags:
+      - PeopleComments
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: person_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Comment updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  body:
+                    type: text
+                required:
+                - id
+                - body
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Comment not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: text
+              required:
+              - body
+    delete:
+      summary: Delete comment.
+      tags:
+      - PeopleComments
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: person_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Comment deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Comment not found.
+  "/api/v1/companies":
+    get:
+      summary: Retrieves all companies.
+      tags:
+      - Companies
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Companies found.
+        '401':
+          description: You are not authorized.
+    post:
+      summary: Create company.
+      tags:
+      - Companies
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Company created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: Company creation failed validation.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+  "/api/v1/companies/{id}":
+    put:
+      summary: Update company.
+      tags:
+      - Companies
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Company updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                required:
+                - id
+                - name
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Company not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+    delete:
+      summary: Delete company.
+      tags:
+      - Companies
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Company deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Company not found.
+  "/api/v1/countries":
+    get:
+      summary: Retrieves all countries.
+      tags:
+      - Countries
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Countries found.
+        '401':
+          description: You are not authorized.
+    post:
+      summary: Create country.
+      tags:
+      - Countries
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Country created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: Country creation failed validation.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+  "/api/v1/countries/{id}":
+    put:
+      summary: Update country.
+      tags:
+      - Countries
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Country updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                required:
+                - id
+                - name
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Country not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+    delete:
+      summary: Delete country.
+      tags:
+      - Countries
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Country deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Country not found.
+  "/api/v1/genres":
+    get:
+      summary: Retrieves all genres.
+      tags:
+      - Genres
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Genres found.
+        '401':
+          description: You are not authorized.
+    post:
+      summary: Create genre.
+      tags:
+      - Genres
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Genre created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: Genre creation failed validation.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+  "/api/v1/genres/{id}":
+    put:
+      summary: Update genre.
+      tags:
+      - Genres
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Genre updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                required:
+                - id
+                - name
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Genre not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+    delete:
+      summary: Delete genre.
+      tags:
+      - Genres
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Genre deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Genre not found.
+  "/api/v1/languages":
+    get:
+      summary: Retrieves all languages.
+      tags:
+      - Languages
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Languages found.
+        '401':
+          description: You are not authorized.
+    post:
+      summary: Create language.
+      tags:
+      - Languages
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Language created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: Language creation failed validation.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+  "/api/v1/languages/{id}":
+    put:
+      summary: Update language.
+      tags:
+      - Languages
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Language updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                required:
+                - id
+                - name
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Language not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+    delete:
+      summary: Delete language.
+      tags:
+      - Languages
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Language deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Language not found.
+  "/api/v1/movies/{movie_id}/movie_awards":
+    get:
+      summary: Retrieves all movie awards.
+      tags:
+      - MovieAwards
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: movie_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Movie awards found.
+        '401':
+          description: You are not authorized.
+    post:
+      summary: Create a movie award.
+      tags:
+      - MovieAwards
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: movie_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Movie award created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: Movie award creation failed.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delivery_year:
+                  type: date
+                nomination_type:
+                  type: string
+                cotegory_id:
+                  type: integer
+              required:
+              - delivery_year
+              - nomination_type
+              - cotegory_id
+  "/api/v1/movies/{movie_id}/movie_awards/{id}":
+    get:
+      summary: Retrieves a movie award.
+      tags:
+      - MovieAwards
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: movie_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Movie award found.
+        '404':
+          description: Movie award not found.
+    put:
+      summary: Update movie.
+      tags:
+      - MovieAwards
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: movie_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Movie award updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  delivery_year:
+                    type: date
+                  nomination_type:
+                    type: string
+                  category:
+                    type: hash
+                required:
+                - id
+                - delivery_year
+                - nomination_type
+                - category
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Movie award not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delivery_year:
+                  type: date
+                nomination_type:
+                  type: string
+                category_id:
+                  type: integer
+              required:
+              - delivery_year
+              - nomination_type
+              - country_id
+    delete:
+      summary: Delete movie.
+      tags:
+      - MovieAwards
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: movie_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Movie award deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Movie award not found.
+  "/api/v1/movie-reports":
+    get:
+      summary: Retrieves csv report from all movies.
+      tags:
+      - MovieReports
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Movies csv upload successfully.
+  "/api/v1/movies/{movie_id}/movie-report":
+    get:
+      summary: Retrieves csv uploader from a movie.
+      tags:
+      - MovieReports
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: movie_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Movie csv upload successfully
+        '404':
+          description: Movie not found.
+  "/api/v1/movies":
+    get:
+      summary: Retrieves all movies.
+      tags:
+      - Movies
+      responses:
+        '200':
+          description: Movies found.
+    post:
+      summary: Create a movie.
+      tags:
+      - Movies
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Movie created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: Movie creation failed.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: text
+                tagline:
+                  type: string
+                trailer:
+                  type: string
+                release_date:
+                  type: date
+                age_limit:
+                  type: integer
+                budget:
+                  type: integer
+                duration:
+                  type: integer
+                poster:
+                  type: hash
+                images:
+                  type: array
+                  items:
+                    type: hash
+              required:
+              - name
+              - description
+              - tagline
+              - trailer
+              - release_date
+              - age_limit
+              - budget
+              - duration
+              - poster
+              - images
+  "/api/v1/movies/{id}":
+    get:
+      summary: Retrieves a movie.
+      tags:
+      - Movies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Movie found.
+        '404':
+          description: Movie not found.
+    put:
+      summary: Update movie.
+      tags:
+      - Movies
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Movie updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: text
+                  tagline:
+                    type: string
+                  trailer:
+                    type: string
+                  release_date:
+                    type: date
+                  age_limit:
+                    type: integer
+                  budget:
+                    type: integer
+                  duration:
+                    type: integer
+                  poster:
+                    type: hash
+                  images:
+                    type: array
+                    items:
+                      type: hash
+                required:
+                - id
+                - name
+                - description
+                - tagline
+                - trailer
+                - release_date
+                - age_limit
+                - budget
+                - duration
+                - poster
+                - images
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Movie not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: text
+                tagline:
+                  type: string
+                trailer:
+                  type: string
+                release_date:
+                  type: date
+                age_limit:
+                  type: integer
+                budget:
+                  type: integer
+                duration:
+                  type: integer
+                poster:
+                  type: hash
+                images:
+                  type: array
+                  items:
+                    type: hash
+              required:
+              - name
+              - description
+              - tagline
+              - trailer
+              - release_date
+              - age_limit
+              - budget
+              - duration
+              - poster
+              - images
+    delete:
+      summary: Delete movie.
+      tags:
+      - Movies
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Movie deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Movie not found.
+  "/api/v1/people":
+    get:
+      summary: Retrieves all people.
+      tags:
+      - People
+      responses:
+        '200':
+          description: people found.
+    post:
+      summary: Create a person.
+      tags:
+      - People
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Person created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: Person creation failed.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                surname:
+                  type: string
+                birthday:
+                  type: date
+                deathday:
+                  type: date
+                country_id:
+                  type: integer
+                married:
+                  type: boolean
+              required:
+              - name
+              - surname
+              - birthday
+              - deathday
+              - country_id
+              - married
+  "/api/v1/people/{id}":
+    get:
+      summary: Retrieves a person.
+      tags:
+      - People
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Person found.
+        '404':
+          description: Person not found.
+    put:
+      summary: Update person.
+      tags:
+      - People
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Person updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  surname:
+                    type: string
+                  birthday:
+                    type: date
+                  deathday:
+                    type: date
+                  country:
+                    type: hash
+                  married:
+                    type: boolean
+                required:
+                - id
+                - name
+                - surname
+                - birthday
+                - deathday
+                - country
+                - married
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Person not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                surname:
+                  type: string
+                birthday:
+                  type: date
+                deathday:
+                  type: date
+                country_id:
+                  type: integer
+                married:
+                  type: boolean
+              required:
+              - name
+              - surname
+              - birthday
+              - deathday
+              - country_id
+              - married
+    delete:
+      summary: Delete person.
+      tags:
+      - People
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Person deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Person not found.
+  "/api/v1/roles/{role_id}/permissions":
+    get:
+      summary: Retrieves a role.
+      tags:
+      - RolePermissions
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: role_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Permission found.
+    post:
+      summary: Create a permission on Role.
+      tags:
+      - RolePermissions
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: role_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Permission created.
+        '401':
+          description: You are not authorized.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                can_lock_user:
+                  type: boolean
+                can_edit_role:
+                  type: boolean
+                can_edit_permission:
+                  type: boolean
+                can_give_rating:
+                  type: boolean
+                can_set_role:
+                  type: boolean
+                can_edit_movie:
+                  type: boolean
+                can_read_movie:
+                  type: boolean
+                can_edit_person:
+                  type: boolean
+                can_read_person:
+                  type: boolean
+                can_read_entities:
+                  type: boolean
+                can_edit_entities:
+                  type: boolean
+                can_read_user:
+                  type: boolean
+                can_edit_view_list:
+                  type: boolean
+                can_read_view_list:
+                  type: boolean
+                can_leave_comment:
+                  type: boolean
+                can_export_to_csv:
+                  type: boolean
+                can_read_award:
+                  type: boolean
+                can_edit_award:
+                  type: boolean
+              required:
+              - can_lock_user
+              - can_edit_role
+              - can_edit_permission
+              - can_give_rating
+              - can_set_role
+              - can_edit_movie
+              - can_read_movie
+              - can_edit_person
+              - can_read_person
+              - can_read_entities
+              - can_edit_entities
+              - can_read_user
+              - can_edit_view_list
+              - can_read_view_list
+              - can_leave_comment
+              - can_export_to_csv
+              - can_read_award
+              - can_edit_award
+    put:
+      summary: Update permission.
+      tags:
+      - RolePermissions
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: role_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Permission updated.
+        '401':
+          description: You are not authorized.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                can_lock_user:
+                  type: boolean
+                can_edit_role:
+                  type: boolean
+                can_edit_permission:
+                  type: boolean
+                can_give_rating:
+                  type: boolean
+                can_set_role:
+                  type: boolean
+                can_edit_movie:
+                  type: boolean
+                can_read_movie:
+                  type: boolean
+                can_edit_person:
+                  type: boolean
+                can_read_person:
+                  type: boolean
+                can_read_entities:
+                  type: boolean
+                can_edit_entities:
+                  type: boolean
+                can_read_user:
+                  type: boolean
+                can_edit_view_list:
+                  type: boolean
+                can_read_view_list:
+                  type: boolean
+                can_leave_comment:
+                  type: boolean
+                can_export_to_csv:
+                  type: boolean
+                can_read_award:
+                  type: boolean
+                can_edit_award:
+                  type: boolean
+              required:
+              - can_lock_user
+              - can_edit_role
+              - can_edit_permission
+              - can_give_rating
+              - can_set_role
+              - can_edit_movie
+              - can_read_movie
+              - can_edit_person
+              - can_read_person
+              - can_read_entities
+              - can_edit_entities
+              - can_read_user
+              - can_edit_view_list
+              - can_read_view_list
+              - can_leave_comment
+              - can_export_to_csv
+              - can_read_award
+              - can_edit_award
+  "/api/v1/person-reports":
+    get:
+      summary: Retrieves csv report from all movies.
+      tags:
+      - PersonReports
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Movies csv upload successfully.
+  "/api/v1/people/{person_id}/person-report":
+    get:
+      summary: Retrieves csv uploader from a movie.
+      tags:
+      - PersonReports
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: person_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Movis csv upload successfully
+        '404':
+          description: Movie not found.
+  "/api/v1/my-ratings":
+    get:
+      summary: Retrieves all ratings.
+      tags:
+      - Ratings
+      parameters:
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: My ratings.
+        '401':
+          description: You are not authorized.
+    post:
+      summary: Create a rating.
+      tags:
+      - Ratings
+      parameters:
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Rating created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: Rating creation failed.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating:
+                  type: object
+                  properties:
+                    rating:
+                      type: integer
+                    created_at:
+                      type: date
+                    user_id:
+                      type: integer
+                    movie_id:
+                      type: integer
+                  required:
+                  - rating
+                  - created_at
+                  - user_id
+                  - movie_id
+              required:
+              - rating
+  "/api/v1/my-ratings/{id}":
+    put:
+      summary: Update rating.
+      tags:
+      - Ratings
+      parameters:
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Rating updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  rating:
+                    type: integer
+                  created_at:
+                    type: date
+                  user:
+                    type: hash
+                  movie:
+                    type: hash
+                required:
+                - id
+                - rating
+                - user
+                - movie
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Rating not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating:
+                  type: object
+                  properties:
+                    rating:
+                      type: integer
+                    created_at:
+                      type: date
+                    user_id:
+                      type: integer
+                    movie_id:
+                      type: integer
+                  required:
+                  - rating
+                  - created_at
+                  - user_id
+                  - movie_id
+              required:
+              - rating
+    delete:
+      summary: Delete rating.
+      tags:
+      - Ratings
+      parameters:
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Rating deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Rating not found.
+  "/api/v1/roles":
+    get:
+      summary: Retrieves all roles.
+      tags:
+      - Roles
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Roles found.
+        '401':
+          description: You are not authorized.
+    post:
+      summary: Create role.
+      tags:
+      - Roles
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Role created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: Role creation failed validation.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+  "/api/v1/roles/{id}":
+    put:
+      summary: Update role.
+      tags:
+      - Roles
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Role updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                required:
+                - id
+                - name
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Role not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+    delete:
+      summary: Delete role.
+      tags:
+      - Roles
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Role deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Role not found.
+  "/api/v1/tags":
+    get:
+      summary: Retrieves all tags.
+      tags:
+      - Tags
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tags found.
+        '401':
+          description: You are not authorized
+  "/api/v1/users":
+    get:
+      summary: Retrieves all users.
+      tags:
+      - Users
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Users found.
+  "/api/v1/users/{id}":
+    get:
+      summary: Retrieves a sser.
+      tags:
+      - Users
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User found.
+        '404':
+          description: User not found.
+    put:
+      summary: Update User.
+      tags:
+      - Users
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  email:
+                    type: string
+                  username:
+                    type: string
+                  name:
+                    type: string
+                  surname:
+                    type: string
+                  birthday:
+                    type: date
+                required:
+                - id
+                - email
+                - username
+                - name
+                - surname
+                - birthday
+        '401':
+          description: You are not authorized.
+        '404':
+          description: User not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                email:
+                  type: string
+                username:
+                  type: string
+                name:
+                  type: string
+                surname:
+                  type: string
+                birthday:
+                  type: date
+              required:
+              - id
+              - email
+              - username
+              - name
+              - surname
+              - birthday
+  "/api/v1/my-view-list":
+    get:
+      summary: Retrieves my viewlist.
+      tags:
+      - Viewlist
+      parameters:
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: My viewlist.
+        '401':
+          description: You are not authorized.
+    post:
+      summary: Create a viewlist item.
+      tags:
+      - Viewlist
+      parameters:
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      responses:
+        '201':
+          description: ViewList item created.
+        '401':
+          description: You are not authorized.
+        '422':
+          description: ViewList item creation failed.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                watching_status:
+                  type: string
+                user_id:
+                  type: integer
+                movie_id:
+                  type: integer
+              required:
+              - watching_status
+              - user_id
+              - movie_id
+  "/api/v1/my-view-list/{id}":
+    put:
+      summary: Update viewlist item.
+      tags:
+      - Viewlist
+      parameters:
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: view_list updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  watching_status:
+                    type: string
+                  user:
+                    type: hash
+                  movie:
+                    type: hash
+                required:
+                - id
+                - watching_status
+                - user
+                - movie
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Viewlist item not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                watching_status:
+                  type: string
+                user_id:
+                  type: integer
+                movie_id:
+                  type: integer
+              required:
+              - watching_status
+              - user_id
+              - movie_id
+    delete:
+      summary: Delete view_list.
+      tags:
+      - Viewlist
+      parameters:
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Viewlist item deleted successfully.
+        '401':
+          description: You are not authorized.
+        '404':
+          description: Viewlist item not found.
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}/
   variables:
     defaultHost:
-      default: www.example.com
+      default: localhost:3000

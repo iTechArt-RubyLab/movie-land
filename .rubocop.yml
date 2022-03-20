@@ -49,3 +49,12 @@ RSpec/ImplicitExpect:
 Lint/MissingSuper:
   Exclude:
     - 'app/services/**/*'
+
+RSpec/VariableName:
+  IgnoredPatterns:
+    - access-token
+
+RSpec/EmptyExampleGroup:
+  Exclude:
+    - 'spec/integration/movie_report_spec.rb'
+    - 'spec/integration/person_report_spec.rb'

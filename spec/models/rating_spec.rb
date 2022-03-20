@@ -23,6 +23,8 @@
 require 'rails_helper'
 
 RSpec.describe Rating, type: :model do
+  include_context 'with unique cleaner'
+
   context 'with valid attributes' do
     subject(:rating) { create :rating }
 

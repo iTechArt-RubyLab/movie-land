@@ -25,6 +25,8 @@ require 'rails_helper'
 RSpec.describe ViewList, type: :model do
   subject(:view_list) { create :view_list }
 
+  include_context 'with unique cleaner'
+
   context 'with valid attributes' do
     it { expect(view_list).to be_valid }
   end

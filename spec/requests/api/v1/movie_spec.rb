@@ -1,10 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe '/movies', type: :request do
-  before do
-    Faker::Movie.unique.clear
-    Faker::UniqueGenerator.clear
-  end
+  include_context 'with unique cleaner'
 
   let(:admin) { create :user, :admin }
   let(:valid_headers) { sign_in admin }
