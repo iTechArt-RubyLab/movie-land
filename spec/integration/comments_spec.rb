@@ -27,7 +27,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          body: { type: :text }
+          body: { type: :string }
         },
         required: %w[body]
       }
@@ -69,7 +69,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          body: { type: :text }
+          body: { type: :string }
         },
         required: %w[body]
       }
@@ -79,7 +79,7 @@ RSpec.describe 'api/v1/comments', type: :request do
         schema type: :object,
                properties: {
                  id: { type: :integer },
-                 body: { type: :text }
+                 body: { type: :string }
                },
                required: %w[id body]
 
@@ -153,7 +153,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          body: { type: :text }
+          body: { type: :string }
         },
         required: %w[body]
       }
@@ -195,7 +195,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          body: { type: :text }
+          body: { type: :string }
         },
         required: %w[body]
       }
@@ -205,7 +205,7 @@ RSpec.describe 'api/v1/comments', type: :request do
         schema type: :object,
                properties: {
                  id: { type: :integer },
-                 body: { type: :text }
+                 body: { type: :string }
                },
                required: %w[id body]
 
@@ -279,7 +279,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          body: { type: :text }
+          body: { type: :string }
         },
         required: %w[body]
       }
@@ -321,7 +321,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          body: { type: :text }
+          body: { type: :string }
         },
         required: %w[body]
       }
@@ -331,7 +331,7 @@ RSpec.describe 'api/v1/comments', type: :request do
         schema type: :object,
                properties: {
                  id: { type: :integer },
-                 body: { type: :text }
+                 body: { type: :string }
                },
                required: %w[id body]
 

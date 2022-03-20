@@ -21,7 +21,7 @@ RSpec.describe 'auth', type: :request do
           name: { type: :string },
           surname: { type: :string },
           username: { type: :string },
-          birthday: { type: :date },
+          birthday: { type: :string, format: :date },
           role_id: { type: :integer }
         },
         required: %w[email password password_confirmation name surname username birthday role_id]

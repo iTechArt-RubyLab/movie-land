@@ -30,15 +30,15 @@ RSpec.describe 'api/v1/movies', type: :request do
         type: :object,
         properties: {
           name: { type: :string },
-          description: { type: :text },
+          description: { type: :string },
           tagline: { type: :string },
           trailer: { type: :string },
-          release_date: { type: :date },
+          release_date: { type: :string, format: :date },
           age_limit: { type: :integer },
           budget: { type: :integer },
           duration: { type: :integer },
-          poster: { type: :hash },
-          images: { type: :array, items: { type: :hash } }
+          poster: { url: { type: :string } },
+          images: { type: :array, items: { url: { type: :string } } }
         },
         required: %w[name description tagline trailer release_date age_limit budget duration
                      poster images]
@@ -99,15 +99,15 @@ RSpec.describe 'api/v1/movies', type: :request do
         type: :object,
         properties: {
           name: { type: :string },
-          description: { type: :text },
+          description: { type: :string },
           tagline: { type: :string },
           trailer: { type: :string },
-          release_date: { type: :date },
+          release_date: { type: :string, format: :date },
           age_limit: { type: :integer },
           budget: { type: :integer },
           duration: { type: :integer },
-          poster: { type: :hash },
-          images: { type: :array, items: { type: :hash } }
+          poster: { url: { type: :string } },
+          images: { type: :array, items: { url: { type: :string } } }
         },
         required: %w[name description tagline trailer release_date age_limit budget duration
                      poster images]
@@ -119,15 +119,15 @@ RSpec.describe 'api/v1/movies', type: :request do
                properties: {
                  id: { type: :integer },
                  name: { type: :string },
-                 description: { type: :text },
+                 description: { type: :string },
                  tagline: { type: :string },
                  trailer: { type: :string },
-                 release_date: { type: :date },
+                 release_date: { type: :string, format: :date },
                  age_limit: { type: :integer },
                  budget: { type: :integer },
                  duration: { type: :integer },
-                 poster: { type: :hash },
-                 images: { type: :array, items: { type: :hash } }
+                 poster: { url: { type: :string } },
+                 images: { type: :array, items: { url: { type: :string } } }
                },
                required: %w[id name description tagline trailer release_date age_limit budget duration
                             poster images]
