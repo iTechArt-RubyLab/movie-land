@@ -10,17 +10,13 @@ RSpec.describe Ratings::FindService, type: :model do
     context 'when attributes contain order by desc' do
       let(:params) { { order: :desc } }
 
-      it 'returns ratings' do
-        expect(rating_service.call(user, params)).eql? ratings.sort_by(&:rating).reverse
-      end
+      it { expect(rating_service.call(user, params)).eql? ratings.sort_by(&:rating).reverse }
     end
 
     context 'when params is empty and default order by asc' do
       let(:params) { {} }
 
-      it 'returns ratings' do
-        expect(rating_service.call(user, params)).eql? ratings.sort_by(&:rating)
-      end
+      it { expect(rating_service.call(user, params)).eql? ratings.sort_by(&:rating) }
     end
   end
 end
