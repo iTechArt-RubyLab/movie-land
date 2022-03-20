@@ -25,6 +25,7 @@ class MovieAward < ApplicationRecord
   belongs_to :category
   has_many :movie_awards_person, dependent: :delete_all
   has_many :people, through: :movie_awards_person, dependent: :destroy
+
   enum nomination_type: { winner: 0, nominator: 1 }
 
   validates :delivery_year, numericality: { only_integer: true }, inclusion: { in: 1900..Time.zone.now.year }

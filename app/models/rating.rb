@@ -21,10 +21,10 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Rating < ApplicationRecord
+  before_save :calculate_rating
+
   belongs_to :user
   belongs_to :movie
-
-  before_save :calculate_rating
 
   validates :rating, numericality: { only_integer: true }, inclusion: { in: 1..10 }
   validates :user_id, uniqueness: { scope: :movie_id, message: 'This movie already rated by you.' }

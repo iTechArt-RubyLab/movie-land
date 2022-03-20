@@ -13,5 +13,6 @@
 class MovieAwardsPerson < ApplicationRecord
   belongs_to :movie_award
   belongs_to :person
+
   validates :person_id, uniqueness: { scope: :movie_awards_id, message: 'This movie award already appointed' }
 end
