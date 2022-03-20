@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe EntityManager::RatingService, type: :model do
+RSpec.describe Ratings::FindService, type: :model do
   subject(:rating_service) { described_class }
 
   let!(:ratings) { create_list(:rating, 20) }
@@ -11,7 +11,7 @@ RSpec.describe EntityManager::RatingService, type: :model do
       let(:params) { { order: :desc } }
 
       it 'returns ratings' do
-        expect(rating_service.call(user: user, attributes: params)).eql? ratings.sort_by(&:rating).reverse
+        expect(rating_service.call(user, params)).eql? ratings.sort_by(&:rating).reverse
       end
     end
 
@@ -19,7 +19,7 @@ RSpec.describe EntityManager::RatingService, type: :model do
       let(:params) { {} }
 
       it 'returns ratings' do
-        expect(rating_service.call(user: user, attributes: params)).eql? ratings.sort_by(&:rating)
+        expect(rating_service.call(user, params)).eql? ratings.sort_by(&:rating)
       end
     end
   end

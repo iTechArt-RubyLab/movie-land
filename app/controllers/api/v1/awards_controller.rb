@@ -6,7 +6,7 @@ module Api
       after_action :verify_authorized
 
       def index
-        @awards = Dictionary::FindService.call(Award, params)
+        @awards = Awards::FindService.call(params)
 
         render json: @awards, each_serializer: AwardSerializer
       end

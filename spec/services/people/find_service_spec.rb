@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe EntityManager::PersonService, type: :model do
+RSpec.describe People::FindService, type: :model do
   subject(:person_service) { described_class }
 
   let!(:people) { create_list(:person, 20) }
@@ -25,7 +25,7 @@ RSpec.describe EntityManager::PersonService, type: :model do
     end
 
     context 'when params contain name of non-existent person' do
-      let(:params) { { filter: Faker::Lorem.characters(number: 7) } }
+      let(:params) { { filter: Faker::Lorem.characters(number: 10) } }
 
       it 'returns count of people' do
         expect(person_service.call(params).count).to eq 0

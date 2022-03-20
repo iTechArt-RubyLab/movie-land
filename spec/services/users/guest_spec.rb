@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe GuestUser, type: :model do
+RSpec.describe Users::Guest, type: :model do
   subject(:guest_user) { described_class.new }
 
   context 'with accessable permission' do

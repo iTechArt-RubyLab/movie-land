@@ -6,16 +6,16 @@ module Api
       after_action :verify_authorized
 
       def index
-        @categories = CategoryService.new(params).call
+        @categories = Categories::FindService.call(params)
 
-        render json: @categories, each_serializer: CategorySerializer
+        render json: @categories, each_serializer: DictionarySerializer
       end
 
       def create
         @category = Award.find(params[:award_id]).categories.build(category_params)
 
         if @category.save
-          render json: @category, status: :created, serializer: CategorySerializer
+          render json: @category, status: :created, serializer: DictionarySerializer
         else
           render json: @category.errors, status: :unprocessable_entity
         end
@@ -23,7 +23,7 @@ module Api
 
       def update
         if @category.update(category_params)
-          render json: @category, serializer: CategorySerializer
+          render json: @category, serializer: DictionarySerializer
         else
           render json: @category.errors, status: :unprocessable_entity
         end

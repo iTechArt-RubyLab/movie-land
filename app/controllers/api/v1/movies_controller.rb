@@ -6,7 +6,7 @@ module Api
       after_action :verify_authorized
 
       def index
-        @movies = EntityManager::MovieService.call(params)
+        @movies = Movies::FindService.call(params)
 
         render json: @movies, each_serializer: MovieSerializer
       end
