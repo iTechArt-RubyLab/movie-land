@@ -133,10 +133,10 @@ RSpec.describe Movie, type: :model do
 
   context 'with indexes' do
     it 'when indexed' do
-      create(:movie, name: 'American History X')
+      create(:movie, name: 'Green Mile')
 
       described_class.__elasticsearch__.refresh_index!
-      expect(described_class.search('hist').results.total).to eq(1)
+      expect(described_class.search('green').results.total).to eq(1)
     end
   end
 
