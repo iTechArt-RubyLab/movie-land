@@ -328,7 +328,7 @@ paths:
           type: string
       responses:
         '200':
-          description: categories found.
+          description: Categories found.
         '401':
           description: You are not authorized.
     post:
@@ -358,7 +358,7 @@ paths:
           type: string
       responses:
         '201':
-          description: category created.
+          description: Category created.
         '401':
           description: You are not authorized.
         '422':
@@ -419,12 +419,9 @@ paths:
                     type: integer
                   name:
                     type: string
-                  award:
-                    type: hash
                 required:
                 - id
                 - name
-                - award
         '401':
           description: You are not authorized.
         '404':
@@ -507,11 +504,11 @@ paths:
           type: string
       responses:
         '201':
-          description: comment created.
+          description: Comment created.
         '401':
           description: You are not authorized.
         '422':
-          description: comment creation failed validation.
+          description: Comment creation failed validation.
       requestBody:
         content:
           application/json:
@@ -555,7 +552,7 @@ paths:
           type: string
       responses:
         '200':
-          description: comment updated.
+          description: Comment updated.
           content:
             application/json:
               schema:
@@ -571,7 +568,7 @@ paths:
         '401':
           description: You are not authorized.
         '404':
-          description: comment not found.
+          description: Comment not found.
       requestBody:
         content:
           application/json:
@@ -614,11 +611,11 @@ paths:
           type: string
       responses:
         '204':
-          description: comment deleted successfully.
+          description: Comment deleted successfully.
         '401':
           description: You are not authorized.
         '404':
-          description: comment not found.
+          description: Comment not found.
   "/api/v1/comments/{comment_id}/comments":
     post:
       summary: Create a nested comment.
@@ -695,7 +692,7 @@ paths:
           type: string
       responses:
         '200':
-          description: comment updated.
+          description: Comment updated.
           content:
             application/json:
               schema:
