@@ -1,6 +1,4 @@
 class UserPolicy < ApplicationPolicy
-  attr_reader :user, :record
-
   def index?
     user.can_read_user?
   end

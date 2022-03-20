@@ -1,6 +1,4 @@
 class MovieReportPolicy < ApplicationPolicy
-  attr_reader :user, :record
-
   def index?
     user.can_export_to_csv?
   end
