@@ -3,7 +3,6 @@
 # Table name: people
 #
 #  id         :bigint           not null, primary key
-#  biography  :text
 #  birthday   :date
 #  deathday   :date
 #  married    :boolean
@@ -58,10 +57,10 @@ RSpec.describe Person, type: :model do
 
   context 'with indexes' do
     it 'when indexed' do
-      create(:person, name: 'John', surname: 'Doe')
+      create(:person, name: 'John', surname: 'Zxc')
 
       described_class.__elasticsearch__.refresh_index!
-      expect(described_class.search('doe').results.total).to eq(1)
+      expect(described_class.search('zxc').results.total).to eq(1)
     end
   end
 
