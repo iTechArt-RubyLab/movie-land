@@ -42,6 +42,9 @@ Metrics/MethodLength:
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
 
+Rails/I18nLocaleTexts:
+  Enabled: false
+
 RSpec/ImplicitExpect:
   Exclude:
     - 'spec/models/**'

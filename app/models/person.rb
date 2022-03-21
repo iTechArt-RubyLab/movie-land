@@ -26,7 +26,6 @@ class Person < ApplicationRecord
 
   belongs_to :country, optional: true
   has_many :actor_roles, foreign_key: :actor_id, class_name: 'ActorRole', dependent: :delete_all, inverse_of: :actor
-  has_many :movies, through: :actor_roles, dependent: :destroy
   has_many :movie_staffs, foreign_key: :staff_id, class_name: 'MovieStaff', dependent: :delete_all, inverse_of: :staff
   has_many :movies, through: :movie_staffs, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :delete_all
