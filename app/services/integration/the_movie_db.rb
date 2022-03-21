@@ -5,6 +5,9 @@ module Integration
     MIN_AGE = 0
     MAX_AGE = 17
     AWARD_YEAR = 1
+    EXISTS_MOVIE = LIMIT + 1
+    PREMIERE_LIMIT = EXISTS_MOVIE + 20
+    DAYS_IN_WEEK = 7
     NOMINATION_TYPES = %w[winner nominator].freeze
     DEFAULT_IMAGE_URL = 'http://image.tmdb.org/t/p/original'.freeze
 
@@ -15,6 +18,7 @@ module Integration
       categories
       movies_request
       reviewers_functions
+      premieres
     end
 
     private
@@ -153,6 +157,20 @@ module Integration
         FactoryBot.create(:rating, user: reviewer, movie: Movie.all.sample)
         FactoryBot.create(:comment, user: reviewer, commentable: Movie.all.sample)
         FactoryBot.create(:comment, :for_person, user: reviewer, commentable: Person.all.sample)
+      end
+    end
+
+    def premieres
+      EXISTS_MOVIE.upto(PREMIERE_LIMIT) do |movie|
+        result = Tmdb::Movie.detail(movie)
+        next if result['title'].nil?
+
+        movie_values = { name: result['title'], age_limit: calculate_age_limit(result['adult']),
+                         description: result['overview'], tagline: result['tagline'], trailer: Faker::Internet.url,
+                         release_date: Faker::Date.between(from: Time.zone.today, to: Time.zone.today + DAYS_IN_WEEK),
+                         budget: result['budget'],
+                         duration: Faker::Number.number(digits: 3) }
+        Movie.create(movie_values)
       end
     end
   end
