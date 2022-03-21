@@ -7,8 +7,8 @@ module Api
       has_many :genres, serializer: DictionarySerializer
       has_many :countries, serializer: DictionarySerializer
       has_many :companies, serializer: DictionarySerializer
-      has_many :actors, serializer: PersonSerializer
-      has_many :staffs, serializer: PersonSerializer
+      has_many :actor_roles, serializer: ActorRoleSerializer
+      has_many :movie_staffs, serializer: MovieStaffSerializer
       has_many :languages, serializer: DictionarySerializer
       has_many :tags, serializer: DictionarySerializer
       has_many :comments, serializer: CommentSerializer
