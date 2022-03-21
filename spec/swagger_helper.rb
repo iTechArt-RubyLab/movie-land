@@ -28,6 +28,9 @@ RSpec.configure do |config|
               default: 'localhost:3000'
             }
           }
+        },
+        {
+          url: 'https://movie-land-api-v1.herokuapp.com/'
         }
       ]
     }

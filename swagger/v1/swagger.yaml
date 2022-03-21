@@ -616,7 +616,7 @@ paths:
     post:
       summary: Create a nested comment.
       tags:
-      - NeastedComments
+      - NestedComments
       parameters:
       - name: access-token
         in: header
@@ -659,7 +659,7 @@ paths:
     put:
       summary: Update comment.
       tags:
-      - NeastedComments
+      - NestedComments
       parameters:
       - name: access-token
         in: header
@@ -718,7 +718,7 @@ paths:
     delete:
       summary: Delete comment.
       tags:
-      - NeastedComments
+      - NestedComments
       parameters:
       - name: access-token
         in: header
@@ -756,7 +756,7 @@ paths:
     post:
       summary: Create a comment on person.
       tags:
-      - PeopleComments
+      - PersonComments
       parameters:
       - name: access-token
         in: header
@@ -799,7 +799,7 @@ paths:
     put:
       summary: Update comment.
       tags:
-      - PeopleComments
+      - PersonComments
       parameters:
       - name: access-token
         in: header
@@ -858,7 +858,7 @@ paths:
     delete:
       summary: Delete comment.
       tags:
-      - PeopleComments
+      - PersonComments
       parameters:
       - name: access-token
         in: header
@@ -3121,3 +3121,4 @@ servers:
   variables:
     defaultHost:
       default: localhost:3000
+- url: https://movie-land-api-v1.herokuapp.com/
