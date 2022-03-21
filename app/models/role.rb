@@ -49,6 +49,10 @@ class Role < ApplicationRecord
     editor? ? true : permision? && permission.can_export_to_csv
   end
 
+  def can_use_search?
+    predefined_user? ? true : permision? && permission.can_use_search
+  end
+
   def can_edit_role?
     admin? ? true : permision? && permission.can_edit_role
   end

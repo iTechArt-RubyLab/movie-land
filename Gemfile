@@ -16,10 +16,15 @@ gem 'redis', '~> 4.6.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
+
 gem 'devise'
+
 gem 'devise_token_auth', '~> 1.2'
+
 gem 'mini_magick'
+
 gem 'rswag-api'
+
 gem 'rswag-ui'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -46,34 +51,54 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'rack-cors'
 
 gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: 'main'
+
 gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: 'main'
 
 group :development, :test do
   gem 'brakeman'
+
   gem 'bundler-audit'
+
   gem 'factory_bot_rails'
+
   gem 'faker'
+
   gem 'pry-nav'
+
   gem 'pry-rails'
+
   gem 'rails-erd'
+
   gem 'rubocop', require: false
+
   gem 'rubocop-performance', require: false
+
   gem 'rubocop-rails', require: false
+
   gem 'rubocop-rspec', require: false
 end
 
 group :test do
   gem 'database_cleaner-active_record'
+
+  gem 'elasticsearch-extensions'
+
   gem 'pundit-matchers'
+
   gem 'rspec-rails'
+
   gem 'rswag-specs'
+
   gem 'shoulda-matchers'
+
   gem 'simplecov', require: false
 end
 
 group :development do
   gem 'annotate'
+
   gem 'bullet'
+
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

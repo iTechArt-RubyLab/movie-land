@@ -69,6 +69,10 @@ RSpec.describe Role, type: :model do
       it { expect(admin_role).to be_can_export_to_csv }
     end
 
+    context 'when can_use_search' do
+      it { expect(admin_role).to be_can_use_search }
+    end
+
     context 'when can_edit_role' do
       it { expect(admin_role).to be_can_edit_role }
     end

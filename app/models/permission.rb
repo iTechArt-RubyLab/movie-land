@@ -22,6 +22,7 @@
 #  can_read_user       :boolean
 #  can_read_view_list  :boolean
 #  can_set_role        :boolean
+#  can_use_search      :boolean
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  role_id             :bigint           not null

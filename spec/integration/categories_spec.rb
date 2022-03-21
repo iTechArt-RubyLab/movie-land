@@ -100,10 +100,9 @@ RSpec.describe 'api/v1/categories', type: :request do
         schema type: :object,
                properties: {
                  id: { type: :integer },
-                 name: { type: :string },
-                 award: { type: :hash }
+                 name: { type: :string }
                },
-               required: %w[id name award]
+               required: %w[id name]
 
         let(:award_id) { category.award_id }
         let(:id) { category.id }

@@ -39,7 +39,7 @@ module Api
                                            :can_edit_movie, :can_read_movie, :can_edit_person,
                                            :can_read_person, :can_read_entities, :can_edit_entities,
                                            :can_read_user, :can_edit_view_list, :can_read_view_list,
-                                           :can_leave_comment, :can_export_to_csv)
+                                           :can_leave_comment, :can_export_to_csv, :can_use_search)
       end
 
       def authorize_permission!

@@ -22,6 +22,7 @@
 #  can_read_user       :boolean
 #  can_read_view_list  :boolean
 #  can_set_role        :boolean
+#  can_use_search      :boolean
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  role_id             :bigint           not null
@@ -45,6 +46,7 @@ FactoryBot.define do
     can_read_view_list { Faker::Boolean.boolean }
     can_leave_comment { Faker::Boolean.boolean }
     can_export_to_csv { Faker::Boolean.boolean }
+    can_use_search { Faker::Boolean.boolean }
     can_edit_person { Faker::Boolean.boolean }
     can_read_movie { Faker::Boolean.boolean }
     can_read_person { Faker::Boolean.boolean }
@@ -65,6 +67,7 @@ FactoryBot.define do
       can_give_rating { true }
       can_leave_comment { true }
       can_export_to_csv { true }
+      can_use_search { true }
       can_edit_person { true }
       can_read_movie { true }
       can_edit_view_list { true }
@@ -88,6 +91,7 @@ FactoryBot.define do
       can_give_rating { true }
       can_leave_comment { true }
       can_export_to_csv { true }
+      can_use_search { true }
       can_read_movie { true }
       can_read_view_list { true }
       can_read_person { true }
@@ -109,6 +113,7 @@ FactoryBot.define do
       can_give_rating { true }
       can_leave_comment { true }
       can_export_to_csv { false }
+      can_use_search { true }
       can_edit_person { false }
       can_edit_view_list { true }
       can_read_view_list { true }
