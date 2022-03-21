@@ -18,7 +18,7 @@ describe PosterUploader do
 
   describe '.resize_to_fit' do
     it 'when poster have valid size' do
-      expect(uploader).to be_no_larger_than(100, 70)
+      expect(uploader).to be_no_larger_than(900, 700)
     end
 
     it 'when poster have invalid size' do
