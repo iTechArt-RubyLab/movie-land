@@ -22,6 +22,7 @@ gem 'devise'
 gem 'devise_token_auth', '~> 1.2'
 
 gem 'dotenv-rails'
+
 gem 'mini_magick'
 
 gem 'rswag-api'
