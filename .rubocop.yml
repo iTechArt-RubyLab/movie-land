@@ -42,6 +42,9 @@ Metrics/MethodLength:
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
 
+Rails/I18nLocaleTexts:
+  Enabled: false
+
 RSpec/ImplicitExpect:
   Exclude:
     - 'spec/models/**'
@@ -58,3 +61,10 @@ RSpec/EmptyExampleGroup:
   Exclude:
     - 'spec/integration/movie_report_spec.rb'
     - 'spec/integration/person_report_spec.rb'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'app/services/integration/the_movie_db.rb'
+Metrics/ClassLength:
+  Exclude:
+    - 'app/services/integration/the_movie_db.rb'

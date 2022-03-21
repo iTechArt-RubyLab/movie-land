@@ -5,7 +5,7 @@ class CreatePeople < ActiveRecord::Migration[6.1]
       t.string :surname
       t.date :birthday
       t.date :deathday
-      t.references :country, null: false, foreign_key: true
+      t.references :country, null: true, foreign_key: true
       t.boolean :married
 
       t.timestamps

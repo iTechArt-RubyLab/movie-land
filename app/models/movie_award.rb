@@ -23,8 +23,8 @@
 class MovieAward < ApplicationRecord
   belongs_to :movie
   belongs_to :category
-  has_many :movie_awards_person, dependent: :delete_all
-  has_many :people, through: :movie_awards_person, dependent: :destroy
+  has_many :movie_awards_people, dependent: :delete_all
+  has_many :people, through: :movie_awards_people, dependent: :destroy
 
   enum nomination_type: { winner: 0, nominator: 1 }
 

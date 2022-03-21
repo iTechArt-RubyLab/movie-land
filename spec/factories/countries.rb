@@ -16,7 +16,7 @@ FactoryBot.define do
     name { Faker::Address.unique.country }
 
     trait :invalid_short_name do
-      name { Faker::Lorem.characters(number: 2) }
+      name { Faker::Lorem.characters(number: 1) }
     end
 
     trait :invalid_long_name do

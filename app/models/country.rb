@@ -16,5 +16,5 @@ class Country < ApplicationRecord
   has_many :movies, through: :countries_movies, dependent: :destroy
   has_many :people, dependent: :nullify
 
-  validates :name, length: { minimum: 3, maximum: 100 }, uniqueness: { message: 'This country already exists' }
+  validates :name, length: { minimum: 2, maximum: 100 }, uniqueness: { message: 'This country already exists' }
 end

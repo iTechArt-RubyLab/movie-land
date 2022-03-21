@@ -21,6 +21,8 @@ gem 'devise'
 
 gem 'devise_token_auth', '~> 1.2'
 
+gem 'dotenv-rails'
+
 gem 'mini_magick'
 
 gem 'rswag-api'
@@ -45,6 +47,8 @@ gem 'validate_url'
 gem 'will_paginate'
 
 gem 'strong_migrations'
+
+gem 'themoviedb'
 
 gem 'active_model_serializers', '~> 0.10.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible

@@ -3,6 +3,7 @@
 # Table name: people
 #
 #  id         :bigint           not null, primary key
+#  biography  :text
 #  birthday   :date
 #  deathday   :date
 #  married    :boolean
@@ -10,7 +11,7 @@
 #  surname    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  country_id :bigint           not null
+#  country_id :bigint
 #
 # Indexes
 #
@@ -57,15 +58,15 @@ RSpec.describe Person, type: :model do
 
   context 'with indexes' do
     it 'when indexed' do
-      create(:person, name: 'John', surname: 'Doe')
+      create(:person, name: 'John', surname: 'Zxc')
 
       described_class.__elasticsearch__.refresh_index!
-      expect(described_class.search('doe').results.total).to eq(1)
+      expect(described_class.search('zxc').results.total).to eq(1)
     end
   end
 
   context 'with associations' do
-    it { is_expected.to belong_to(:country) }
+    it { is_expected.to belong_to(:country).optional }
     it { is_expected.to have_many(:comments) }
     it { is_expected.to have_many(:actor_roles).with_foreign_key('actor_id') }
     it { is_expected.to have_many(:movie_staffs).with_foreign_key('staff_id') }
