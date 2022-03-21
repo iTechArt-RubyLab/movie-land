@@ -1,8 +1,9 @@
 class TheMovieDb
-  LIMIT = 250
+  LIMIT = 500
   AGE_ADULT = 18
   MIN_AGE = 0
   MAX_AGE = 17
+  DEFAULT_IMAGE_URL = 'http://image.tmdb.org/t/p/original'.freeze
 
   def call
     genres_request
@@ -85,8 +86,9 @@ class TheMovieDb
       movie_values = { name: result['title'], age_limit: calculate_age_limit(result['adult']),
                        description: result['overview'], tagline: result['tagline'], trailer: Faker::Internet.url,
                        release_date: result['release_date'], budget: result['budget'],
-                       duration: Faker::Number.number(digits: 3), poster: result['poster_path'] }
+                       duration: Faker::Number.number(digits: 3) }
       movie = Movie.create(movie_values)
+      movie.remote_poster_url = "#{DEFAULT_IMAGE_URL}#{result['poster_path']}"
       movie.languages.push(related_table_request(result['spoken_languages'], 'english_name', Language))
       movie.genres.push(related_table_request(result['genres'], 'name', Genre))
       movie.companies.push(related_table_request(result['production_companies'], 'name', Company))
@@ -111,7 +113,7 @@ class TheMovieDb
     result = []
     unless array.nil?
       0.upto(array.length - 1) do |array_element|
-        result[array_element] = class_name.find_or_create_by(name: array[array_element][key])
+        result.push(class_name.find_or_create_by(name: array[array_element][key]))
       end
     end
     result
