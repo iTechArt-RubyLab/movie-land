@@ -3,6 +3,6 @@ class TheMovieDbWorker
   queue_as :default
 
   def perform
-    TheMovieDb.new.call
+    Integration::TheMovieDb.new.call
   end
 end
