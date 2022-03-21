@@ -1,6 +1,4 @@
 class CommentPolicy < ApplicationPolicy
-  attr_reader :user, :record
-
   def create?
     user.can_leave_comment?
   end

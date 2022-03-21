@@ -1,6 +1,4 @@
 class ViewListPolicy < ApplicationPolicy
-  attr_reader :user, :record
-
   def index?
     user.can_read_view_list?
   end

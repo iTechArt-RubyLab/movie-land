@@ -1,2 +1,1 @@
-class GenrePolicy < BaseEntityPolicy
-end
+class GenrePolicy < BaseEntityPolicy; end

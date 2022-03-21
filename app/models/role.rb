@@ -14,8 +14,9 @@
 class Role < ApplicationRecord
   has_one :permission, dependent: :destroy
   has_many :users, dependent: :nullify
-  validates :name, length: { in: 2..100 }, uniqueness: { message: 'This role already exists' }
   accepts_nested_attributes_for :permission
+
+  validates :name, length: { in: 2..100 }, uniqueness: { message: 'This role already exists' }
 
   def can_lock_user?
     admin? ? true : permision? && permission.can_lock_user

@@ -24,7 +24,7 @@
 class MovieStaff < ApplicationRecord
   belongs_to :movie
   belongs_to :staff, class_name: 'Person'
-  validates :staff_type, uniqueness: { scope: %i[movie_id staff_id], message: 'This movie staff already appointed' }
+
   enum staff_type: {
     director: 0,
     editor: 1,
@@ -33,4 +33,6 @@ class MovieStaff < ApplicationRecord
     producer: 4,
     screencaster: 5
   }
+
+  validates :staff_type, uniqueness: { scope: %i[movie_id staff_id], message: 'This movie staff already appointed' }
 end

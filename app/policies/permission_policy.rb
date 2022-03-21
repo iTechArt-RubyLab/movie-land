@@ -1,6 +1,4 @@
 class PermissionPolicy < ApplicationPolicy
-  attr_reader :user, :record
-
   def show?
     user.can_edit_permission?
   end

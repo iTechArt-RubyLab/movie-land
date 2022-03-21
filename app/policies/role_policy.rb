@@ -1,6 +1,4 @@
 class RolePolicy < ApplicationPolicy
-  attr_reader :user, :record
-
   def index?
     user.can_edit_role?
   end

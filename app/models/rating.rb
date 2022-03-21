@@ -24,10 +24,10 @@ class Rating < ApplicationRecord
   belongs_to :user
   belongs_to :movie
 
-  before_save :calculate_rating
-
   validates :rating, numericality: { only_integer: true }, inclusion: { in: 1..10 }
   validates :user_id, uniqueness: { scope: :movie_id, message: 'This movie already rated by you.' }
+
+  before_save :calculate_rating
 
   private
 

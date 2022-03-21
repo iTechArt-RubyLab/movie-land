@@ -3,6 +3,6 @@ class ReviewerNotificationWorker
   queue_as :default
 
   def perform
-    Notification::ReviewerService.new.call
+    Notification::ReviewerService.call
   end
 end
