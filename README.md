@@ -34,9 +34,13 @@ to the interests of the user, and a release calendar.
 ---
 ## Configuration
 
-[Redis installation](https://redis.io/topics/quickstart)
-[Elasticsearch installation](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-20-04-ru)
-[Mailcatcher installation](https://mailcatcher.me/)
+| Dependences | Installation |
+| ------ | ------ |
+| Redis | [Guide](https://redis.io/topics/quickstart) |
+| Elasticsearch | [Guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-20-04-ru) |
+| Mailcatcher | [Guide](https://mailcatcher.me/) |
+
+---
 
 ```bash
   git clone git@github.com:iTechArt-RubyLab/movie-land.git
@@ -51,7 +55,7 @@ to the interests of the user, and a release calendar.
 ```
 
 ```bash
-  bundle exec rake themoivedb
+  bundle exec rake themoviedb
 ```
 
 ```bash

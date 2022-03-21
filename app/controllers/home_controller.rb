@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    render json: { data: 'Hello World' }
+    render json: { greetings: 'Welcome to the Movie Land!' }
   end
 end
