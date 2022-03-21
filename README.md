@@ -34,7 +34,15 @@ to the interests of the user, and a release calendar.
 ---
 ## Configuration
 
-| Dependences | Installation |
+| Environment | Version |
+| ------ | ------ |
+| Ruby | 3.0.2 |
+| Rails | 6.1.4 |
+| Database | Postgresql |
+
+---
+
+| Dependencies | Installation |
 | ------ | ------ |
 | Redis | [Guide](https://redis.io/topics/quickstart) |
 | Elasticsearch | [Guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-20-04-ru) |
@@ -42,44 +50,54 @@ to the interests of the user, and a release calendar.
 
 ---
 
-```bash
-  git clone git@github.com:iTechArt-RubyLab/movie-land.git
-```
+Clone repository
 
 ```bash
-  bundle install
+git clone git@github.com:iTechArt-RubyLab/movie-land.git
 ```
 
-```bash
-  bundle exec rails db:create db:migrate db:seed
-```
+Run configuration commands
 
 ```bash
-  bundle exec rake themoviedb
+bundle install
+
+rails db:create db:migrate db:seed
 ```
 
-```bash
-  bundle exec rake elasticsearch:import
-```
+Run rake task to fill data with TheMovieDb
 
 ```bash
-  sudo service elasticsearch start
+rake themoviedb
 ```
 
-```bash
-  mailcatcher
-```
+Run rake task to import data for elasticsearch
 
 ```bash
-  redis-server
+rake elasticsearch:import
 ```
 
-```bash
-  sidekiq
-```
+Run configuration commands
 
 ```bash
-  bundle exec rails s
+sudo service elasticsearch start
+
+mailcatcher
+
+redis-server
+
+sidekiq
+```
+
+Run rails server
+
+```bash
+rails s
+```
+
+Run all specs
+
+```bash
+rspec spec
 ```
 
 ---
