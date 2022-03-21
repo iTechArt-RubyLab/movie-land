@@ -12,9 +12,9 @@ RSpec.describe 'api/v1/my-ratings', type: :request do
   path '/api/v1/my-ratings' do
     get 'Retrieves all ratings.' do
       tags 'Ratings'
-      parameter name: 'access-token', in: :header, type: :string
-      parameter name: 'client', in: :header, type: :string
-      parameter name: 'uid', in: :header, type: :string
+      parameter name: 'access-token', in: :header, type: :string, required: true
+      parameter name: 'client', in: :header, type: :string, required: true
+      parameter name: 'uid', in: :header, type: :string, required: true
       produces 'application/json'
 
       response '200', 'My ratings.' do
@@ -37,9 +37,9 @@ RSpec.describe 'api/v1/my-ratings', type: :request do
     post 'Create a rating.' do
       tags 'Ratings'
       consumes 'application/json'
-      parameter name: 'access-token', in: :header, type: :string
-      parameter name: 'client', in: :header, type: :string
-      parameter name: 'uid', in: :header, type: :string
+      parameter name: 'access-token', in: :header, type: :string, required: true
+      parameter name: 'client', in: :header, type: :string, required: true
+      parameter name: 'uid', in: :header, type: :string, required: true
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
@@ -47,11 +47,9 @@ RSpec.describe 'api/v1/my-ratings', type: :request do
             type: :object,
             properties: {
               rating: { type: :integer },
-              created_at: { type: :date },
-              user_id: { type: :integer },
               movie_id: { type: :integer }
             },
-            required: %w[rating created_at user_id movie_id]
+            required: %w[rating movie_id]
           }
         },
         required: [:rating]
@@ -86,10 +84,10 @@ RSpec.describe 'api/v1/my-ratings', type: :request do
     put 'Update rating.' do
       tags 'Ratings'
       consumes 'application/json'
-      parameter name: 'access-token', in: :header, type: :string
-      parameter name: 'client', in: :header, type: :string
-      parameter name: 'uid', in: :header, type: :string
-      parameter name: :id, in: :path, type: :string
+      parameter name: 'access-token', in: :header, type: :string, required: true
+      parameter name: 'client', in: :header, type: :string, required: true
+      parameter name: 'uid', in: :header, type: :string, required: true
+      parameter name: :id, in: :path, type: :string, required: true
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
@@ -97,11 +95,9 @@ RSpec.describe 'api/v1/my-ratings', type: :request do
             type: :object,
             properties: {
               rating: { type: :integer },
-              created_at: { type: :date },
-              user_id: { type: :integer },
               movie_id: { type: :integer }
             },
-            required: %w[rating created_at user_id movie_id]
+            required: %w[rating movie_id]
           }
         },
         required: [:rating]
@@ -113,11 +109,9 @@ RSpec.describe 'api/v1/my-ratings', type: :request do
                properties: {
                  id: { type: :integer },
                  rating: { type: :integer },
-                 created_at: { type: :date },
-                 user: { type: :hash },
-                 movie: { type: :hash }
+                 movie: { type: :object }
                },
-               required: %w[id rating user movie]
+               required: %w[id rating movie]
 
         let(:id) { create(:rating).id }
         let(:params) { { rating: attributes_for(:rating, user_id: user.id, movie_id: movie.id) } }
@@ -147,10 +141,10 @@ RSpec.describe 'api/v1/my-ratings', type: :request do
     delete 'Delete rating.' do
       tags 'Ratings'
       consumes 'application/json'
-      parameter name: 'access-token', in: :header, type: :string
-      parameter name: 'client', in: :header, type: :string
-      parameter name: 'uid', in: :header, type: :string
-      parameter name: :id, in: :path, type: :string
+      parameter name: 'access-token', in: :header, type: :string, required: true
+      parameter name: 'client', in: :header, type: :string, required: true
+      parameter name: 'uid', in: :header, type: :string, required: true
+      parameter name: :id, in: :path, type: :string, required: true
       produces 'application/json'
 
       response '204', 'Rating deleted successfully.' do

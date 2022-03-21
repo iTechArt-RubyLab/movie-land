@@ -12,9 +12,9 @@ RSpec.describe 'api/v1/my-view-list', type: :request do
   path '/api/v1/my-view-list' do
     get 'Retrieves my viewlist.' do
       tags 'Viewlist'
-      parameter name: 'access-token', in: :header, type: :string
-      parameter name: 'client', in: :header, type: :string
-      parameter name: 'uid', in: :header, type: :string
+      parameter name: 'access-token', in: :header, type: :string, required: true
+      parameter name: 'client', in: :header, type: :string, required: true
+      parameter name: 'uid', in: :header, type: :string, required: true
       produces 'application/json'
 
       response '200', 'My viewlist.' do
@@ -37,17 +37,16 @@ RSpec.describe 'api/v1/my-view-list', type: :request do
     post 'Create a viewlist item.' do
       tags 'Viewlist'
       consumes 'application/json'
-      parameter name: 'access-token', in: :header, type: :string
-      parameter name: 'client', in: :header, type: :string
-      parameter name: 'uid', in: :header, type: :string
+      parameter name: 'access-token', in: :header, type: :string, required: true
+      parameter name: 'client', in: :header, type: :string, required: true
+      parameter name: 'uid', in: :header, type: :string, required: true
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
           watching_status: { type: :string },
-          user_id: { type: :integer },
           movie_id: { type: :integer }
         },
-        required: %w[watching_status user_id movie_id]
+        required: %w[watching_status movie_id]
       }
       produces 'application/json'
 
@@ -79,18 +78,17 @@ RSpec.describe 'api/v1/my-view-list', type: :request do
     put 'Update viewlist item.' do
       tags 'Viewlist'
       consumes 'application/json'
-      parameter name: 'access-token', in: :header, type: :string
-      parameter name: 'client', in: :header, type: :string
-      parameter name: 'uid', in: :header, type: :string
-      parameter name: :id, in: :path, type: :string
+      parameter name: 'access-token', in: :header, type: :string, required: true
+      parameter name: 'client', in: :header, type: :string, required: true
+      parameter name: 'uid', in: :header, type: :string, required: true
+      parameter name: :id, in: :path, type: :string, required: true
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
           watching_status: { type: :string },
-          user_id: { type: :integer },
           movie_id: { type: :integer }
         },
-        required: %w[watching_status user_id movie_id]
+        required: %w[watching_status movie_id]
       }
       produces 'application/json'
 
@@ -99,10 +97,9 @@ RSpec.describe 'api/v1/my-view-list', type: :request do
                properties: {
                  id: { type: :integer },
                  watching_status: { type: :string },
-                 user: { type: :hash },
-                 movie: { type: :hash }
+                 movie: { type: :object }
                },
-               required: %w[id watching_status user movie]
+               required: %w[id watching_status movie]
 
         let(:id) { create(:view_list).id }
         let(:params) { { view_list: attributes_for(:view_list, user_id: user.id, movie_id: movie.id) } }

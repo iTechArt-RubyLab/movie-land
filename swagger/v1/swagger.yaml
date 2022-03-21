@@ -34,7 +34,8 @@ paths:
                 username:
                   type: string
                 birthday:
-                  type: date
+                  type: string
+                  format: date
                 role_id:
                   type: integer
               required:
@@ -371,11 +372,8 @@ paths:
               properties:
                 name:
                   type: string
-                award_id:
-                  type: integer
               required:
               - name
-              - award_id
   "/api/v1/awards/{award_id}/categories/{id}":
     put:
       summary: Update category.
@@ -434,8 +432,6 @@ paths:
               properties:
                 name:
                   type: string
-                award_id:
-                  type: integer
               required:
               - name
               - award_id
@@ -516,7 +512,7 @@ paths:
               type: object
               properties:
                 body:
-                  type: text
+                  type: string
               required:
               - body
   "/api/v1/movies/{movie_id}/comments/{id}":
@@ -561,7 +557,7 @@ paths:
                   id:
                     type: integer
                   body:
-                    type: text
+                    type: string
                 required:
                 - id
                 - body
@@ -576,7 +572,7 @@ paths:
               type: object
               properties:
                 body:
-                  type: text
+                  type: string
               required:
               - body
     delete:
@@ -656,7 +652,7 @@ paths:
               type: object
               properties:
                 body:
-                  type: text
+                  type: string
               required:
               - body
   "/api/v1/comments/{comment_id}/comments/{id}":
@@ -701,7 +697,7 @@ paths:
                   id:
                     type: integer
                   body:
-                    type: text
+                    type: string
                 required:
                 - id
                 - body
@@ -716,7 +712,7 @@ paths:
               type: object
               properties:
                 body:
-                  type: text
+                  type: string
               required:
               - body
     delete:
@@ -796,7 +792,7 @@ paths:
               type: object
               properties:
                 body:
-                  type: text
+                  type: string
               required:
               - body
   "/api/v1/people/{person_id}/comments/{id}":
@@ -841,7 +837,7 @@ paths:
                   id:
                     type: integer
                   body:
-                    type: text
+                    type: string
                 required:
                 - id
                 - body
@@ -856,7 +852,7 @@ paths:
               type: object
               properties:
                 body:
-                  type: text
+                  type: string
               required:
               - body
     delete:
@@ -1566,15 +1562,15 @@ paths:
               type: object
               properties:
                 delivery_year:
-                  type: date
+                  type: integer
                 nomination_type:
                   type: string
-                cotegory_id:
+                category_id:
                   type: integer
               required:
               - delivery_year
               - nomination_type
-              - cotegory_id
+              - category_id
   "/api/v1/movies/{movie_id}/movie_awards/{id}":
     get:
       summary: Retrieves a movie award.
@@ -1673,7 +1669,7 @@ paths:
               type: object
               properties:
                 delivery_year:
-                  type: date
+                  type: integer
                 nomination_type:
                   type: string
                 category_id:
@@ -1681,7 +1677,7 @@ paths:
               required:
               - delivery_year
               - nomination_type
-              - country_id
+              - category_id
     delete:
       summary: Delete movie.
       tags:
@@ -1818,13 +1814,14 @@ paths:
                 name:
                   type: string
                 description:
-                  type: text
+                  type: string
                 tagline:
                   type: string
                 trailer:
                   type: string
                 release_date:
-                  type: date
+                  type: string
+                  format: date
                 age_limit:
                   type: integer
                 budget:
@@ -1832,11 +1829,13 @@ paths:
                 duration:
                   type: integer
                 poster:
-                  type: hash
+                  url:
+                    type: string
                 images:
                   type: array
                   items:
-                    type: hash
+                    url:
+                      type: string
               required:
               - name
               - description
@@ -1902,13 +1901,14 @@ paths:
                   name:
                     type: string
                   description:
-                    type: text
+                    type: string
                   tagline:
                     type: string
                   trailer:
                     type: string
                   release_date:
-                    type: date
+                    type: string
+                    format: date
                   age_limit:
                     type: integer
                   budget:
@@ -1916,11 +1916,13 @@ paths:
                   duration:
                     type: integer
                   poster:
-                    type: hash
+                    url:
+                      type: string
                   images:
                     type: array
                     items:
-                      type: hash
+                      url:
+                        type: string
                 required:
                 - id
                 - name
@@ -1946,13 +1948,14 @@ paths:
                 name:
                   type: string
                 description:
-                  type: text
+                  type: string
                 tagline:
                   type: string
                 trailer:
                   type: string
                 release_date:
-                  type: date
+                  type: string
+                  format: date
                 age_limit:
                   type: integer
                 budget:
@@ -1960,11 +1963,13 @@ paths:
                 duration:
                   type: integer
                 poster:
-                  type: hash
+                  url:
+                    type: string
                 images:
                   type: array
                   items:
-                    type: hash
+                    url:
+                      type: string
               required:
               - name
               - description
@@ -2054,9 +2059,11 @@ paths:
                 surname:
                   type: string
                 birthday:
-                  type: date
+                  type: string
+                  format: date
                 deathday:
-                  type: date
+                  type: string
+                  format: date
                 country_id:
                   type: integer
                 married:
@@ -2124,11 +2131,13 @@ paths:
                   surname:
                     type: string
                   birthday:
-                    type: date
+                    type: string
+                    format: date
                   deathday:
-                    type: date
+                    type: string
+                    format: date
                   country:
-                    type: hash
+                    type: object
                   married:
                     type: boolean
                 required:
@@ -2154,9 +2163,11 @@ paths:
                 surname:
                   type: string
                 birthday:
-                  type: date
+                  type: string
+                  format: date
                 deathday:
-                  type: date
+                  type: string
+                  format: date
                 country_id:
                   type: integer
                 married:
@@ -2474,14 +2485,17 @@ paths:
       parameters:
       - name: access-token
         in: header
+        required: true
         schema:
           type: string
       - name: client
         in: header
+        required: true
         schema:
           type: string
       - name: uid
         in: header
+        required: true
         schema:
           type: string
       responses:
@@ -2496,14 +2510,17 @@ paths:
       parameters:
       - name: access-token
         in: header
+        required: true
         schema:
           type: string
       - name: client
         in: header
+        required: true
         schema:
           type: string
       - name: uid
         in: header
+        required: true
         schema:
           type: string
       responses:
@@ -2524,16 +2541,10 @@ paths:
                   properties:
                     rating:
                       type: integer
-                    created_at:
-                      type: date
-                    user_id:
-                      type: integer
                     movie_id:
                       type: integer
                   required:
                   - rating
-                  - created_at
-                  - user_id
                   - movie_id
               required:
               - rating
@@ -2545,14 +2556,17 @@ paths:
       parameters:
       - name: access-token
         in: header
+        required: true
         schema:
           type: string
       - name: client
         in: header
+        required: true
         schema:
           type: string
       - name: uid
         in: header
+        required: true
         schema:
           type: string
       - name: id
@@ -2572,16 +2586,11 @@ paths:
                     type: integer
                   rating:
                     type: integer
-                  created_at:
-                    type: date
-                  user:
-                    type: hash
                   movie:
-                    type: hash
+                    type: object
                 required:
                 - id
                 - rating
-                - user
                 - movie
         '401':
           description: You are not authorized.
@@ -2598,16 +2607,10 @@ paths:
                   properties:
                     rating:
                       type: integer
-                    created_at:
-                      type: date
-                    user_id:
-                      type: integer
                     movie_id:
                       type: integer
                   required:
                   - rating
-                  - created_at
-                  - user_id
                   - movie_id
               required:
               - rating
@@ -2618,14 +2621,17 @@ paths:
       parameters:
       - name: access-token
         in: header
+        required: true
         schema:
           type: string
       - name: client
         in: header
+        required: true
         schema:
           type: string
       - name: uid
         in: header
+        required: true
         schema:
           type: string
       - name: id
@@ -2916,6 +2922,7 @@ paths:
                     type: string
                   birthday:
                     type: date
+                    format: date
                 required:
                 - id
                 - email
@@ -2944,7 +2951,8 @@ paths:
                 surname:
                   type: string
                 birthday:
-                  type: date
+                  type: string
+                  format: date
               required:
               - id
               - email
@@ -2960,14 +2968,17 @@ paths:
       parameters:
       - name: access-token
         in: header
+        required: true
         schema:
           type: string
       - name: client
         in: header
+        required: true
         schema:
           type: string
       - name: uid
         in: header
+        required: true
         schema:
           type: string
       responses:
@@ -2982,14 +2993,17 @@ paths:
       parameters:
       - name: access-token
         in: header
+        required: true
         schema:
           type: string
       - name: client
         in: header
+        required: true
         schema:
           type: string
       - name: uid
         in: header
+        required: true
         schema:
           type: string
       responses:
@@ -3007,13 +3021,10 @@ paths:
               properties:
                 watching_status:
                   type: string
-                user_id:
-                  type: integer
                 movie_id:
                   type: integer
               required:
               - watching_status
-              - user_id
               - movie_id
   "/api/v1/my-view-list/{id}":
     put:
@@ -3023,14 +3034,17 @@ paths:
       parameters:
       - name: access-token
         in: header
+        required: true
         schema:
           type: string
       - name: client
         in: header
+        required: true
         schema:
           type: string
       - name: uid
         in: header
+        required: true
         schema:
           type: string
       - name: id
@@ -3050,14 +3064,11 @@ paths:
                     type: integer
                   watching_status:
                     type: string
-                  user:
-                    type: hash
                   movie:
-                    type: hash
+                    type: object
                 required:
                 - id
                 - watching_status
-                - user
                 - movie
         '401':
           description: You are not authorized.
@@ -3071,13 +3082,10 @@ paths:
               properties:
                 watching_status:
                   type: string
-                user_id:
-                  type: integer
                 movie_id:
                   type: integer
               required:
               - watching_status
-              - user_id
               - movie_id
     delete:
       summary: Delete view_list.

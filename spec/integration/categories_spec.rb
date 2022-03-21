@@ -46,10 +46,9 @@ RSpec.describe 'api/v1/categories', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          name: { type: :string },
-          award_id: { type: :integer }
+          name: { type: :string }
         },
-        required: %w[name award_id]
+        required: %w[name]
       }
       produces 'application/json'
 
@@ -89,8 +88,7 @@ RSpec.describe 'api/v1/categories', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          name: { type: :string },
-          award_id: { type: :integer }
+          name: { type: :string }
         },
         required: %w[name award_id]
       }

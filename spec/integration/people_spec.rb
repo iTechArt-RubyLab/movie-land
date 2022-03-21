@@ -32,8 +32,8 @@ RSpec.describe 'api/v1/people', type: :request do
         properties: {
           name: { type: :string },
           surname: { type: :string },
-          birthday: { type: :date },
-          deathday: { type: :date },
+          birthday: { type: :string, format: :date },
+          deathday: { type: :string, format: :date },
           country_id: { type: :integer },
           married: { type: :boolean }
         },
@@ -96,8 +96,8 @@ RSpec.describe 'api/v1/people', type: :request do
         properties: {
           name: { type: :string },
           surname: { type: :string },
-          birthday: { type: :date },
-          deathday: { type: :date },
+          birthday: { type: :string, format: :date },
+          deathday: { type: :string, format: :date },
           country_id: { type: :integer },
           married: { type: :boolean }
         },
@@ -111,9 +111,9 @@ RSpec.describe 'api/v1/people', type: :request do
                  id: { type: :integer },
                  name: { type: :string },
                  surname: { type: :string },
-                 birthday: { type: :date },
-                 deathday: { type: :date },
-                 country: { type: :hash },
+                 birthday: { type: :string, format: :date },
+                 deathday: { type: :string, format: :date },
+                 country: { type: :object },
                  married: { type: :boolean }
                },
                required: %w[id name surname birthday deathday country married]

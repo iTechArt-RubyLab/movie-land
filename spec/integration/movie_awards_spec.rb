@@ -43,11 +43,11 @@ RSpec.describe 'api/v1/movie_awards', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          delivery_year: { type: :date },
+          delivery_year: { type: :integer },
           nomination_type: { type: :string },
-          cotegory_id: { type: :integer }
+          category_id: { type: :integer }
         },
-        required: %w[delivery_year nomination_type cotegory_id]
+        required: %w[delivery_year nomination_type category_id]
       }
       produces 'application/json'
 
@@ -109,11 +109,11 @@ RSpec.describe 'api/v1/movie_awards', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          delivery_year: { type: :date },
+          delivery_year: { type: :integer },
           nomination_type: { type: :string },
           category_id: { type: :integer }
         },
-        required: %w[delivery_year nomination_type country_id]
+        required: %w[delivery_year nomination_type category_id]
       }
       produces 'application/json'
 

@@ -29,7 +29,7 @@ RSpec.describe 'api/v1/users', type: :request do
       parameter name: 'access-token', in: :header, type: :string, required: true
       parameter name: 'client', in: :header, type: :string, required: true
       parameter name: 'uid', in: :header, type: :string, required: true
-      parameter name: :id, in: :path, type: :string
+      parameter name: :id, in: :path, type: :string, required: true
 
       response '200', 'User found.' do
         let(:id) { user.id }
@@ -59,7 +59,7 @@ RSpec.describe 'api/v1/users', type: :request do
           username: { type: :string },
           name: { type: :string },
           surname: { type: :string },
-          birthday: { type: :date }
+          birthday: { type: :string, format: :date }
         },
         required: %w[id email username name surname birthday]
       }
@@ -73,7 +73,7 @@ RSpec.describe 'api/v1/users', type: :request do
                  username: { type: :string },
                  name: { type: :string },
                  surname: { type: :string },
-                 birthday: { type: :date }
+                 birthday: { type: :date, format: :date }
                },
                required: %w[id email username name surname birthday]
 

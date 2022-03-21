@@ -27,7 +27,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          body: { type: :text }
+          body: { type: :string }
         },
         required: %w[body]
       }
@@ -69,7 +69,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          body: { type: :text }
+          body: { type: :string }
         },
         required: %w[body]
       }
@@ -79,7 +79,7 @@ RSpec.describe 'api/v1/comments', type: :request do
         schema type: :object,
                properties: {
                  id: { type: :integer },
-                 body: { type: :text }
+                 body: { type: :string }
                },
                required: %w[id body]
 
@@ -144,7 +144,7 @@ RSpec.describe 'api/v1/comments', type: :request do
 
   path '/api/v1/comments/{comment_id}/comments' do
     post 'Create a nested comment.' do
-      tags 'NeastedComments'
+      tags 'NestedComments'
       consumes 'application/json'
       parameter name: 'access-token', in: :header, type: :string, required: true
       parameter name: 'client', in: :header, type: :string, required: true
@@ -153,7 +153,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          body: { type: :text }
+          body: { type: :string }
         },
         required: %w[body]
       }
@@ -185,7 +185,7 @@ RSpec.describe 'api/v1/comments', type: :request do
 
   path '/api/v1/comments/{comment_id}/comments/{id}' do
     put 'Update comment.' do
-      tags 'NeastedComments'
+      tags 'NestedComments'
       consumes 'application/json'
       parameter name: 'access-token', in: :header, type: :string, required: true
       parameter name: 'client', in: :header, type: :string, required: true
@@ -195,7 +195,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          body: { type: :text }
+          body: { type: :string }
         },
         required: %w[body]
       }
@@ -205,7 +205,7 @@ RSpec.describe 'api/v1/comments', type: :request do
         schema type: :object,
                properties: {
                  id: { type: :integer },
-                 body: { type: :text }
+                 body: { type: :string }
                },
                required: %w[id body]
 
@@ -235,7 +235,7 @@ RSpec.describe 'api/v1/comments', type: :request do
     end
 
     delete 'Delete comment.' do
-      tags 'NeastedComments'
+      tags 'NestedComments'
       consumes 'application/json'
       parameter name: 'access-token', in: :header, type: :string, required: true
       parameter name: 'client', in: :header, type: :string, required: true
@@ -270,7 +270,7 @@ RSpec.describe 'api/v1/comments', type: :request do
 
   path '/api/v1/people/{person_id}/comments' do
     post 'Create a comment on person.' do
-      tags 'PeopleComments'
+      tags 'PersonComments'
       consumes 'application/json'
       parameter name: 'access-token', in: :header, type: :string, required: true
       parameter name: 'client', in: :header, type: :string, required: true
@@ -279,7 +279,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          body: { type: :text }
+          body: { type: :string }
         },
         required: %w[body]
       }
@@ -311,7 +311,7 @@ RSpec.describe 'api/v1/comments', type: :request do
 
   path '/api/v1/people/{person_id}/comments/{id}' do
     put 'Update comment.' do
-      tags 'PeopleComments'
+      tags 'PersonComments'
       consumes 'application/json'
       parameter name: 'access-token', in: :header, type: :string, required: true
       parameter name: 'client', in: :header, type: :string, required: true
@@ -321,7 +321,7 @@ RSpec.describe 'api/v1/comments', type: :request do
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
-          body: { type: :text }
+          body: { type: :string }
         },
         required: %w[body]
       }
@@ -331,7 +331,7 @@ RSpec.describe 'api/v1/comments', type: :request do
         schema type: :object,
                properties: {
                  id: { type: :integer },
-                 body: { type: :text }
+                 body: { type: :string }
                },
                required: %w[id body]
 
@@ -361,7 +361,7 @@ RSpec.describe 'api/v1/comments', type: :request do
     end
 
     delete 'Delete comment.' do
-      tags 'PeopleComments'
+      tags 'PersonComments'
       consumes 'application/json'
       parameter name: 'access-token', in: :header, type: :string, required: true
       parameter name: 'client', in: :header, type: :string, required: true
