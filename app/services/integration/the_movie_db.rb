@@ -1,3 +1,5 @@
+require 'factory_bot_rails'
+
 module Integration
   class TheMovieDb
     LIMIT = 500
