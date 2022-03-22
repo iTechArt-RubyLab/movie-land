@@ -16,9 +16,31 @@ module Api
       end
 
       def create
-        @movie = Movie.new(movie_params)
+        Movie.transaction do
+          @movie = Movie.create!(movie_params)
+          genres_ids = params[:movie][:genres_ids]
+          genres_ids&.each do |genre_id|
+            genre = Genre.find(genre_id)
+            GenresMovie.create!(movie: @movie, genre: genre)
+          end
+          countries_ids = params[:movie][:countries_ids]
+          countries_ids&.each do |country_id|
+            country = Country.find(country_id)
+            CountriesMovie.create!(movie: @movie, country: country)
+          end
+          companies_ids = params[:movie][:companies_ids]
+          companies_ids&.each do |company_id|
+            company = Company.find(company_id)
+            CompaniesMovie.create!(movie: @movie, company: company)
+          end
+          languages_ids = params[:movie][:languages_ids]
+          languages_ids&.each do |language_id|
+            language = Language.find(language_id)
+            LanguagesMovie.create!(movie: @movie, language: language)
+          end
+        end
 
-        if @movie.save
+        if @movie.present?
           render json: @movie, status: :created, serializer: MovieSerializer
         else
           render json: @movie.errors, status: :unprocessable_entity

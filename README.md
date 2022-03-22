@@ -16,6 +16,7 @@ a list of films with the ability to set statuses, and much more.
 [Swagger](https://movie-land-api-v1.herokuapp.com/api-docs/index.html)
 
 ---
+
 ## The most interesting task
 
 Learn how to build a REST API
@@ -99,6 +100,11 @@ Run all specs
 ```bash
 rspec spec
 ```
+
+---
+## Deploy
+
+[Heroku](https://movie-land-api-v1.herokuapp.com)
 
 ---
 ## [Database schema](https://app.creately.com/d/jnXTTucnPpN/view)
