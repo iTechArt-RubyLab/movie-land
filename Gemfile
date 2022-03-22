@@ -36,6 +36,10 @@ gem 'aasm', '~> 5.2'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'factory_bot_rails', require: false
+
+gem 'faker'
+
 gem 'sidekiq'
 
 gem 'sidekiq-cron'
