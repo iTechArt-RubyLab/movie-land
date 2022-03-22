@@ -67,6 +67,10 @@ group :development, :test do
 
   gem 'bundler-audit'
 
+  gem 'factory_bot_rails'
+
+  gem 'faker'
+
   gem 'pry-nav'
 
   gem 'pry-rails'
